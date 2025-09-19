@@ -1,24 +1,58 @@
+# Tên của quy trình tự động
 name: Deploy React App to GitHub Pages
 
+# Cấu hình khi nào quy trình này sẽ chạy
 on:
+  # Chạy mỗi khi có code mới được đẩy lên nhánh 'main'
   push:
     branches:
-      - main # Chỉ chạy khi có push lên nhánh main
+      - main
+  # Cho phép bạn chạy workflow này thủ công từ tab Actions
+  workflow_dispatch:
 
+# Cấp quyền cho quy trình để nó có thể deploy lên GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Các công việc cần thực hiện
 jobs:
-  build-and-deploy:
+  # Công việc build dự án
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v3
+      # Bước 1: Lấy source code từ kho chứa về
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Install and Build 🔧
+      # Bước 2: Cài đặt Node.js để có thể chạy npm
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      # Bước 3: Cài đặt các thư viện và build dự án React
+      - name: Install dependencies and build
         run: |
           npm install
           npm run build
 
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v3
+      # Bước 4: Tải lên các file đã build
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3 # <- Đã sửa lỗi phiên bản ở đây
         with:
-          branch: gh-pages # Deploy vào nhánh có tên gh-pages
-          folder: build # Deploy thư mục build
+          path: './build'
+
+  # Công việc deploy
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      # Bước 5: Deploy lên GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
