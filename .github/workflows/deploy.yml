@@ -30,7 +30,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '18' # Bạn có thể đổi thành phiên bản Node.js bạn dùng
 
       # Bước 3: Cài đặt các thư viện và build dự án React
       - name: Install dependencies and build
@@ -38,14 +38,16 @@ jobs:
           npm install
           npm run build
 
-      # Bước 4: Tải lên các file đã build
+      # Bước 4: Tải lên các file đã build để chuẩn bị cho việc deploy
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3 # <- Đã sửa lỗi phiên bản ở đây
+        uses: actions/upload-pages-artifact@v3
         with:
+          # Tải lên nội dung từ thư mục 'build' (hoặc 'dist' nếu dự án của bạn dùng Vite)
           path: './build'
 
   # Công việc deploy
   deploy:
+    # Chỉ chạy sau khi công việc 'build' đã hoàn thành
     needs: build
     runs-on: ubuntu-latest
     environment:
