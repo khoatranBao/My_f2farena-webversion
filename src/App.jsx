@@ -20,6 +20,8 @@ import tokenTitanImage from './assets/tournament_token_titan.jpg';
 import quantumFuturesImage from './assets/tournament_quantum_futures.jpg';
 import asiaPacificImage from './assets/tournament_asia_pacific.jpg';
 import decentralizedDeFiImage from './assets/tournament_decentralized_defi.jpg';
+import goMarketsReviewImage from './assets/go_markets_review.jpg';
+import goMarketsDetailHeader from './assets/go_markets_review1.jpg';
 
 // Set Firebase log level for debugging
 setLogLevel('debug');
@@ -71,7 +73,199 @@ const userProfile = {
   };
 const bannerImages = [ bannerImage1, bannerImage2, bannerImage3 ];
 const liveMatches = [ { team1: "Team Alpha", team2: "Team Omega", score1: 2, score2: 1, game: "Valorant" }, { team1: "Giants", team2: "Titans", score1: 0, score2: 0, game: "League of Legends" }, { team1: "Phoenix", team2: "Dragon", score1: 3, score2: 2, game: "CS:GO" }, { team1: "Wolves", team2: "Bears", score1: 1, score2: 1, game: "Dota 2" }, { team1: "Shadows", team2: "Ninjas", score1: 5, score2: 4, game: "Overwatch" }, { team1: "Vipers", team2: "Cobras", score1: 2, score2: 0, game: "Valorant" }, ];
+const brokerReviews = [
+    {
+        id: 1,
+        image: goMarketsReviewImage,
+        headerImage: goMarketsDetailHeader, // Ảnh header cho trang detail
+        name: 'GO Markets',
+        score: 4.7,
+        country: 'AU',
+        years: 20,
+        description: 'GO Markets, a leading online trading broker, offers access to over 1,000 assets...', // Mô tả ngắn
+        // Dữ liệu chi tiết cho bảng xếp hạng
+        rankDetails: {
+          total: 4.7,
+          criteria: [
+            { name: 'License & Regulation', score: 5 },
+            { name: 'Fund Security', score: 4.5 },
+            { name: 'Localization & Support', score: 5 },
+            { name: 'Commissions & Fees', score: 5 },
+            { name: 'Platform Stability & Tools', score: 4.5 },
+            { name: 'Onboarding & Ease of Use', score: 5 },
+          ]
+        },
+        // Dữ liệu chi tiết cho phần phân tích
+        analysis: {
+          introduction: "This report provides an objective, expert assessment of the online trading broker GO Markets. Our evaluation is based on a proprietary scoring system that weighs nine critical criteria, reflecting what matters most to traders, from regulatory security to trading costs.",
+          sections: [
+            { title: "1. Regulation & Licensing (Weight: 25%)", content: "GO Markets operates under a multi-jurisdictional regulatory framework... ASIC (Australia)... CySEC (Cyprus)... Other Jurisdictions... Conclusion: The presence of multiple licenses, especially from top-tier agencies like ASIC, provides a strong layer of regulatory trust.", rating: "Excellent" },
+            { title: "2. Investor Protection & Fund Security (Weight: 10%)", content: "A significant drawback is the apparent lack of an investor compensation scheme or deposit insurance... This poses a potential risk to client capital in the event of broker insolvency.", rating: "Very Poor / Non-existent" },
+            // Thêm các section khác tương tự ở đây...
+          ],
+          conclusion: "GO Markets presents a mixed but generally positive profile... Is GO Markets Recommended by PK Team? YES, for experienced traders... CONSIDER ALTERNATIVES, if you are a beginner..."
+        }
+      },
+    {
+      id: 2,
+      image: 'https://placehold.co/600x300/1e40af/FFFFFF?text=Another+Broker', // Dùng ảnh placeholder
+      name: 'Sample Broker',
+      score: 4.5,
+      country: 'UK',
+      years: 15,
+      description: 'This is a sample description for another leading online trading broker. It offers a wide range of assets and is known for its excellent customer service and user-friendly platform, suitable for both beginners and experienced traders.'
+    },
+    {
+      id: 3,
+      image: 'https://placehold.co/600x300/166534/FFFFFF?text=Third+Broker', // Dùng ảnh placeholder
+      name: 'Trading Pro',
+      score: 4.9,
+      country: 'US',
+      years: 12,
+      description: 'Trading Pro provides advanced tools and features for professional traders. With ultra-low latency execution and deep liquidity, it is the platform of choice for high-volume trading and complex strategies across multiple markets.'
+    }
+  ];
+//review detail components
+const StarRating = ({ score, max = 5 }) => {
+    const fullStars = Math.floor(score);
+    const halfStar = score % 1 !== 0;
+    const emptyStars = max - fullStars - (halfStar ? 1 : 0);
+    return (
+      <div className="star-rating">
+        {[...Array(fullStars)].map((_, i) => <span key={`full-${i}`}>⭐</span>)}
+        {halfStar && <span className="half-star">⭐</span>}
+        {[...Array(emptyStars)].map((_, i) => <span key={`empty-${i}`} className="empty-star">⭐</span>)}
+      </div>
+    );
+  };
+  
+  // Component bảng xếp hạng
+  const TotalRank = ({ rankDetails }) => (
+    <div className="total-rank-container">
+      <div className="total-rank-header">
+        <h3>Total rank: {rankDetails.total.toFixed(1)} / 5.0</h3>
+        <StarRating score={rankDetails.total} />
+      </div>
+      <div className="rank-criteria-list">
+        {rankDetails.criteria.map(item => (
+          <div key={item.name} className="rank-criteria-row">
+            <span>{item.name}</span>
+            <StarRating score={item.score} />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+  
+  // Component phân tích chi tiết
+  const DetailedAnalysis = ({ analysis }) => (
+    <div className="detailed-analysis">
+      <p>{analysis.introduction}</p>
+      <h4>Detailed Scoring & Analysis</h4>
+      <p>Here is a breakdown of GO Markets' performance across PK Team's key evaluation metrics:</p>
+      {analysis.sections.map(section => (
+        <div key={section.title} className="analysis-section">
+          <h5>{section.title}</h5>
+          <p>{section.content}</p>
+          <p><strong>PK Team Rating:</strong> <span className="pk-team-rating">{section.rating}</span></p>
+        </div>
+      ))}
+      <h4>Conclusion & Recommendation for Traders</h4>
+      <p>{analysis.conclusion}</p>
+    </div>
+  );
+  
+  // Component trang chi tiết review
+  const ReviewDetailPage = ({ review, onClose }) => {
+    const [activeSubTab, setActiveSubTab] = useState('pk'); // 'pk' or 'trader'
+  
+    return (
+      <div className="review-detail-page">
+        <div className="review-detail-content">
+          <button onClick={onClose} className="review-detail-close-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="icon"><path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg>
+            Back to Reviews
+          </button>
+          <img src={review.headerImage} alt={`${review.name} header`} className="review-detail-header-img" />
+          <div className="review-detail-body">
+            <div className="review-nav">
+              <button className={`review-nav-btn ${activeSubTab === 'pk' ? 'active' : ''}`} onClick={() => setActiveSubTab('pk')}>PK Team Review</button>
+              <button className={`review-nav-btn ${activeSubTab === 'trader' ? 'active' : ''}`} onClick={() => setActiveSubTab('trader')}>Trader Reviews</button>
+            </div>
+            {activeSubTab === 'pk' ? (
+              <>
+                <TotalRank rankDetails={review.rankDetails} />
+                <DetailedAnalysis analysis={review.analysis} />
+              </>
+            ) : (
+              <div className="placeholder-content">
+                <h1>Trader Reviews</h1>
+                <p>Content for trader reviews will be shown here.</p>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  };
+  
+//review components
+const BrokerReviewCard = ({ review, onCardClick }) => {
+  return (
+    <div className="broker-card" onClick={() => onCardClick(review)}>
+      <img src={review.image} alt={`${review.name} review`} className="broker-card-img" />
+      <div className="broker-card-body">
+        <div className="broker-card-header">
+          <div className="broker-card-title">
+            <h2>{review.name}</h2>
+            <p><span>🇦🇺</span> AU • {review.years} years</p>
+          </div>
+          <div className="broker-card-score">
+            <span>{review.score.toFixed(1)}</span>
+            <p>SCORE</p>
+          </div>
+        </div>
+        <p className="broker-card-description">{review.description}</p>
+      </div>
+    </div>
+  );
+};
 
+const ReviewPage = ({ onReviewClick }) => {
+  const [activeSubTab, setActiveSubTab] = useState('broker'); // 'broker' or 'complaint'
+  return (
+    <div className="review-page">
+      <div className="review-nav">
+        <button 
+          className={`review-nav-btn ${activeSubTab === 'broker' ? 'active' : ''}`}
+          onClick={() => setActiveSubTab('broker')}
+        >
+          Broker Review
+        </button>
+        <button 
+          className={`review-nav-btn ${activeSubTab === 'complaint' ? 'active' : ''}`}
+          onClick={() => setActiveSubTab('complaint')}
+        >
+          Complaint
+        </button>
+      </div>
+      <div className="review-content">
+        {activeSubTab === 'broker' ? (
+          <div className="review-grid">
+            {brokerReviews.map(review => (
+              <BrokerReviewCard key={review.id} review={review} onCardClick={onReviewClick} />
+            ))}
+          </div>
+        ) : (
+          <div className="placeholder-content">
+            <h1>Complaints</h1>
+            <p>Content for complaints will be shown here.</p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
 // Helper Components
 const TournamentCard = ({ tournament, countdownTimers, formatTime, onViewDetails }) => {
     const isLive = tournament.startTime === 0;
@@ -269,17 +463,17 @@ const LoginForm = ({ onSwitchToRegister }) => {
     return (
         <form className="auth-form" onSubmit={(e) => e.preventDefault()}>
             <h2>Login</h2>
-            <input className="auth-input" type="text" placeholder="Tên đăng nhập" />
-            <input className="auth-input" type="password" placeholder="Mật khẩu" />
-            <input className="auth-input" type="text" placeholder="Mã xác minh" />
-            <button className="auth-button-primary">Đăng nhập</button>
+            <input className="auth-input" type="text" placeholder="Username" />
+            <input className="auth-input" type="password" placeholder="Password" />
+            <input className="auth-input" type="text" placeholder="Verification Code" />
+            <button className="auth-button-primary">Login</button>
             <div className="auth-forgot-password">
-                <a href="#">Quên mật khẩu?</a>
+                <a href="#">Forgot password?</a>
             </div>
             <div className="auth-switch-section">
-                <span>Chưa có tài khoản? </span>
+                <span>Don't have an account? </span>
                 <button type="button" className="auth-switch-button" onClick={onSwitchToRegister}>
-                    Đăng ký
+                    Register
                 </button>
             </div>
         </form>
@@ -290,22 +484,21 @@ const RegisterForm = ({ onSwitchToLogin }) => {
     return (
         <form className="auth-form" onSubmit={(e) => e.preventDefault()}>
             <h2>Register</h2>
-            <input className="auth-input" type="text" placeholder="Tên tài khoản" />
-            <input className="auth-input" type="password" placeholder="Mật khẩu" />
-            <input className="auth-input" type="password" placeholder="Xác nhận mật khẩu" />
-            <input className="auth-input" type="tel" placeholder="Số điện thoại" />
-            <input className="auth-input" type="text" placeholder="Nhập mã xác thực" />
-            <button className="auth-button-primary">Đăng ký</button>
+            <input className="auth-input" type="text" placeholder="Username" />
+            <input className="auth-input" type="password" placeholder="Password" />
+            <input className="auth-input" type="password" placeholder="Confirm Password" />
+            <input className="auth-input" type="tel" placeholder="Phone Number" />
+            <input className="auth-input" type="text" placeholder="Enter verification code" />
+            <button className="auth-button-primary">Register</button>
             <div className="auth-switch-section">
-                <span>Đã có tài khoản? </span>
+                <span>Already have an account? </span>
                 <button type="button" className="auth-switch-button" onClick={onSwitchToLogin}>
-                    Đăng nhập
+                    Login
                 </button>
             </div>
         </form>
     );
 };
-
 const AuthModal = ({ onClose }) => {
     const [formType, setFormType] = useState('login'); // 'login' or 'register'
 
@@ -352,6 +545,7 @@ const App = () => {
     // --- NEW STATE FOR OFFLINE AND AUTH MODAL ---
     const [isOnline, setIsOnline] = useState(navigator.onLine);
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+    const [selectedReview, setSelectedReview] = useState(null);
 
 
     // Effects
@@ -591,6 +785,8 @@ const App = () => {
                         </div>
                     </div>
                 );
+            case 'Review':
+                return <ReviewPage />;
             case 'Language':
                 return <PersonalInformationPage onBack={() => setActiveTab('Home')} />;
             default:

@@ -977,3 +977,252 @@ body {
   border: 1px solid #4b5563;
   font-size: 0.875rem;
 }
+
+/* style for review pages */
+.review-page {
+  padding: 1rem 0;
+}
+
+.review-nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+}
+
+.review-nav-btn {
+  background-color: #1f2937; /* gray-800 */
+  color: #d1d5db; /* gray-300 */
+  border: 1px solid #4b5563; /* gray-600 */
+  padding: 0.5rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.review-nav-btn:hover {
+  background-color: #374151; /* gray-700 */
+  color: #ffffff;
+}
+
+.review-nav-btn.active {
+  background-color: #2563eb; /* blue-600 */
+  color: #ffffff;
+  border-color: #2563eb;
+}
+
+.review-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* 1 cột trên mobile */
+  gap: 1.5rem;
+  padding: 0 1rem;
+}
+
+.broker-card {
+  background-color: #111827; /* gray-900 */
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid #4b5563; /* gray-600 */
+  display: flex;
+  flex-direction: column;
+}
+
+.broker-card-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 8;
+  object-fit: cover;
+}
+
+.broker-card-body {
+  padding: 1.5rem;
+}
+
+.broker-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.broker-card-title h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #38bdf8; /* sky-500 */
+  margin: 0 0 0.25rem 0;
+}
+
+.broker-card-title p {
+  font-size: 0.875rem;
+  color: #9ca3af; /* gray-400 */
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.broker-card-score {
+  background-color: #1f2937; /* gray-800 */
+  border: 2px solid #facc15; /* yellow-400 */
+  border-radius: 0.75rem;
+  padding: 0.5rem;
+  text-align: center;
+  min-width: 80px;
+}
+
+.broker-card-score span {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #facc15;
+  line-height: 1;
+}
+
+.broker-card-score p {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #9ca3af;
+}
+
+.broker-card-description {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #d1d5db;
+}
+
+/* --- CẬP NHẬT RESPONSIVE DESIGN --- */
+
+/* Thêm vào khu vực @media (min-width: 1024px) */
+@media (min-width: 1024px) {
+  .grid-container { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .review-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } /* 3 cột trên desktop */
+}
+
+/* review detail */
+
+.review-detail-page {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background-color: rgba(3, 7, 18, 0.9);
+  backdrop-filter: blur(8px);
+  overflow-y: auto; /* Cho phép cuộn trang detail */
+}
+
+.review-detail-content {
+  width: 100%;
+  max-width: 56rem; /* 896px */
+  margin: 2rem auto;
+  background-color: #030712;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.review-detail-close-btn {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  background-color: rgba(17, 24, 39, 0.7);
+  color: #ffffff;
+  border: 1px solid #4b5563;
+  border-radius: 9999px;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-weight: 600;
+  z-index: 110;
+}
+
+.review-detail-header-img {
+  width: 100%;
+  height: 20rem;
+  object-fit: cover;
+}
+
+.review-detail-body {
+  padding: 2rem;
+}
+
+/* Bảng xếp hạng */
+.total-rank-container {
+  background-color: #111827;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.total-rank-header {
+  text-align: center;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #374151;
+}
+
+.total-rank-header h3 {
+  font-size: 1.5rem;
+  color: #facc15;
+  margin: 0 0 0.5rem 0;
+}
+
+.star-rating {
+  font-size: 1.25rem;
+  letter-spacing: 0.2em;
+}
+
+.empty-star {
+  opacity: 0.3;
+}
+
+.rank-criteria-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.rank-criteria-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+}
+
+/* Phân tích chi tiết */
+.detailed-analysis {
+  line-height: 1.7;
+}
+
+.detailed-analysis h4 {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #374151;
+  padding-bottom: 0.5rem;
+}
+
+.analysis-section h5 {
+  font-size: 1.2rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #38bdf8;
+}
+
+.pk-team-rating {
+  font-style: italic;
+  color: #9ca3af;
+}
+
+/* Sửa đổi broker-card để có thể nhấp vào */
+.broker-card {
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.broker-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgba(56, 189, 248, 0.1), 0 4px 6px -2px rgba(56, 189, 248, 0.05);
+}
