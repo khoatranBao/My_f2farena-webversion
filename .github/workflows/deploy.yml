@@ -28,7 +28,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # Sửa './build' thành './dist' nếu dự án của bạn dùng Vite
-          path: './build'
+          path: './dist'
 
   deploy:
     needs: build
