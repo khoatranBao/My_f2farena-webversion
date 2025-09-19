@@ -43,7 +43,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # Tải lên nội dung từ thư mục 'build' (hoặc 'dist' nếu dự án của bạn dùng Vite)
-          path: './build'
+          path: './dist'
 
   # Công việc deploy
   deploy:
