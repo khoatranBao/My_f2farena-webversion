@@ -19,7 +19,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20.x'
+          # Cập nhật phiên bản Node.js lên 20 để đáp ứng yêu cầu của dự án
+          node-version: '20.x' 
       - name: Install dependencies and build
         run: |
           npm install
@@ -27,8 +28,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Thư mục 'build' là output mặc định của Create React App
-          path: './build'
+          # Thay đổi 'build' thành 'dist' để phù hợp với output của Vite
+          path: './dist'
 
   deploy:
     needs: build
