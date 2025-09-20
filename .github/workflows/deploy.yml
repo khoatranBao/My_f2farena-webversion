@@ -3,7 +3,7 @@ name: Deploy Website to GitHub Pages
 on:
   push:
     branches:
-      - main # Chạy mỗi khi có code mới được đẩy lên nhánh main
+      - main
 
 permissions:
   contents: read
@@ -27,8 +27,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Sửa './build' thành './dist' nếu dự án của bạn dùng Vite
-          path: './dist'
+          # Thay đổi 'dist' thành 'build' để phù hợp với ReactJS
+          path: './build'
 
   deploy:
     needs: build
