@@ -28,7 +28,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # Thay đổi 'dist' thành 'build' để phù hợp với ReactJS
-          path: './build'
+          path: './dist'
 
   deploy:
     needs: build
