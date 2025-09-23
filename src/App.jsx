@@ -260,31 +260,16 @@ const TradingHeader = ({ match, countdown }) => (
     </header>
 );
 
-// =======================================================
-//   ↓↓↓ THAY THẾ TOÀN BỘ COMPONENT CŨ BẰNG COMPONENT NÀY ↓↓↓
-// =======================================================
+
 const TopChartControls = ({ 
     activeInterval, onIntervalChange, 
     selectedInstrument, 
     chartType, onChartTypeChange,
     isChartTypeDropdownOpen, setChartTypeDropdownOpen, 
-    isTimeDropdownOpen, setTimeDropdownOpen           
+    isTimeDropdownOpen, setTimeDropdownOpen,
+    chartTypeRef, timeRef
 }) => {
-    const chartTypeRef = useRef(null);
-    const timeRef = useRef(null);
-     useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (chartTypeRef.current && !chartTypeRef.current.contains(event.target)) {
-                setChartTypeDropdownOpen(false);
-            }
-            if (timeRef.current && !timeRef.current.contains(event.target)) {
-                setTimeDropdownOpen(false);
-            }
-        };
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, [setChartTypeDropdownOpen, setTimeDropdownOpen]);
-
+    
     const chartTypes = [
         { key: 'bars', name: 'Bars', icon: <BarsIcon /> }, { key: 'candles', name: 'Candles', icon: <CandlesIcon /> },
         { key: 'hollow_candles', name: 'Hollow Candles', icon: <HollowCandlesIcon /> }, { key: 'heikin_ashi', name: 'Heikin Ashi', icon: <HeikinAshiIcon /> },
@@ -294,18 +279,23 @@ const TopChartControls = ({
     ];
     
     const getDropdownActiveItem = () => chartTypes.find(c => c.key === chartType && c.key !== 'bars' && c.key !== 'candles') || chartTypes[2];
+    
+    const dropdownTimeframes = ['4h', '1D', '1W', '1M'];
 
     return(
         <div className="top-chart-controls">
-            <div className="control-group">
+            <div className="unified-chart-controls">
                 <span className="instrument-name-display">{selectedInstrument}</span>
-            </div>
-            <div className="control-group">
-                <div className="segmented-control"> 
+                <div className="control-separator"></div>
+                <div className="segmented-control" ref={chartTypeRef}> 
                     <button title="Bars" className={`control-button ${chartType === 'bars' ? 'active' : ''}`} onClick={() => onChartTypeChange('bars')}><BarsIcon /></button>
                     <button title="Candles" className={`control-button ${chartType === 'candles' ? 'active' : ''}`} onClick={() => onChartTypeChange('candles')}><CandlesIcon /></button>
-                    <div className="chart-type-selector-wrapper" ref={chartTypeRef}> 
-                        <button title={getDropdownActiveItem().name} className={`control-button ${(chartType !== 'bars' && chartType !== 'candles') ? 'active' : ''}`} onClick={() => setChartTypeDropdownOpen(!isChartTypeDropdownOpen)}>
+                    <div className="chart-type-selector-wrapper"> 
+                        <button 
+                            title={getDropdownActiveItem().name} 
+                            className={`control-button ${(chartType !== 'bars' && chartType !== 'candles') ? 'active' : ''}`} 
+                            onClick={() => setChartTypeDropdownOpen(!isChartTypeDropdownOpen)}
+                        >
                             {getDropdownActiveItem().icon}
                             <DropdownArrowIcon />
                         </button>
@@ -313,42 +303,48 @@ const TopChartControls = ({
                             <div className="chart-type-dropdown">
                                 {chartTypes.slice(2).map((type, index) => (
                                     type.separator ? <div key={`sep-${index}`} className="dropdown-separator"></div> : <button key={type.key} className="dropdown-item" title={type.name} onClick={() => { onChartTypeChange(type.key); setChartTypeDropdownOpen(false); }}>
-                                        {type.icon}
-                                        <span>{type.name}</span>
+                                        {type.icon}<span>{type.name}</span>
                                     </button>
                                 ))}
                             </div>
                         )}
                     </div>
                 </div>
-            </div>
-            <div className="control-group">
+                
+                <div className="segmented-control" ref={timeRef}>
+                    <button className={`control-button ${activeInterval === '1m' ? 'active' : ''}`} onClick={() => onIntervalChange('1m')}>1m</button>
+                    <button className={`control-button ${activeInterval === '30m' ? 'active' : ''}`} onClick={() => onIntervalChange('30m')}>30m</button>
+                    <button className={`control-button ${activeInterval === '1h' ? 'active' : ''}`} onClick={() => onIntervalChange('1h')}>1h</button>
+                    <div className="time-interval-dropdown-wrapper">
+                        <button 
+                            className={`control-button timeframe-dropdown-btn ${dropdownTimeframes.includes(activeInterval) ? 'active' : ''}`} 
+                            onClick={() => setTimeDropdownOpen(!isTimeDropdownOpen)}
+                        >
+                            {dropdownTimeframes.includes(activeInterval) ? (
+                                <span className="timeframe-display">{activeInterval}</span>
+                            ) : (
+                                <TimeframeArrowIcon/>
+                            )}
+                        </button>
+                        {isTimeDropdownOpen && (
+                            <div className="chart-type-dropdown">
+                                {dropdownTimeframes.map(t => (
+                                    <button key={t} className="dropdown-item" onClick={() => { onIntervalChange(t); setTimeDropdownOpen(false); }}>
+                                        <span>{t}</span>
+                                    </button>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                </div>
+
                 <div className="segmented-control">
-                    <button className={activeInterval === '1m' ? 'active' : ''} onClick={() => onIntervalChange('1m')}>1m</button>
-                    <button className={activeInterval === '30m' ? 'active' : ''} onClick={() => onIntervalChange('30m')}>30m</button>
-                    <button className={activeInterval === '1h' ? 'active' : ''} onClick={() => onIntervalChange('1h')}>1h</button>
+                    <button className="control-button indicator-btn"><IndicatorsIcon /><span>Indicators</span></button>
                 </div>
-                <div className="time-interval-dropdown-wrapper" ref={timeRef}>
-                    <button className="control-button timeframe-dropdown-btn" onClick={() => setTimeDropdownOpen(!isTimeDropdownOpen)}>
-                        <TimeframeArrowIcon/>
-                    </button>
-                    {isTimeDropdownOpen && (
-                        <div className="chart-type-dropdown">
-                             {['4h', '1D', '1W', '1M'].map(t => (
-                                <button key={t} className="dropdown-item" onClick={() => { onIntervalChange(t); setTimeDropdownOpen(false); }}>
-                                    <span>{t}</span>
-                                </button>
-                             ))}
-                        </div>
-                    )}
+                <div className="segmented-control">
+                    <button className="control-button" title="Compare">📊</button>
+                    <button className="control-button" title="Settings">⚙️</button>
                 </div>
-            </div>
-            <div className="control-group">
-                 <button className="control-button indicator-btn"><IndicatorsIcon /><span>Indicators</span></button>
-            </div>
-             <div className="control-group">
-                <button className="control-button" title="Compare">📊</button>
-                <button className="control-button" title="Settings">⚙️</button>
             </div>
         </div>
     );
@@ -358,34 +354,29 @@ const MatchDetailPage = ({ match, onClose }) => {
     const [selectedInstrument, setSelectedInstrument] = useState('BTCUSDT');
     const [sidebarTab, setSidebarTab] = useState('instruments');
     const [chartType, setChartType] = useState('candles');
-    
     const [isChartTypeDropdownOpen, setChartTypeDropdownOpen] = useState(false);
     const [isTimeDropdownOpen, setTimeDropdownOpen] = useState(false);
+    const chartTypeRef = useRef(null);
+    const timeRef = useRef(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (chartTypeRef.current && !chartTypeRef.current.contains(event.target)) {
+                setChartTypeDropdownOpen(false);
+            }
+            if (timeRef.current && !timeRef.current.contains(event.target)) {
+                setTimeDropdownOpen(false);
+            }
+        };
+        document.addEventListener("click", handleClickOutside);
+        return () => document.removeEventListener("click", handleClickOutside);
+    }, []);
 
     const initialTime = match.countdown.split(':').reduce((acc, time) => (60 * acc) + +time, 0);
     const [countdown, setCountdown] = useState(initialTime);
-
-    useEffect(() => {
-        if (countdown <= 0) return;
-        const timer = setInterval(() => {
-            setCountdown(prev => prev > 0 ? prev - 1 : 0);
-        }, 1000);
-        return () => clearInterval(timer);
-    }, [countdown]);
-
-    const formatCountdown = (seconds) => {
-        if (seconds <= 0) return "00:00:00";
-        const h = Math.floor(seconds / 3600);
-        const m = Math.floor((seconds % 3600) / 60);
-        const s = seconds % 60;
-        return [h, m, s].map(v => v.toString().padStart(2, '0')).join(':');
-    };
-
-    const updatedMatchData = {
-      ...match,
-      team1: { name: 'Bộ phận tester', short: 'BPT', score: 0 },
-      team2: { name: 'Võ Tố Quyên', short: 'VTQ', score: 0 },
-    };
+    useEffect(() => { if (countdown <= 0) return; const timer = setInterval(() => { setCountdown(prev => prev > 0 ? prev - 1 : 0); }, 1000); return () => clearInterval(timer); }, [countdown]);
+    const formatCountdown = (seconds) => { if (seconds <= 0) return "00:00:00"; const h = Math.floor(seconds / 3600); const m = Math.floor((seconds % 3600) / 60); const s = seconds % 60; return [h, m, s].map(v => v.toString().padStart(2, '0')).join(':'); };
+    const updatedMatchData = { ...match, team1: { name: 'Bộ phận tester', short: 'BPT', score: 0 }, team2: { name: 'Võ Tố Quyên', short: 'VTQ', score: 0 }, };
   
     return (
       <div className="new-match-detail-page">
@@ -410,11 +401,13 @@ const MatchDetailPage = ({ match, onClose }) => {
                     setChartTypeDropdownOpen={setChartTypeDropdownOpen}
                     isTimeDropdownOpen={isTimeDropdownOpen}
                     setTimeDropdownOpen={setTimeDropdownOpen}
+                    chartTypeRef={chartTypeRef}
+                    timeRef={timeRef}
                 />
                 <div className="chart-container">
                     <TradingChart 
                         interval={chartInterval} 
-                        symbol={selectedInstrument} 
+                        symbol={selectedInstrument}
                     />
                 </div>
             </div>
@@ -422,215 +415,237 @@ const MatchDetailPage = ({ match, onClose }) => {
       </div>
     );
 };
-
 // =======================================================
 // MAIN APP COMPONENT
 // =======================================================
 const App = () => {
-  // State
-  const [userId, setUserId] = useState(null);
-  const [isAuthReady, setIsAuthReady] = useState(false);
-  const [activeTab, setActiveTab] = useState('Home');
-  const [chatOpen, setChatOpen] = useState(false);
-  const [messages, setMessages] = useState([]);
-  const [newMessage, setNewMessage] = useState('');
-  const [isLeftMenuOpen, setIsLeftMenuOpen] = useState(false);
-  const [countdownTimers, setCountdownTimers] = useState({});
-  const [visibleLiveTournaments, setVisibleLiveTournaments] = useState(3);
-  const [visibleUpcomingTournaments, setVisibleUpcomingTournaments] = useState(3);
-  const [showHeader, setShowHeader] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const [onlinePlayers, setOnlinePlayers] = useState(9998000);
-  const [viewingTournament, setViewingTournament] = useState(null);
-  const [viewingMatch, setViewingMatch] = useState(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [dragPosition, setDragPosition] = useState({ x: window.innerWidth - 75, y: window.innerHeight - 80 });
-  const [offset, setOffset] = useState({ x: 0, y: 0 });
-  const chatEndRef = useRef(null);
-  const [currentBanner, setCurrentBanner] = useState(0);
-  const [isOnline, setIsOnline] = useState(navigator.onLine);
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-  const [selectedReview, setSelectedReview] = useState(null);
+    // State
+    const [userId, setUserId] = useState(null);
+    const [isAuthReady, setIsAuthReady] = useState(false);
+    const [activeTab, setActiveTab] = useState('Home');
+    const [chatOpen, setChatOpen] = useState(false);
+    const [messages, setMessages] = useState([]);
+    const [newMessage, setNewMessage] = useState('');
+    const [isLeftMenuOpen, setIsLeftMenuOpen] = useState(false);
+    const [countdownTimers, setCountdownTimers] = useState({});
+    const [visibleLiveTournaments, setVisibleLiveTournaments] = useState(3);
+    const [visibleUpcomingTournaments, setVisibleUpcomingTournaments] = useState(3);
+    const [onlinePlayers, setOnlinePlayers] = useState(9998000);
+    const [viewingTournament, setViewingTournament] = useState(null);
+    const [viewingMatch, setViewingMatch] = useState(null);
+    const [isDragging, setIsDragging] = useState(false);
+    const [dragPosition, setDragPosition] = useState({ x: window.innerWidth - 75, y: window.innerHeight - 80 });
+    const [offset, setOffset] = useState({ x: 0, y: 0 });
+    const chatEndRef = useRef(null);
+    const [currentBanner, setCurrentBanner] = useState(0);
+    const [isOnline, setIsOnline] = useState(navigator.onLine);
+    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+    const [selectedReview, setSelectedReview] = useState(null);
+  
+    // ✅ =============================================================
+    // ✅ LOGIC XỬ LÝ CUỘN CHUỘT (PHIÊN BẢN SỬA LỖI)
+    // ✅ =============================================================
+    const [showHeader, setShowHeader] = useState(true);
+    const lastScrollY = useRef(window.scrollY);
 
-  // Effects
-  useEffect(() => { const timers = allTournaments.reduce((acc, curr) => { const isUpcoming = curr.startTime > 0; return { ...acc, [curr.name]: isUpcoming ? curr.startTime : curr.duration }; }, {}); setCountdownTimers(timers); const interval = setInterval(() => { setCountdownTimers(prevTimers => { const newTimers = { ...prevTimers }; for (const key in newTimers) { if (newTimers[key] > 0) newTimers[key] -= 1; } return newTimers; }); }, 1000); return () => clearInterval(interval); }, []);
-  useEffect(() => { const autoScroll = setInterval(() => { setCurrentBanner(prev => (prev === bannerImages.length - 1 ? 0 : prev + 1)); }, 5000); return () => clearInterval(autoScroll); }, []);
-  useEffect(() => { const interval = setInterval(() => { setOnlinePlayers(prev => prev + Math.floor(Math.random() * 50) + 1); }, 3000); return () => clearInterval(interval); }, []);
-  useEffect(() => { const handleAuth = async (user) => { if (user) { setUserId(user.uid); } else { try { const cred = await signInAnonymously(auth); setUserId(cred.user.uid); } catch (error) { console.error("Anonymous sign-in failed:", error); } } setIsAuthReady(true); }; const unsubscribe = onAuthStateChanged(auth, handleAuth); return () => unsubscribe(); }, []);
-  useEffect(() => { if (isAuthReady && userId) { const q = query(collection(db, `artifacts/${typeof __app_id !== 'undefined' ? __app_id : 'default-app-id'}/public/data/chat_messages`)); const unsubscribe = onSnapshot(q, (snapshot) => { const fetchedMessages = snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })).sort((a, b) => a.timestamp - b.timestamp); setMessages(fetchedMessages); }, (error) => { console.error("Error with Firestore listener:", error); }); return () => unsubscribe(); } }, [isAuthReady, userId]);
-  useEffect(() => { chatEndRef.current?.scrollIntoView({ behavior: "smooth" }); }, [messages]);
-  useEffect(() => { const handleOnline = () => setIsOnline(true); const handleOffline = () => setIsOnline(false); window.addEventListener('online', handleOnline); window.addEventListener('offline', handleOffline); return () => { window.removeEventListener('online', handleOnline); window.removeEventListener('offline', handleOffline); }; }, []);
-  const handleScroll = () => { const currentScrollY = window.scrollY; if (currentScrollY > 50) { setShowHeader(currentScrollY < lastScrollY); } else { setShowHeader(true); } setLastScrollY(currentScrollY); };
-  useEffect(() => { window.addEventListener('scroll', handleScroll); return () => window.removeEventListener('scroll', handleScroll); }, [lastScrollY]);
-  const handleMouseDown = (e) => { const target = e.target.closest('button'); if (!target) return; setIsDragging(true); const rect = target.getBoundingClientRect(); setOffset({ x: e.clientX - rect.left, y: e.clientY - rect.top, }); };
-  const handleMouseMove = (e) => { if (!isDragging) return; let newX = e.clientX - offset.x; let newY = e.clientY - offset.y; const buttonWidth = 64; const buttonHeight = 64; newX = Math.max(0, Math.min(newX, window.innerWidth - buttonWidth)); newY = Math.max(0, Math.min(newY, window.innerHeight - buttonHeight)); setDragPosition({ x: newX, y: newY }); };
-  const handleMouseUp = () => setIsDragging(false);
-  useEffect(() => { window.addEventListener('mousemove', handleMouseMove); window.addEventListener('mouseup', handleMouseUp); return () => { window.removeEventListener('mousemove', handleMouseMove); window.removeEventListener('mouseup', handleMouseUp); }; }, [isDragging, offset]);
-  const sendMessage = async () => { if (newMessage.trim() === '' || !userId) return; try { await addDoc(collection(db, `artifacts/${typeof __app_id !== 'undefined' ? __app_id : 'default-app-id'}/public/data/chat_messages`), { text: newMessage, timestamp: Date.now(), userId: userId, }); setNewMessage(''); } catch (e) { console.error("Error adding document: ", e); } };
-  const formatTime = (seconds) => { const absSeconds = Math.max(0, seconds); const d = Math.floor(absSeconds / 86400); const h = Math.floor((absSeconds % 86400) / 3600); const m = Math.floor((absSeconds % 3600) / 60); const s = Math.floor(absSeconds % 60); if (d > 0) return `${d}d ${h.toString().padStart(2, '0')}h`; return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`; };
-
-  const renderContent = () => {
-      const liveTournaments = allTournaments.filter(t => t.startTime === 0);
-      const upcomingTournaments = allTournaments.filter(t => t.startTime > 0);
+    useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
       
-      switch (activeTab) {
-          case 'Home':
-              return ( <div className="home-container"> <div> <div className="section-header"> <LiveIconNew /> <h2>Live Tournaments</h2> </div> <div className="grid-container"> {liveTournaments.slice(0, visibleLiveTournaments).map((t, i) => <TournamentCard key={i} tournament={t} countdownTimers={countdownTimers} formatTime={formatTime} onViewDetails={setViewingTournament} />)} </div> {liveTournaments.length > visibleLiveTournaments && ( <div className="view-more-container"> <button onClick={() => setVisibleLiveTournaments(liveTournaments.length)} className="view-more-btn"> View More </button> </div> )} </div> <div className="online-players-banner"> <div className="text-center"> <h3>PLAYERS ONLINE</h3> <p>{onlinePlayers.toLocaleString()}</p> </div> </div> <div> <div className="section-header"> <UpcomingTournamentIcon /> <h2>Upcoming Tournaments</h2> </div> <div className="grid-container"> {upcomingTournaments.slice(0, visibleUpcomingTournaments).map((t, i) => <TournamentCard key={i} tournament={t} countdownTimers={countdownTimers} formatTime={formatTime} onViewDetails={setViewingTournament} />)} </div> {upcomingTournaments.length > visibleUpcomingTournaments && ( <div className="view-more-container"> <button onClick={() => setVisibleUpcomingTournaments(upcomingTournaments.length)} className="view-more-btn"> View More </button> </div> )} </div> <div> <div className="section-header"> <LiveMatchIcon /> <h2>Live Matches</h2> </div> <div className="grid-container"> {liveMatches.map((match, index) => ( <div key={index} className="live-match-card-new"> <div> <p className="match-teams">{match.team1} vs {match.team2}</p> <p className="match-game">{match.game}</p> </div> <div className="match-score"> <span className={match.score1 > match.score2 ? 'score-winner' : match.score1 < match.score2 ? 'score-loser' : 'score-tie'}>{match.score1}</span> <span>-</span> <span className={match.score2 > match.score1 ? 'score-winner' : match.score2 < match.score1 ? 'score-loser' : 'score-tie'}>{match.score2}</span> </div> </div> ))} </div> </div> </div> );
-          case 'Review':
-              return <ReviewPage onReviewClick={setSelectedReview} />;
-          case 'Personal Information':
-               return <PersonalInformationPage onBack={() => setActiveTab('Home')} user={userProfile} />;    
-          default:
-              return ( <div className="placeholder-content"> <h1>{activeTab}</h1> <p>Content for {activeTab} will be shown here.</p> </div> );
+      if (currentScrollY < lastScrollY.current) { 
+        setShowHeader(true);
+      } 
+      else if (currentScrollY > lastScrollY.current && currentScrollY > 10) { 
+        setShowHeader(false);
       }
-  };
+      
+      lastScrollY.current = currentScrollY;
+    };
 
-  const menuItems = [ { name: 'Home', icon: <HomeIcon /> }, { name: 'Review', icon: <ReviewIcon /> }, { name: 'Arena', icon: <ArenaIcon /> }, { name: 'Leaderboard', icon: <LeaderboardIcon /> }, { name: 'Wallet', icon: <WalletIcon /> }, ];
-  
-  return (
-      <div className="app-container">
-          {viewingMatch ? (
-              <MatchDetailPage match={viewingMatch} onClose={() => setViewingMatch(null)} />
-          ) : viewingTournament ? (
-              <TournamentDetailPage 
-                  tournament={viewingTournament} 
-                  onClose={() => setViewingTournament(null)} 
-                  onMatchClick={setViewingMatch}
-              />
-          ) : (
-              <div className="main-wrapper">
-                  <header className={`app-header ${!showHeader && 'hidden'}`}>
-                      <div className="header-left">
-                          <button onClick={() => setIsLeftMenuOpen(true)}>
-                              <img src={logoImage} alt="App Logo" className="app-logo" />
-                          </button>
-                      </div>
-                      <div className="header-center">
-                          {menuItems.map((item) => (
-                              <button key={item.name} onClick={() => setActiveTab(item.name)} className={`header-nav-btn ${activeTab === item.name ? 'active' : ''}`}>
-                                  {item.icon}
-                                  <span>{item.name}</span>
-                              </button>
-                          ))}
-                      </div>
-                      <div className="header-right">
-                          <button className="login-btn" onClick={() => setIsLoginModalOpen(true)}>
-                              LOGIN
-                          </button>
-                      </div>
-                  </header>
-
-                  <div className="banner-container">
-                      <img src={bannerImages[currentBanner]} alt="Banner" className="banner-image" />
-                  </div>
-
-                  <LeftMenu 
-                      isOpen={isLeftMenuOpen} 
-                      onClose={() => setIsLeftMenuOpen(false)}
-                      user={userProfile}
-                  />
-
-                  <main className="main-content">
-                      {renderContent()}
-                  </main>
-                  
-                  <nav className="mobile-nav">
-                      {menuItems.map(item => (
-                          <button key={item.name} onClick={() => setActiveTab(item.name)} className={`mobile-nav-btn ${activeTab === item.name ? 'active' : ''}`}>
-                              {item.icon}
-                              <span>{item.name}</span>
-                          </button>
-                      ))}
-                  </nav>
-
-                  <button
-                      className={`chat-btn-draggable ${isDragging ? 'dragging' : ''}`}
-                      style={{ top: dragPosition.y, left: dragPosition.x }}
-                      onMouseDown={handleMouseDown}
-                      onClick={() => !isDragging && setChatOpen(!chatOpen)}
-                  >
-                      <div className="chat-btn-inner">
-                          <div className="chat-btn-ping"></div>
-                          <img src="https://placehold.co/100x100/171f65/FFFFFF?text=Chat" alt="Chatbot Icon" className="chat-btn-icon" />
-                          <div className="chat-btn-dot"></div>
-                      </div>
-                  </button>
-
-                  {chatOpen && (
-                      <div className="chat-window">
-                          <div className="chat-header">
-                              <h3>Global Chat</h3>
-                              <button onClick={() => setChatOpen(false)}><CloseIcon /></button>
-                          </div>
-                          <div className="chat-messages">
-                              {messages.map((msg) => (
-                                  <div key={msg.id} className={`chat-message-container ${msg.userId === userId ? 'sent' : 'received'}`}>
-                                      <div className={`chat-bubble ${msg.userId === userId ? 'sent' : 'received'}`}>
-                                          <p>User: {msg.userId.substring(0, 6)}</p>
-                                          {msg.text}
-                                      </div>
-                                  </div>
-                              ))}
-                              <div ref={chatEndRef} />
-                          </div>
-                          <div className="chat-input-area">
-                              <input type="text" value={newMessage} onChange={(e) => setNewMessage(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && sendMessage()} placeholder="Type a message..." />
-                              <button onClick={sendMessage} className="chat-send-btn">
-                                  <svg xmlns="http://www.w3.org/2000/svg" className="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
-                              </button>
-                          </div>
-                      </div>
-                  )}
-                   <footer className="app-footer">
-                        <div className="footer-container">
-                            <div className="footer-column">
-                                <h3>About Us</h3>
-                                <p>© 2025 Game Company. All Rights Reserved.</p>
-                                <a href="mailto:support@example.com">Email: support@example.com</a>
-                                <a href="#">Contact Form</a>
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+    // Effects
+    useEffect(() => { const timers = allTournaments.reduce((acc, curr) => { const isUpcoming = curr.startTime > 0; return { ...acc, [curr.name]: isUpcoming ? curr.startTime : curr.duration }; }, {}); setCountdownTimers(timers); const interval = setInterval(() => { setCountdownTimers(prevTimers => { const newTimers = { ...prevTimers }; for (const key in newTimers) { if (newTimers[key] > 0) newTimers[key] -= 1; } return newTimers; }); }, 1000); return () => clearInterval(interval); }, []);
+    useEffect(() => { const autoScroll = setInterval(() => { setCurrentBanner(prev => (prev === bannerImages.length - 1 ? 0 : prev + 1)); }, 5000); return () => clearInterval(autoScroll); }, []);
+    useEffect(() => { const interval = setInterval(() => { setOnlinePlayers(prev => prev + Math.floor(Math.random() * 50) + 1); }, 3000); return () => clearInterval(interval); }, []);
+    useEffect(() => { const handleAuth = async (user) => { if (user) { setUserId(user.uid); } else { try { const cred = await signInAnonymously(auth); setUserId(cred.user.uid); } catch (error) { console.error("Anonymous sign-in failed:", error); } } setIsAuthReady(true); }; const unsubscribe = onAuthStateChanged(auth, handleAuth); return () => unsubscribe(); }, []);
+    useEffect(() => { if (isAuthReady && userId) { const q = query(collection(db, `artifacts/${typeof __app_id !== 'undefined' ? __app_id : 'default-app-id'}/public/data/chat_messages`)); const unsubscribe = onSnapshot(q, (snapshot) => { const fetchedMessages = snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })).sort((a, b) => a.timestamp - b.timestamp); setMessages(fetchedMessages); }, (error) => { console.error("Error with Firestore listener:", error); }); return () => unsubscribe(); } }, [isAuthReady, userId]);
+    useEffect(() => { chatEndRef.current?.scrollIntoView({ behavior: "smooth" }); }, [messages]);
+    useEffect(() => { const handleOnline = () => setIsOnline(true); const handleOffline = () => setIsOnline(false); window.addEventListener('online', handleOnline); window.addEventListener('offline', handleOffline); return () => { window.removeEventListener('online', handleOnline); window.removeEventListener('offline', handleOffline); }; }, []);
+    
+    const handleMouseDown = (e) => { const target = e.target.closest('button'); if (!target) return; setIsDragging(true); const rect = target.getBoundingClientRect(); setOffset({ x: e.clientX - rect.left, y: e.clientY - rect.top, }); };
+    const handleMouseMove = (e) => { if (!isDragging) return; let newX = e.clientX - offset.x; let newY = e.clientY - offset.y; const buttonWidth = 64; const buttonHeight = 64; newX = Math.max(0, Math.min(newX, window.innerWidth - buttonWidth)); newY = Math.max(0, Math.min(newY, window.innerHeight - buttonHeight)); setDragPosition({ x: newX, y: newY }); };
+    const handleMouseUp = () => setIsDragging(false);
+    useEffect(() => { window.addEventListener('mousemove', handleMouseMove); window.addEventListener('mouseup', handleMouseUp); return () => { window.removeEventListener('mousemove', handleMouseMove); window.removeEventListener('mouseup', handleMouseUp); }; }, [isDragging, offset]);
+    const sendMessage = async () => { if (newMessage.trim() === '' || !userId) return; try { await addDoc(collection(db, `artifacts/${typeof __app_id !== 'undefined' ? __app_id : 'default-app-id'}/public/data/chat_messages`), { text: newMessage, timestamp: Date.now(), userId: userId, }); setNewMessage(''); } catch (e) { console.error("Error adding document: ", e); } };
+    const formatTime = (seconds) => { const absSeconds = Math.max(0, seconds); const d = Math.floor(absSeconds / 86400); const h = Math.floor((absSeconds % 86400) / 3600); const m = Math.floor((absSeconds % 3600) / 60); const s = Math.floor(absSeconds % 60); if (d > 0) return `${d}d ${h.toString().padStart(2, '0')}h`; return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`; };
+  
+    const renderContent = () => {
+        const liveTournaments = allTournaments.filter(t => t.startTime === 0);
+        const upcomingTournaments = allTournaments.filter(t => t.startTime > 0);
+        
+        switch (activeTab) {
+            case 'Home':
+                return ( <div className="home-container"> <div> <div className="section-header"> <LiveIconNew /> <h2>Live Tournaments</h2> </div> <div className="grid-container"> {liveTournaments.slice(0, visibleLiveTournaments).map((t, i) => <TournamentCard key={i} tournament={t} countdownTimers={countdownTimers} formatTime={formatTime} onViewDetails={setViewingTournament} />)} </div> {liveTournaments.length > visibleLiveTournaments && ( <div className="view-more-container"> <button onClick={() => setVisibleLiveTournaments(liveTournaments.length)} className="view-more-btn"> View More </button> </div> )} </div> <div className="online-players-banner"> <div className="text-center"> <h3>PLAYERS ONLINE</h3> <p>{onlinePlayers.toLocaleString()}</p> </div> </div> <div> <div className="section-header"> <UpcomingTournamentIcon /> <h2>Upcoming Tournaments</h2> </div> <div className="grid-container"> {upcomingTournaments.slice(0, visibleUpcomingTournaments).map((t, i) => <TournamentCard key={i} tournament={t} countdownTimers={countdownTimers} formatTime={formatTime} onViewDetails={setViewingTournament} />)} </div> {upcomingTournaments.length > visibleUpcomingTournaments && ( <div className="view-more-container"> <button onClick={() => setVisibleUpcomingTournaments(upcomingTournaments.length)} className="view-more-btn"> View More </button> </div> )} </div> <div> <div className="section-header"> <LiveMatchIcon /> <h2>Live Matches</h2> </div> <div className="grid-container"> {liveMatches.map((match, index) => ( <div key={index} className="live-match-card-new"> <div> <p className="match-teams">{match.team1} vs {match.team2}</p> <p className="match-game">{match.game}</p> </div> <div className="match-score"> <span className={match.score1 > match.score2 ? 'score-winner' : match.score1 < match.score2 ? 'score-loser' : 'score-tie'}>{match.score1}</span> <span>-</span> <span className={match.score2 > match.score1 ? 'score-winner' : match.score2 < match.score1 ? 'score-loser' : 'score-tie'}>{match.score2}</span> </div> </div> ))} </div> </div> </div> );
+            case 'Review':
+                return <ReviewPage onReviewClick={setSelectedReview} />;
+            case 'Personal Information':
+                 return <PersonalInformationPage onBack={() => setActiveTab('Home')} user={userProfile} />;    
+            default:
+                return ( <div className="placeholder-content"> <h1>{activeTab}</h1> <p>Content for {activeTab} will be shown here.</p> </div> );
+        }
+    };
+  
+    const menuItems = [ { name: 'Home', icon: <HomeIcon /> }, { name: 'Review', icon: <ReviewIcon /> }, { name: 'Arena', icon: <ArenaIcon /> }, { name: 'Leaderboard', icon: <LeaderboardIcon /> }, { name: 'Wallet', icon: <WalletIcon /> }, ];
+    
+    return (
+        <div className="app-container">
+            {viewingMatch ? (
+                <MatchDetailPage match={viewingMatch} onClose={() => setViewingMatch(null)} />
+            ) : viewingTournament ? (
+                <TournamentDetailPage 
+                    tournament={viewingTournament} 
+                    onClose={() => setViewingTournament(null)} 
+                    onMatchClick={setViewingMatch}
+                />
+            ) : (
+                <div className="main-wrapper">
+                    <header className={`app-header ${!showHeader && 'hidden'}`}>
+                        <div className="header-left">
+                            <button onClick={() => setIsLeftMenuOpen(true)}>
+                                <img src={logoImage} alt="App Logo" className="app-logo" />
+                            </button>
+                        </div>
+                        <div className="header-center">
+                            {menuItems.map((item) => (
+                                <button key={item.name} onClick={() => setActiveTab(item.name)} className={`header-nav-btn ${activeTab === item.name ? 'active' : ''}`}>
+                                    {item.icon}
+                                    <span>{item.name}</span>
+                                </button>
+                            ))}
+                        </div>
+                        <div className="header-right">
+                            <button className="login-btn" onClick={() => setIsLoginModalOpen(true)}>
+                                LOGIN
+                            </button>
+                        </div>
+                    </header>
+  
+                    <div className="banner-container">
+                        <img src={bannerImages[currentBanner]} alt="Banner" className="banner-image" />
+                    </div>
+  
+                    <LeftMenu 
+                        isOpen={isLeftMenuOpen} 
+                        onClose={() => setIsLeftMenuOpen(false)}
+                        user={userProfile}
+                    />
+  
+                    <main className="main-content">
+                        {renderContent()}
+                    </main>
+                    
+                    <nav className="mobile-nav">
+                        {menuItems.map(item => (
+                            <button key={item.name} onClick={() => setActiveTab(item.name)} className={`mobile-nav-btn ${activeTab === item.name ? 'active' : ''}`}>
+                                {item.icon}
+                                <span>{item.name}</span>
+                            </button>
+                        ))}
+                    </nav>
+  
+                    <button
+                        className={`chat-btn-draggable ${isDragging ? 'dragging' : ''}`}
+                        style={{ top: dragPosition.y, left: dragPosition.x }}
+                        onMouseDown={handleMouseDown}
+                        onClick={() => !isDragging && setChatOpen(!chatOpen)}
+                    >
+                        <div className="chat-btn-inner">
+                            <div className="chat-btn-ping"></div>
+                            <img src="https://placehold.co/100x100/171f65/FFFFFF?text=Chat" alt="Chatbot Icon" className="chat-btn-icon" />
+                            <div className="chat-btn-dot"></div>
+                        </div>
+                    </button>
+  
+                    {chatOpen && (
+                        <div className="chat-window">
+                            <div className="chat-header">
+                                <h3>Global Chat</h3>
+                                <button onClick={() => setChatOpen(false)}><CloseIcon /></button>
                             </div>
-                            <div className="footer-column">
-                                <h3>Legal</h3>
-                                <ul>
-                                    <li><a href="#">Terms of Service</a></li>
-                                    <li><a href="#">Privacy Policy</a></li>
-                                    <li><a href="#">Community Guidelines</a></li>
-                                </ul>
+                            <div className="chat-messages">
+                                {messages.map((msg) => (
+                                    <div key={msg.id} className={`chat-message-container ${msg.userId === userId ? 'sent' : 'received'}`}>
+                                        <div className={`chat-bubble ${msg.userId === userId ? 'sent' : 'received'}`}>
+                                            <p>User: {msg.userId.substring(0, 6)}</p>
+                                            {msg.text}
+                                        </div>
+                                    </div>
+                                ))}
+                                <div ref={chatEndRef} />
                             </div>
-                            <div className="footer-column">
-                                <h3>Useful Links</h3>
-                                <ul>
-                                    <li><a href="#">Leaderboard</a></li>
-                                    <li><a href="#">Tournaments</a></li>
-                                    <li><a href="#">Support / FAQ</a></li>
-                                    <li><a href="#">Download App</a></li>
-                                </ul>
-                            </div>
-                            <div className="footer-column">
-                                <h3>Community</h3>
-                                <div className="social-links">
-                                    <a href="#" aria-label="Facebook"><FacebookIcon /></a>
-                                    <a href="#" aria-label="Instagram"><InstagramIcon /></a>
-                                    <a href="#" aria-label="Telegram"><TelegramIcon /></a>
-                                    <a href="#" aria-label="Twitter"><XIcon /></a>
-                                </div>
-                                <div style={{marginTop: '1rem'}}>
-                                    <select className="language-selector">
-                                        <option>Tiếng Việt</option>
-                                        <option>English</option>
-                                    </select>
-                                </div>
+                            <div className="chat-input-area">
+                                <input type="text" value={newMessage} onChange={(e) => setNewMessage(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && sendMessage()} placeholder="Type a message..." />
+                                <button onClick={sendMessage} className="chat-send-btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
+                                </button>
                             </div>
                         </div>
-                    </footer>
-              </div>
-          )}
-          
-          {selectedReview && <ReviewDetailPage review={selectedReview} onClose={() => setSelectedReview(null)} />}
-          {isLoginModalOpen && <AuthModal onClose={() => setIsLoginModalOpen(false)} />}
-          {!isOnline && <OfflineOverlay />}
-      </div>
-  );
-};
+                    )}
+                     <footer className="app-footer">
+                          <div className="footer-container">
+                              <div className="footer-column">
+                                  <h3>About Us</h3>
+                                  <p>© 2025 Game Company. All Rights Reserved.</p>
+                                  <a href="mailto:support@example.com">Email: support@example.com</a>
+                                  <a href="#">Contact Form</a>
+                              </div>
+                              <div className="footer-column">
+                                  <h3>Legal</h3>
+                                  <ul>
+                                      <li><a href="#">Terms of Service</a></li>
+                                      <li><a href="#">Privacy Policy</a></li>
+                                      <li><a href="#">Community Guidelines</a></li>
+                                  </ul>
+                              </div>
+                              <div className="footer-column">
+                                  <h3>Useful Links</h3>
+                                  <ul>
+                                      <li><a href="#">Leaderboard</a></li>
+                                      <li><a href="#">Tournaments</a></li>
+                                      <li><a href="#">Support / FAQ</a></li>
+                                      <li><a href="#">Download App</a></li>
+                                  </ul>
+                              </div>
+                              <div className="footer-column">
+                                  <h3>Community</h3>
+                                  <div className="social-links">
+                                      <a href="#" aria-label="Facebook"><FacebookIcon /></a>
+                                      <a href="#" aria-label="Instagram"><InstagramIcon /></a>
+                                      <a href="#" aria-label="Telegram"><TelegramIcon /></a>
+                                      <a href="#" aria-label="Twitter"><XIcon /></a>
+                                  </div>
+                                  <div style={{marginTop: '1rem'}}>
+                                      <select className="language-selector">
+                                          <option>Tiếng Việt</option>
+                                          <option>English</option>
+                                      </select>
+                                  </div>
+                              </div>
+                          </div>
+                      </footer>
+                </div>
+            )}
+            
+            {selectedReview && <ReviewDetailPage review={selectedReview} onClose={() => setSelectedReview(null)} />}
+            {isLoginModalOpen && <AuthModal onClose={() => setIsLoginModalOpen(false)} />}
+            {!isOnline && <OfflineOverlay />}
+        </div>
+    );
+  };
 
 export default App;
