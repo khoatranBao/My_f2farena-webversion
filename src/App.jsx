@@ -3,7 +3,7 @@ import { initializeApp } from 'firebase/app';
 import { getAuth, signInAnonymously, onAuthStateChanged } from 'firebase/auth';
 import { getFirestore, onSnapshot, collection, query, addDoc } from 'firebase/firestore';
 import { setLogLevel } from 'firebase/app';
-
+import TradingChart from './components/TradingChart.jsx';
 // IMAGES
 import logoImage from './assets/logo.png'; 
 import bannerImage1 from './assets/banner1.jpg';
@@ -53,7 +53,69 @@ const allTournaments = [ { name: "Go Markets Trading Challenge", prize: "$1,000,
 const userProfile = { avatarInitials: 'TK', name: 'Tran Khoa', username: '@6077723854', email: 'Not set', walletAddress: 'Null', vipLevel: 'Silver', affiliateLink: 'https://example.com/ref/6077723854', isVerified: false, joinDate: '15/9/2025' };
 const bannerImages = [ bannerImage1, bannerImage2, bannerImage3 ];
 const liveMatches = [ { team1: "Team Alpha", team2: "Team Omega", score1: 2, score2: 1, game: "Valorant" }, { team1: "Giants", team2: "Titans", score1: 0, score2: 0, game: "League of Legends" }, { team1: "Phoenix", team2: "Dragon", score1: 3, score2: 2, game: "CS:GO" }, { team1: "Wolves", team2: "Bears", score1: 1, score2: 1, game: "Dota 2" }, { team1: "Shadows", team2: "Ninjas", score1: 5, score2: 4, game: "Overwatch" }, { team1: "Vipers", team2: "Cobras", score1: 2, score2: 0, game: "Valorant" }, ];
-const brokerReviews = [ { id: 1, image: goMarketsReviewImage, headerImage: goMarketsDetailHeader, name: 'GO Markets', score: 4.7, country: 'AU', years: 20, description: 'GO Markets, a leading online trading broker, offers access to over 1,000 assets...', rankDetails: { total: 4.7, criteria: [ { name: 'License & Regulation', score: 5 }, { name: 'Fund Security', score: 4.5 }, { name: 'Localization & Support', score: 5 }, { name: 'Commissions & Fees', score: 5 }, { name: 'Platform Stability & Tools', score: 4.5 }, { name: 'Onboarding & Ease of Use', score: 5 }, ] }, analysis: { introduction: "This report provides an objective, expert assessment of the online trading broker GO Markets. Our evaluation is based on a proprietary scoring system that weighs nine critical criteria, reflecting what matters most to traders, from regulatory security to trading costs.", sections: [ { title: "1. Regulation & Licensing (Weight: 25%)", content: "GO Markets operates under a multi-jurisdictional regulatory framework... ASIC (Australia)... CySEC (Cyprus)... Other Jurisdictions... Conclusion: The presence of multiple licenses, especially from top-tier agencies like ASIC, provides a strong layer of regulatory trust.", rating: "Excellent" }, { title: "2. Investor Protection & Fund Security (Weight: 10%)", content: "A significant drawback is the apparent lack of an investor compensation scheme or deposit insurance... This poses a potential risk to client capital in the event of broker insolvency.", rating: "Very Poor / Non-existent" } ], conclusion: "GO Markets presents a mixed but generally positive profile... Is GO Markets Recommended by PK Team? YES, for experienced traders... CONSIDER ALTERNATIVES, if you are a beginner..." } }, { id: 2, image: 'https://placehold.co/600x300/1e40af/FFFFFF?text=Another+Broker', headerImage: 'https://placehold.co/800x400/1e40af/FFFFFF?text=Another+Broker', name: 'Sample Broker', score: 4.5, country: 'UK', years: 15, description: 'This is a sample description for another leading online trading broker...', rankDetails: { total: 4.5, criteria: []}, analysis: { introduction: "", sections: [], conclusion: "" } }, { id: 3, image: 'https://placehold.co/600x300/166534/FFFFFF?text=Third+Broker', headerImage: 'https://placehold.co/800x400/166534/FFFFFF?text=Third+Broker', name: 'Trading Pro', score: 4.9, country: 'US', years: 12, description: 'Trading Pro provides advanced tools and features for professional traders...', rankDetails: { total: 4.9, criteria: []}, analysis: { introduction: "", sections: [], conclusion: "" } } ];
+const brokerReviews = [
+    {
+      id: 1,
+      image: goMarketsReviewImage,
+      headerImage: goMarketsDetailHeader,
+      logo: goMarketsImage, // Thêm logo riêng
+      name: 'GO Markets',
+      score: 4.7,
+      country: 'AU',
+      years: 20,
+      description: 'GO Markets, a leading online trading broker, offers access to over 1,000 assets...', // Mô tả ngắn cho thẻ
+      pros: [
+        "Regulated by top-tier ASIC",
+        "Competitive spreads on GO Plus+ account",
+        "Excellent third-party tools (Trading Central, Autochartist)",
+        "No deposit or withdrawal fees"
+      ],
+      cons: [
+        "Lack of investor compensation fund",
+        "Limited product range for international clients",
+        "Standard account spreads are high",
+        "No proprietary mobile app"
+      ],
+      glanceInfo: {
+        "Regulation": "ASIC, CySEC, FSC",
+        "Minimum Deposit": "$200",
+        "Trading Platforms": "MT4, MT5",
+        "Account Types": "Standard, GO Plus+"
+      },
+      rankDetails: {
+        total: 4.7,
+        criteria: [
+          { name: 'License & Regulation', score: 5 },
+          { name: 'Fund Security', score: 2.5 },
+          { name: 'Localization & Support', score: 4 },
+          { name: 'Commissions & Fees', score: 4 },
+          { name: 'Platform Stability & Tools', score: 4.5 },
+          { name: 'Onboarding & Ease of Use', score: 4.5 },
+        ]
+      },
+      analysis: {
+        introduction: "This report provides an objective, expert assessment of the online trading broker GO Markets. Our evaluation is based on a proprietary scoring system that weighs nine critical criteria, reflecting what matters most to traders, from regulatory security to trading costs.",
+        detailedIntro: "Here is a breakdown of GO Markets' performance across PK Team's key evaluation metrics:",
+        sections: [
+          { title: "1. Regulation & Licensing (Weight: 25%)", content: "GO Markets operates under a multi-jurisdictional regulatory framework, which is a significant strength. The broker holds licenses from several reputable authorities:\n\n- **ASIC (Australia):** Authorized under AFSL 254963, ASIC is considered a top-tier regulator globally, ensuring high standards of compliance and transparency.\n\n- **CySEC (Cyprus):** This license allows GO Markets to serve the European Union market under the MiFID II framework.\n\n- **Other Jurisdictions:** The broker is also regulated by the FSA (Seychelles) and FSC (Mauritius), providing a regulated environment for its international clientele.\n\n**Conclusion:** The presence of multiple licenses, especially from top-tier agencies like ASIC, provides a strong layer of regulatory trust.", rating: "Excellent" },
+          { title: "2. Investor Protection & Fund Security (Weight: 10%)", content: "A significant drawback is the apparent lack of an investor compensation scheme or deposit insurance. While ASIC mandates segregated client funds, GO Markets does not appear to participate in any publicly disclosed compensation fund (like the ICF in Cyprus for its CySEC entity) for retail traders under its other entities. This poses a potential risk to client capital in the event of broker insolvency.", rating: "Very Poor / Non-existent" },
+        ],
+        conclusion: "GO Markets presents a mixed but generally positive profile. Its primary strength is its robust regulatory framework, anchored by the top-tier ASIC license, which inspires a high degree of confidence. Trading conditions, particularly on its ECN account, are competitive, and the provision of advanced tools like Trading Central and Autochartist adds significant value.\n\nHowever, the most glaring weakness is the lack of an investor compensation fund, a critical safety net that traders expect from top brokers. This, combined with a somewhat limited product range for international clients (no physical stocks or ETFs) and a standard mobile offering, tempers our overall enthusiasm.",
+        recommendation: "**YES, for experienced traders** who prioritize strong regulation and low-cost ECN trading conditions. If you are comfortable with the MetaTrader suite and your strategy does not rely on asset classes like ETFs or physical international stocks, GO Markets is a solid choice.\n\n**CONSIDER ALTERNATIVES,** if you are a beginner who may face higher spreads on the Standard account, or if you require the absolute highest level of capital security offered by an investor protection fund. Traders seeking a broader range of real assets or more flexible withdrawal times (including weekends) may also find better-suited brokers elsewhere."
+      }
+    },
+];
+const instrumentList = [
+    { name: 'BTC/USDT', price: '68,450.5', change: 2.45 },
+    { name: 'ETH/USDT', price: '3,560.1', change: -1.12 },
+    { name: 'SOL/USDT', price: '150.78', change: 5.68 },
+];
+const mockComments = [
+    { user: 'TraderX', time: '1 min ago', text: 'BTC looking bullish, potential breakout soon.' },
+    { user: 'CryptoQueen', time: '3 min ago', text: 'I agree, volume is picking up. Watching closely.' },
+    { user: 'WhaleWatcher', time: '5 min ago', text: 'Big buy order just filled on Binance. Something is coming.' },
+    { user: 'Hodler123', time: '12 min ago', text: 'Is it too late to get in?' },
+];
 
 // =======================================================
 // HELPER COMPONENTS
@@ -65,47 +127,301 @@ const LoginForm = ({ onSwitchToRegister }) => { return ( <form className="auth-f
 const RegisterForm = ({ onSwitchToLogin }) => { return ( <form className="auth-form" onSubmit={(e) => e.preventDefault()}> <h2>Register</h2> <input className="auth-input" type="text" placeholder="Username" /> <input className="auth-input" type="password" placeholder="Password" /> <input className="auth-input" type="password" placeholder="Confirm Password" /> <input className="auth-input" type="tel" placeholder="Phone Number" /> <input className="auth-input" type="text" placeholder="Enter verification code" /> <button className="auth-button-primary">Register</button> <div className="auth-switch-section"> <span>Already have an account? </span> <button type="button" className="auth-switch-button" onClick={onSwitchToLogin}> Login </button> </div> </form> ); };
 const AuthModal = ({ onClose }) => { const [formType, setFormType] = useState('login'); return ( <div className="modal-backdrop" onClick={onClose}> <div className="auth-modal-content" onClick={e => e.stopPropagation()}> <button onClick={onClose} className="modal-close-btn"><CloseIcon /></button> <div className="auth-modal-body"> {formType === 'login' ? ( <LoginForm onSwitchToRegister={() => setFormType('register')} /> ) : ( <RegisterForm onSwitchToLogin={() => setFormType('login')} /> )} </div> </div> </div> ); };
 const StarRating = ({ score, max = 5 }) => { const fullStars = Math.floor(score); const halfStar = score % 1 !== 0; const emptyStars = max - fullStars - (halfStar ? 1 : 0); return ( <div className="star-rating"> {[...Array(fullStars)].map((_, i) => <span key={`full-${i}`}>⭐</span>)} {halfStar && <span className="half-star">⭐</span>} {[...Array(emptyStars)].map((_, i) => <span key={`empty-${i}`} className="empty-star">⭐</span>)} </div> ); };
-const TotalRank = ({ rankDetails }) => ( <div className="total-rank-container"> <div className="total-rank-header"> <h3>Total rank: {rankDetails.total.toFixed(1)} / 5.0</h3> <StarRating score={rankDetails.total} /> </div> <div className="rank-criteria-list"> {rankDetails.criteria.map(item => ( <div key={item.name} className="rank-criteria-row"> <span>{item.name}</span> <StarRating score={item.score} /> </div> ))} </div> </div> );
-const DetailedAnalysis = ({ analysis }) => ( <div className="detailed-analysis"> <p>{analysis.introduction}</p> <h4>Detailed Scoring & Analysis</h4> <p>Here is a breakdown of GO Markets' performance across PK Team's key evaluation metrics:</p> {analysis.sections.map(section => ( <div key={section.title} className="analysis-section"> <h5>{section.title}</h5> <p>{section.content}</p> <p><strong>PK Team Rating:</strong> <span className="pk-team-rating">{section.rating}</span></p> </div> ))} <h4>Conclusion & Recommendation for Traders</h4> <p>{analysis.conclusion}</p> </div> );
-const ReviewDetailPage = ({ review, onClose }) => { const [activeSubTab, setActiveSubTab] = useState('pk'); return ( <div className="review-detail-page"> <div className="review-detail-content"> <button onClick={onClose} className="review-detail-close-btn"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="icon"><path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg> Back to Reviews </button> <img src={review.headerImage} alt={`${review.name} header`} className="review-detail-header-img" /> <div className="review-detail-body"> <div className="review-nav"> <button className={`review-nav-btn ${activeSubTab === 'pk' ? 'active' : ''}`} onClick={() => setActiveSubTab('pk')}>PK Team Review</button> <button className={`review-nav-btn ${activeSubTab === 'trader' ? 'active' : ''}`} onClick={() => setActiveSubTab('trader')}>Trader Reviews</button> </div> {activeSubTab === 'pk' ? ( <> <TotalRank rankDetails={review.rankDetails} /> <DetailedAnalysis analysis={review.analysis} /> </> ) : ( <div className="placeholder-content"> <h1>Trader Reviews</h1> <p>Content for trader reviews will be shown here.</p> </div> )} </div> </div> </div> ); };
+const ReviewDetailPage = ({ review, onClose }) => { useEffect(() => { const pageElement = document.querySelector('.review-detail-page'); if (pageElement) pageElement.scrollTo(0, 0); }, [review]); return ( <div className="review-detail-page"> <div className="review-detail-header-bar"> <button onClick={onClose} className="back-button-detail"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="icon"><path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg> <span>All Reviews</span> </button> </div> <div className="broker-detail-layout"> <main className="broker-detail-main"> <header className="broker-header"> <img src={review.logo} alt={`${review.name} Logo`} className="broker-logo"/> <div> <h1>{review.name} Review</h1> <p>An in-depth look at fees, platforms, and trust.</p> </div> </header> <ProsCons pros={review.pros} cons={review.cons} /> <DetailedAnalysis analysis={review.analysis} /> </main> <aside> <BrokerDetailSidebar review={review} /> </aside> </div> </div> ); };
 const BrokerReviewCard = ({ review, onCardClick }) => { return ( <div className="broker-card" onClick={() => onCardClick(review)}> <img src={review.image} alt={`${review.name} review`} className="broker-card-img" /> <div className="broker-card-body"> <div className="broker-card-header"> <div className="broker-card-title"> <h2>{review.name}</h2> <p><span>🇦🇺</span> AU • {review.years} years</p> </div> <div className="broker-card-score"> <span>{review.score.toFixed(1)}</span> <p>SCORE</p> </div> </div> <p className="broker-card-description">{review.description}</p> </div> </div> ); };
 const ReviewPage = ({ onReviewClick }) => { const [activeSubTab, setActiveSubTab] = useState('broker'); return ( <div className="review-page"> <div className="review-nav"> <button className={`review-nav-btn ${activeSubTab === 'broker' ? 'active' : ''}`} onClick={() => setActiveSubTab('broker')} > Broker Review </button> <button className={`review-nav-btn ${activeSubTab === 'complaint' ? 'active' : ''}`} onClick={() => setActiveSubTab('complaint')} > Complaint </button> </div> <div className="review-content"> {activeSubTab === 'broker' ? ( <div className="review-grid"> {brokerReviews.map(review => ( <BrokerReviewCard key={review.id} review={review} onCardClick={onReviewClick} /> ))} </div> ) : ( <div className="placeholder-content"> <h1>Complaints</h1> <p>Content for complaints will be shown here.</p> </div> )} </div> </div> ); };
 const TournamentNav = () => { const navItems = ['Matches', 'Rounds', 'Discussion', 'Leaderboard', 'Result']; const [activeItem, setActiveItem] = useState('Matches'); return ( <nav className="tournament-detail-nav"> {navItems.map(item => ( <button key={item} className={`tournament-nav-item ${activeItem === item ? 'active' : ''}`} onClick={() => setActiveItem(item)} > {item} </button> ))} </nav> ); };
-const LiveMatchCard = ({ match }) => (
-  <div className="live-match-detail-card">
-      <div className="team-info">
-          <div className="team-avatar">{match.team1.short}</div>
-          <span className="team-name">{match.team1.name}</span>
-          {/* SỬA "points" THÀNH "score" VÀ THÊM .toFixed(2) */}
-          <span className="team-points">{match.team1.score.toFixed(2)} pts</span>
-      </div>
-      <div className="match-center-info">
-          <span className="match-status">LIVE</span>
-          <span className="match-vs">VS</span>
-          <span className="match-countdown">{match.countdown}</span>
-      </div>
-      <div className="team-info">
-          <div className="team-avatar">{match.team2.short}</div>
-          <span className="team-name">{match.team2.name}</span>
-          {/* SỬA "points" THÀNH "score" VÀ THÊM .toFixed(2) */}
-          <span className="team-points">{match.team2.score.toFixed(2)} pts</span>
-      </div>
-  </div>
-);
-const TournamentDetailPage = ({ tournament, onClose, onMatchClick }) => { const liveMatchData = {
-  team1: { name: 'Bộ phận tester', short: 'BPT', score: 1102.99 },
-  team2: { name: 'Võ Tố Quyên', short: 'VTQ', score: 763.61 },
-  countdown: '03:23:27'
-}; return ( <div className="tournament-detail-page"> <div className="tournament-detail-header" style={{ backgroundImage: `url(${tournament.image})` }}> <div className="header-overlay"> <button onClick={onClose} className="back-button"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="icon"> <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /> </svg> </button> <div className="header-content"> <h1>{tournament.name}</h1> <div className="status-badge finished"> <ClockIcon /> <span>Finished</span> </div> </div> </div> </div> <div className="tournament-detail-body"> <TournamentNav /> <div className="live-matches-section"> <div className="section-title"> <span className="title-dot"></span> <h3>Live Matches</h3> </div> <div onClick={() => onMatchClick(liveMatchData)}> <LiveMatchCard match={liveMatchData} /> </div> </div> </div> </div> ); };
-const MatchDetailPage = ({ match, onClose }) => { return ( <div className="match-detail-page"> <MatchDetailHeader match={match} onClose={onClose} /> <div className="match-detail-body-new"> <ScoreBar match={match} /> <VolumeMeter /> <AssetInfoBar /> <MatchNav /> <ChartControls /> <ChartPlaceholder /> </div> </div> ); };
+const ProsCons = ({ pros, cons }) => ( <div className="pros-cons-container"> <div className="pros-list"> <h4>Pros</h4> <ul> {pros.map((pro, index) => <li key={index}>{pro}</li>)} </ul> </div> <div className="cons-list"> <h4>Cons</h4> <ul> {cons.map((con, index) => <li key={index}>{con}</li>)} </ul> </div> </div> );
+const BrokerDetailSidebar = ({ review }) => ( <div className="broker-detail-sidebar"> <div className="rating-summary-box"> <h4>PK Team Rating</h4> <div className="overall-score">{review.score.toFixed(1)}<span>/5.0</span></div> <StarRating score={review.score} /> <button className="visit-broker-btn">Visit Broker</button> </div> <div className="at-a-glance-box"> <h4>At a Glance</h4> <ul> {Object.entries(review.glanceInfo).map(([key, value]) => ( <li key={key}> <strong>{key}:</strong> {value} </li> ))} </ul> </div> </div> );
+const DetailedAnalysis = ({ analysis }) => ( <div className="detailed-analysis"> <p>{analysis.introduction}</p> <h4>{analysis.detailedIntro}</h4> {analysis.sections.map(section => ( <div key={section.title} className="analysis-section"> <h5>{section.title}</h5> {section.content.split('\n\n').map((paragraph, index) => <p key={index}>{paragraph.split('\n').map((line, i) => <React.Fragment key={i}>{line}<br/></React.Fragment>)}</p>)} <p><strong>PK Team Rating:</strong> <span className="pk-team-rating">{section.rating}</span></p> </div> ))} <h4>Conclusion & Recommendation</h4> {analysis.conclusion.split('\n\n').map((paragraph, index) => <p key={index}>{paragraph}</p>)} {analysis.recommendation.split('\n\n').map((paragraph, index) => <p key={index} dangerouslySetInnerHTML={{ __html: paragraph.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />)} </div> );
+const LiveMatchCard = ({ match }) => ( <div className="live-match-detail-card"> <div className="team-info"> <div className="team-avatar">{match.team1.short}</div> <span className="team-name">{match.team1.name}</span> <span className="team-points">{match.team1.score.toFixed(2)} pts</span> </div> <div className="match-center-info"> <span className="match-status">LIVE</span> <span className="match-vs">VS</span> <span className="match-countdown">{match.countdown}</span> </div> <div className="team-info"> <div className="team-avatar">{match.team2.short}</div> <span className="team-name">{match.team2.name}</span> <span className="team-points">{match.team2.score.toFixed(2)} pts</span> </div> </div> );
+const TournamentDetailPage = ({ tournament, onClose, onMatchClick }) => { const liveMatchData = { team1: { name: 'Bộ phận tester', short: 'BPT', score: 1102.99 }, team2: { name: 'Võ Tố Quyên', short: 'VTQ', score: 763.61 }, countdown: '03:23:27' }; return ( <div className="tournament-detail-page"> <div className="tournament-detail-header" style={{ backgroundImage: `url(${tournament.image})` }}> <div className="header-overlay"> <button onClick={onClose} className="back-button"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="icon"> <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /> </svg> </button> <div className="header-content"> <h1>{tournament.name}</h1> <div className="status-badge finished"> <ClockIcon /> <span>Finished</span> </div> </div> </div> </div> <div className="tournament-detail-body"> <TournamentNav /> <div className="live-matches-section"> <div className="section-title"> <span className="title-dot"></span> <h3>Live Matches</h3> </div> <div onClick={() => onMatchClick(liveMatchData)}> <LiveMatchCard match={liveMatchData} /> </div> </div> </div> </div> ); };
 const PersonalInformationPage = ({ onBack, user }) => { return ( <div className="personal-info-page"> <div className="personal-info-header"> <button onClick={onBack} className="back-button"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="icon"> <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /> </svg> </button> <h1>Personal Information</h1> </div> <div className="personal-info-body"> <div className="personal-info-avatar"> <span>{user.avatarInitials}</span> </div> <h2 className="user-name">{user.name}</h2> <p className="user-username">{user.username}</p> <div className="personal-info-details"> <div className="info-row"> <span className="info-label">Email</span> <span className="info-value">{user.email}</span> </div> <div className="info-row"> <span className="info-label">Wallet Address</span> <span className="info-value">{user.walletAddress}</span> </div> <div className="info-row"> <span className="info-label">VIP Level</span> <span className="info-value vip-level">{user.vipLevel}</span> </div> <div className="info-row"> <span className="info-label">Affiliate Link</span> <button className="copy-link-btn">Copy Link</button> </div> <div className="info-row"> <span className="info-label">Verified</span> <span className={`info-value ${user.isVerified ? 'verified-yes' : 'verified-no'}`}> {user.isVerified ? 'Yes' : 'No'} </span> </div> <div className="info-row"> <span className="info-label">Join Date</span> <span className="info-value">{user.joinDate}</span> </div> </div> </div> </div> ); };
-const MatchDetailHeader = ({ match, onClose }) => ( <header className="match-detail-header-new"> <button onClick={onClose} className="back-button"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="icon"> <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /> </svg> </button> <div className="team-display"> <div className="team-avatar">{match.team1.short}</div> <span className="team-name">{match.team1.name}</span> </div> <div className="match-timer-block"> <span>{match.countdown}</span> <span className="vs-text">VS</span> </div> <div className="team-display"> <div className="team-avatar">{match.team2.short}</div> <span className="team-name">{match.team2.name}</span> </div> </header> );
-const ScoreBar = ({ match }) => { const totalScore = match.team1.score + match.team2.score; const team1Percentage = (match.team1.score / totalScore) * 100; return ( <div className="score-bar-container"> <div className="score-bar-labels"> <span>Score: {match.team1.score.toFixed(2)}</span> <span>Score: {match.team2.score.toFixed(2)}</span> </div> <div className="score-bar-track"> <div className="score-bar-progress" style={{ width: `${team1Percentage}%` }}></div> </div> </div> ); };
-const VolumeMeter = () => ( <div className="volume-meter-container"> <div className="volume-side"> <span>0.38</span> <span>1.20</span> </div> <div className="volume-dial"> <div className="volume-glow"></div> <span>VOLUME</span> </div> <div className="volume-side right"> <span>1.20</span> <span>0.37</span> </div> </div> );
-const AssetInfoBar = () => ( <div className="asset-info-bar"> <div> <span className="asset-name">BTCUSDT</span> <span className="asset-type">USDT</span> </div> <div className="asset-stats"> <span>👁 1</span> <span>+ 0.00 USDT</span> </div> </div> );
-const MatchNav = () => { const [activeTab, setActiveTab] = useState('Matching'); return ( <div className="match-nav"> <button className={activeTab === 'Matching' ? 'active' : ''} onClick={() => setActiveTab('Matching')}>Matching</button> <button className={activeTab === 'Discussion' ? 'active' : ''} onClick={() => setActiveTab('Discussion')}>Discussion</button> </div> ); };
-const ChartControls = () => ( <div className="chart-controls"> <div className="chart-search"> <span>🔍 BTCUSDT</span> <button>+</button> </div> <div className="chart-intervals"> <button>1m</button> <button>30m</button> <button className="active">1h</button> </div> <div className="chart-tools"> <button>📊</button> <button>⚙️</button> </div> </div> );
-const ChartPlaceholder = () => ( <div className="chart-placeholder"> <p>Trading Chart Area</p> <button className="trade-fab"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="icon"> <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" /> </svg> </button> </div> );
+
+// =======================================================
+// NEW/UPDATED COMPONENTS FOR TRADING VIEW
+// =======================================================
+
+// --- Icons for the new Chart Controls ---
+const BarsIcon = () => (<svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M4 4h2v16H4V4zm4 8h2v8H8v-8zm4-5h2v13h-2V7zm4 5h2v8h-2v-8zm4-3h2v11h-2V9z"></path></svg>);
+const CandlesIcon = () => (<svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M8 4h2v2H8V4zm0 3h2v10H8V7zm-3 2h2v3H5V9zm12 0h2v3h-2V9zm-6 1h2v2h-2v-1zm0 3h2v5h-2v-5zm-3 1h2v3H8v-3zm6 0h2v3h-2v-3z"></path></svg>);
+const HollowCandlesIcon = () => (<svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M8 4h2v2H8V4zm0 3h2v2H8V7zm0 3h2v4H8v-4zm0 5h2v2H8v-2zm-3-5h2v2H5v-2zm0 3h2v2H5v-2zm12-5h2v2h-2v-2zm0 3h2v2h-2v-2z"></path></svg>);
+const LineIcon = () => (<svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M3.5 18.5l6-6.5 4 4 8-9.5-1.5-1.5-6.5 8-4-4-7.5 8L3.5 18.5z"></path></svg>);
+const LineWithMarkersIcon = () => (<svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M3.5 18.5l6-6.5 4 4 8-9.5-1.5-1.5-6.5 8-4-4-7.5 8L3.5 18.5zm-1-1.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm6-6.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm4 4a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm8-9.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path></svg>);
+const StepLineIcon = () => (<svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M4 18h2v-3h3v-2h2v4h3v-3h2v-2h3v4h3v-2h-2v-2h-3v2h-2v-3h-3v2h-2v-4H8v2H5v3H4v2z"></path></svg>);
+const AreaIcon = () => (<svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M21 18.5l-8-9.5-4 4-6-6.5L1.5 8l7.5 8 4-4 6.5 7.5H21v-1.5z"></path></svg>);
+const HlcAreaIcon = () => (<svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" fill="none"><path strokeWidth="1.5" d="M4 18l4-4 4 4 8-8m-3-1h3v3M4 10l4 4 4-4 8-8"/></svg>);
+const HeikinAshiIcon = () => (<svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M8 4h2v3H8V4zm0 4h2v10H8V8zm-3 2h2v4H5v-4zm12 0h2v4h-2v-4zm-6 1h2v2h-2v-1z"></path></svg>);
+const IndicatorsIcon = () => (<svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M3 18h2v-2H3v2zm4 0h2v-5H7v5zm4 0h2v-8h-2v8zm4-11v11h2V7h-2zm4 3v8h2v-8h-2z"></path></svg>);
+const DropdownArrowIcon = () => (<svg width="12" height="12" viewBox="0 0 24 24"><path fill="currentColor" d="M7 10l5 5 5-5z"></path></svg>);
+const TimeframeArrowIcon = () => (<svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M7 10l5 5 5-5H7z"></path></svg>);
+
+
+// --- New Component for Sidebar Tabs ---
+const SidebarTabs = ({ activeTab, onTabClick }) => (
+    <div className="sidebar-tabs">
+      <button 
+        className={`sidebar-tab-btn ${activeTab === 'instruments' ? 'active' : ''}`}
+        onClick={() => onTabClick('instruments')}
+      >
+        Matching
+      </button>
+      <button 
+        className={`sidebar-tab-btn ${activeTab === 'discussion' ? 'active' : ''}`}
+        onClick={() => onTabClick('discussion')}
+      >
+        Discussion
+      </button>
+    </div>
+);
+
+const InstrumentSidebar = ({ selectedInstrument, onSelect, onClose, activeTab, onTabClick }) => (
+    <aside className="instrument-sidebar">
+        <div className="sidebar-header">
+            <button onClick={onClose} className="sidebar-back-button">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="icon">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                </svg>
+            </button>
+            <h3>ProTrade</h3>
+        </div>
+        <div className="instrument-search">
+            <input type="text" placeholder="🔍 Search..." />
+        </div>
+        
+        <SidebarTabs activeTab={activeTab} onTabClick={onTabClick} />
+
+        <div className="sidebar-content">
+            {activeTab === 'instruments' ? (
+                <div className="instrument-list">
+                    <div className="instrument-list-header">
+                        <span>Pair</span>
+                        <span>Price</span>
+                        <span>Change</span>
+                    </div>
+                    {instrumentList.map(item => (
+                        <div 
+                            key={item.name} 
+                            className={`instrument-row ${selectedInstrument === item.name.replace('/', '') ? 'active' : ''}`}
+                            onClick={() => onSelect(item.name.replace('/', ''))}
+                        >
+                            <span>{item.name}</span>
+                            <span>{item.price}</span>
+                            <span style={{ color: item.change >= 0 ? '#22c55e' : '#ef4444' }}>
+                                {item.change >= 0 ? '+' : ''}{item.change.toFixed(2)}%
+                            </span>
+                        </div>
+                    ))}
+                </div>
+            ) : (
+                <div className="discussion-panel">
+                    {mockComments.map((comment, index) => (
+                        <div key={index} className="comment">
+                            <div className="comment-header">
+                                <span className="comment-user">{comment.user}</span>
+                                <span className="comment-time">{comment.time}</span>
+                            </div>
+                            <p className="comment-body">{comment.text}</p>
+                        </div>
+                    ))}
+                </div>
+            )}
+        </div>
+    </aside>
+);
+
+const TradingHeader = ({ match, countdown }) => (
+    <header className="trading-header">
+        <div className="trading-team-info">
+            <div className="team-avatar team-1">{match.team1.short}</div>
+            <div>
+                <span>{match.team1.name}</span>
+                <span className="score">Score: {match.team1.score}</span>
+            </div>
+        </div>
+        <div className="trading-center-display">
+            <span className="trading-countdown">{countdown}</span>
+            <div className="volume-bar">
+                <div className="volume-value">0.00</div>
+                <div className="volume-track">
+                    <div className="volume-progress" style={{width: '50%'}}></div>
+                    <span>VOLUME</span>
+                </div>
+                <div className="volume-value">0.07</div>
+            </div>
+        </div>
+        <div className="trading-team-info right">
+            <div>
+                <span>{match.team2.name}</span>
+                <span className="score">Score: {match.team2.score}</span>
+            </div>
+            <div className="team-avatar team-2">{match.team2.short}</div>
+        </div>
+    </header>
+);
+
+// =======================================================
+//   ↓↓↓ THAY THẾ TOÀN BỘ COMPONENT CŨ BẰNG COMPONENT NÀY ↓↓↓
+// =======================================================
+const TopChartControls = ({ 
+    activeInterval, onIntervalChange, 
+    selectedInstrument, 
+    chartType, onChartTypeChange,
+    isChartTypeDropdownOpen, setChartTypeDropdownOpen, 
+    isTimeDropdownOpen, setTimeDropdownOpen           
+}) => {
+    const chartTypeRef = useRef(null);
+    const timeRef = useRef(null);
+     useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (chartTypeRef.current && !chartTypeRef.current.contains(event.target)) {
+                setChartTypeDropdownOpen(false);
+            }
+            if (timeRef.current && !timeRef.current.contains(event.target)) {
+                setTimeDropdownOpen(false);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, [setChartTypeDropdownOpen, setTimeDropdownOpen]);
+
+    const chartTypes = [
+        { key: 'bars', name: 'Bars', icon: <BarsIcon /> }, { key: 'candles', name: 'Candles', icon: <CandlesIcon /> },
+        { key: 'hollow_candles', name: 'Hollow Candles', icon: <HollowCandlesIcon /> }, { key: 'heikin_ashi', name: 'Heikin Ashi', icon: <HeikinAshiIcon /> },
+        { separator: true }, { key: 'line', name: 'Line', icon: <LineIcon /> },
+        { key: 'line_with_markers', name: 'Line with Markers', icon: <LineWithMarkersIcon /> }, { key: 'step_line', name: 'Step Line', icon: <StepLineIcon /> },
+        { separator: true }, { key: 'area', name: 'Area', icon: <AreaIcon /> }, { key: 'hlc_area', name: 'HLC Area', icon: <HlcAreaIcon /> },
+    ];
+    
+    const getDropdownActiveItem = () => chartTypes.find(c => c.key === chartType && c.key !== 'bars' && c.key !== 'candles') || chartTypes[2];
+
+    return(
+        <div className="top-chart-controls">
+            <div className="control-group">
+                <span className="instrument-name-display">{selectedInstrument}</span>
+            </div>
+            <div className="control-group">
+                <div className="segmented-control"> 
+                    <button title="Bars" className={`control-button ${chartType === 'bars' ? 'active' : ''}`} onClick={() => onChartTypeChange('bars')}><BarsIcon /></button>
+                    <button title="Candles" className={`control-button ${chartType === 'candles' ? 'active' : ''}`} onClick={() => onChartTypeChange('candles')}><CandlesIcon /></button>
+                    <div className="chart-type-selector-wrapper" ref={chartTypeRef}> 
+                        <button title={getDropdownActiveItem().name} className={`control-button ${(chartType !== 'bars' && chartType !== 'candles') ? 'active' : ''}`} onClick={() => setChartTypeDropdownOpen(!isChartTypeDropdownOpen)}>
+                            {getDropdownActiveItem().icon}
+                            <DropdownArrowIcon />
+                        </button>
+                        {isChartTypeDropdownOpen && (
+                            <div className="chart-type-dropdown">
+                                {chartTypes.slice(2).map((type, index) => (
+                                    type.separator ? <div key={`sep-${index}`} className="dropdown-separator"></div> : <button key={type.key} className="dropdown-item" title={type.name} onClick={() => { onChartTypeChange(type.key); setChartTypeDropdownOpen(false); }}>
+                                        {type.icon}
+                                        <span>{type.name}</span>
+                                    </button>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </div>
+            <div className="control-group">
+                <div className="segmented-control">
+                    <button className={activeInterval === '1m' ? 'active' : ''} onClick={() => onIntervalChange('1m')}>1m</button>
+                    <button className={activeInterval === '30m' ? 'active' : ''} onClick={() => onIntervalChange('30m')}>30m</button>
+                    <button className={activeInterval === '1h' ? 'active' : ''} onClick={() => onIntervalChange('1h')}>1h</button>
+                </div>
+                <div className="time-interval-dropdown-wrapper" ref={timeRef}>
+                    <button className="control-button timeframe-dropdown-btn" onClick={() => setTimeDropdownOpen(!isTimeDropdownOpen)}>
+                        <TimeframeArrowIcon/>
+                    </button>
+                    {isTimeDropdownOpen && (
+                        <div className="chart-type-dropdown">
+                             {['4h', '1D', '1W', '1M'].map(t => (
+                                <button key={t} className="dropdown-item" onClick={() => { onIntervalChange(t); setTimeDropdownOpen(false); }}>
+                                    <span>{t}</span>
+                                </button>
+                             ))}
+                        </div>
+                    )}
+                </div>
+            </div>
+            <div className="control-group">
+                 <button className="control-button indicator-btn"><IndicatorsIcon /><span>Indicators</span></button>
+            </div>
+             <div className="control-group">
+                <button className="control-button" title="Compare">📊</button>
+                <button className="control-button" title="Settings">⚙️</button>
+            </div>
+        </div>
+    );
+};
+const MatchDetailPage = ({ match, onClose }) => {
+    const [chartInterval, setChartInterval] = useState('1m');
+    const [selectedInstrument, setSelectedInstrument] = useState('BTCUSDT');
+    const [sidebarTab, setSidebarTab] = useState('instruments');
+    const [chartType, setChartType] = useState('candles');
+    
+    const [isChartTypeDropdownOpen, setChartTypeDropdownOpen] = useState(false);
+    const [isTimeDropdownOpen, setTimeDropdownOpen] = useState(false);
+
+    const initialTime = match.countdown.split(':').reduce((acc, time) => (60 * acc) + +time, 0);
+    const [countdown, setCountdown] = useState(initialTime);
+
+    useEffect(() => {
+        if (countdown <= 0) return;
+        const timer = setInterval(() => {
+            setCountdown(prev => prev > 0 ? prev - 1 : 0);
+        }, 1000);
+        return () => clearInterval(timer);
+    }, [countdown]);
+
+    const formatCountdown = (seconds) => {
+        if (seconds <= 0) return "00:00:00";
+        const h = Math.floor(seconds / 3600);
+        const m = Math.floor((seconds % 3600) / 60);
+        const s = seconds % 60;
+        return [h, m, s].map(v => v.toString().padStart(2, '0')).join(':');
+    };
+
+    const updatedMatchData = {
+      ...match,
+      team1: { name: 'Bộ phận tester', short: 'BPT', score: 0 },
+      team2: { name: 'Võ Tố Quyên', short: 'VTQ', score: 0 },
+    };
+  
+    return (
+      <div className="new-match-detail-page">
+        <InstrumentSidebar 
+            selectedInstrument={selectedInstrument} 
+            onSelect={setSelectedInstrument}
+            onClose={onClose}
+            activeTab={sidebarTab}
+            onTabClick={setSidebarTab}
+        />
+        
+        <main className="trading-panel">
+            <TradingHeader match={updatedMatchData} countdown={formatCountdown(countdown)} />
+            <div className="trading-content">
+                <TopChartControls 
+                    activeInterval={chartInterval} 
+                    onIntervalChange={setChartInterval}
+                    selectedInstrument={selectedInstrument}
+                    chartType={chartType}
+                    onChartTypeChange={setChartType}
+                    isChartTypeDropdownOpen={isChartTypeDropdownOpen}
+                    setChartTypeDropdownOpen={setChartTypeDropdownOpen}
+                    isTimeDropdownOpen={isTimeDropdownOpen}
+                    setTimeDropdownOpen={setTimeDropdownOpen}
+                />
+                <div className="chart-container">
+                    <TradingChart 
+                        interval={chartInterval} 
+                        symbol={selectedInstrument} 
+                    />
+                </div>
+            </div>
+        </main>
+      </div>
+    );
+};
 
 // =======================================================
 // MAIN APP COMPONENT
@@ -152,7 +468,6 @@ const App = () => {
   useEffect(() => { window.addEventListener('mousemove', handleMouseMove); window.addEventListener('mouseup', handleMouseUp); return () => { window.removeEventListener('mousemove', handleMouseMove); window.removeEventListener('mouseup', handleMouseUp); }; }, [isDragging, offset]);
   const sendMessage = async () => { if (newMessage.trim() === '' || !userId) return; try { await addDoc(collection(db, `artifacts/${typeof __app_id !== 'undefined' ? __app_id : 'default-app-id'}/public/data/chat_messages`), { text: newMessage, timestamp: Date.now(), userId: userId, }); setNewMessage(''); } catch (e) { console.error("Error adding document: ", e); } };
   const formatTime = (seconds) => { const absSeconds = Math.max(0, seconds); const d = Math.floor(absSeconds / 86400); const h = Math.floor((absSeconds % 86400) / 3600); const m = Math.floor((absSeconds % 3600) / 60); const s = Math.floor(absSeconds % 60); if (d > 0) return `${d}d ${h.toString().padStart(2, '0')}h`; return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`; };
-  const handleMenuClick = (tab) => { setActiveTab(tab); setIsLeftMenuOpen(false); };
 
   const renderContent = () => {
       const liveTournaments = allTournaments.filter(t => t.startTime === 0);
