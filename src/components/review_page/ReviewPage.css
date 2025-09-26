@@ -1,0 +1,5 @@
+.review-page { padding: 1rem 0; }
+.review-nav { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; padding: 0 1rem; }
+.review-nav-btn { background-color: #1f2937; color: #d1d5db; border: 1px solid #4b5563; padding: 0.5rem 1.5rem; border-radius: 9999px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+.review-nav-btn:hover { background-color: #374151; color: #ffffff; }
+.review-nav-btn.active { background-color: #2563eb; color: #ffffff; border-color: #2563eb; }

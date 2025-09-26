@@ -1,0 +1,69 @@
+.leaderboard-container { 
+    width: 100%; 
+    max-width: 950px; 
+    margin: 0 auto;
+    background-color: #1e293b; 
+    border-radius: 1.5rem; 
+    padding: 1.5rem 2rem; 
+    color: #e2e8f0; 
+    display: flex; 
+    flex-direction: column;
+    height: 75vh;
+  }
+  .leaderboard-header, .leaderboard-row { 
+    display: grid; 
+    grid-template-columns: 80px 3fr 1.5fr 1.5fr; 
+    align-items: center; 
+    gap: 1rem; 
+    padding: 0 1rem; 
+  }
+  .leaderboard-header { 
+    font-size: 0.875rem; 
+    font-weight: 600; 
+    color: #94a3b8; 
+    text-transform: uppercase; 
+    padding-bottom: 1rem; 
+    border-bottom: 2px solid #334155; 
+    margin-bottom: 0.5rem; 
+  }
+  .leaderboard-header .score, .leaderboard-header .volume { text-align: right; }
+  .leaderboard-header .rank { text-align: center; }
+  .leaderboard-header .trader { text-align: left; }
+  .leaderboard-body { 
+    display: flex; 
+    flex-direction: column;
+    overflow-y: auto;
+    flex-grow: 1;
+  }
+  .leaderboard-row { padding: 1rem; border-radius: 0.5rem; transition: background-color 0.2s; }
+  .leaderboard-row:hover { background-color: #334155; }
+  .leaderboard-row .rank, .leaderboard-row .score, .leaderboard-row .volume { font-weight: 600; font-size: 1.125rem; }
+  .leaderboard-row .rank { text-align: center; }
+  .leaderboard-row .score, .leaderboard-row .volume { text-align: right; }
+  .leaderboard-row .trader { display: flex; align-items: center; gap: 1rem; }
+  .trader-avatar { width: 40px; height: 40px; border-radius: 50%; background-color: #475569; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #ffffff; border: 2px solid #64748b; }
+  .trader-name { font-weight: 600; }
+  .leaderboard-row .rank.gold, .leaderboard-row .trader-avatar.gold { color: #eab308; border-color: #eab308; }
+  .leaderboard-row .rank.silver, .leaderboard-row .trader-avatar.silver { color: #d1d5db; border-color: #d1d5db; }
+  .leaderboard-row .rank.bronze, .leaderboard-row .trader-avatar.bronze { color: #ca8a04; border-color: #ca8a04; }
+  .leaderboard-row .score { color: #60a5fa; }
+  .leaderboard-row .volume { color: #cbd5e1; }
+  
+.leaderboard-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.leaderboard-body::-webkit-scrollbar-track {
+  background: #1e293b; /* Nền của thanh cuộn */
+  border-radius: 4px;
+}
+
+.leaderboard-body::-webkit-scrollbar-thumb {
+  background-color: #475569; /* Màu của con trượt */
+  border-radius: 4px;
+  border: 2px solid #1e293b;
+}
+
+.leaderboard-body::-webkit-scrollbar-thumb:hover {
+  background-color: #64748b;
+}

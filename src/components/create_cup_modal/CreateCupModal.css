@@ -1,0 +1,94 @@
+.create-cup-modal-content {
+    background-color: #2c3546;
+    border-radius: 1rem;
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.2);
+    width: 90%;
+    max-width: 50rem; /* Tăng chiều rộng modal */
+    color: #ffffff;
+    overflow: hidden;
+  }
+  
+  .create-cup-header {
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #4b5563;
+  }
+  
+  .create-cup-header h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+  }
+  
+  .create-cup-body {
+    padding: 1.5rem 2rem 2rem 2rem;
+  }
+  
+  .create-cup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1; /* Để các group trong row có độ rộng bằng nhau */
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 1.5rem; /* Khoảng cách giữa các input trên cùng hàng */
+  }
+  
+  .create-cup-form label {
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: #d1d5db;
+  }
+  
+  .create-cup-form input,
+  .create-cup-form select,
+  .create-cup-form textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: #1f2937;
+    border: 1px solid #4b5563;
+    border-radius: 0.5rem;
+    color: #ffffff;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  
+  .create-cup-form input:focus,
+  .create-cup-form select:focus,
+  .create-cup-form textarea:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+  }
+  
+  .create-cup-form textarea {
+    resize: vertical;
+  }
+  
+  .create-cup-submit-btn {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: #14f1d9; 
+    color: #111827; 
+    font-weight: 700;
+    font-size: 1.125rem;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.2s;
+    margin-top: 1rem;
+  }
+  
+  .create-cup-submit-btn:hover {
+    opacity: 0.9;
+  }

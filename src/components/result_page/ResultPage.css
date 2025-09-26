@@ -1,0 +1,45 @@
+.result-page-container { 
+    width: 100%; 
+    max-width: 950px; 
+    margin: 0 auto;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    gap: 2rem; 
+  }
+  .podium-container { 
+    display: flex; 
+    justify-content: center; 
+    align-items: flex-end; 
+    gap: 1.5rem; 
+  }
+  .winner-card { 
+    background-color: #1e293b; 
+    border-radius: 1rem; 
+    padding: 1.5rem; 
+    width: 220px; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    gap: 1rem; 
+    border: 3px solid #475569; 
+    text-align: center; 
+  }
+  .winner-card.rank-1 { 
+    transform: scale(1.1); 
+    margin-bottom: 1.1rem; 
+    z-index: 10; 
+  }
+  .winner-card.gold { border-color: #eab308; } 
+  .winner-card.silver { border-color: #d1d5db; } 
+  .winner-card.bronze { border-color: #ca8a04; }
+  .trophy-icon { width: 60px; height: 60px; margin-bottom: 0.5rem; }
+  .trophy-icon.gold { color: #eab308; } 
+  .trophy-icon.silver { color: #d1d5db; } 
+  .trophy-icon.bronze { color: #ca8a04; }
+  .winner-avatar { width: 80px; height: 80px; border-radius: 50%; background-color: #334155; border: 3px solid #64748b; }
+  .winner-name { font-size: 1.125rem; font-weight: 600; color: #ffffff; }
+  .winner-prize { font-size: 1rem; font-weight: 700; color: #facc15; }
+  .consolation-card { width: 100%; max-width: 720px; background-color: #1e293b; border-radius: 1rem; padding: 1.5rem 2rem; }
+  .consolation-card h3 { font-size: 1.25rem; font-weight: 600; color: #60a5fa; margin: 0 0 0.5rem 0; }
+  .consolation-card p { color: #94a3b8; margin: 0; }

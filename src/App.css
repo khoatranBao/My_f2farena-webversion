@@ -47,6 +47,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
 }
 
 /* Header */
@@ -129,10 +130,10 @@ body {
 
 /* Main Content */
 .main-content {
-  flex-grow: 1;
+  flex-grow: 1; 
   overflow-y: auto;
   width: 100%;
-  max-width: 80rem; /* max-w-7xl */
+  max-width: 80rem;
   margin-left: auto;
   margin-right: auto;
 }
@@ -145,64 +146,14 @@ body {
 .icon-blue { color: #38bdf8; }
 .icon-red { color: #ef4444; }
 
-/* Home Page */
-.home-container {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  width: 100%;
-  padding-bottom: 4rem;
-}
 
-.banner-container {
-  position: relative;
-  width: 100%; 
-  height: 16rem;
-  overflow: hidden;
-}
 
-.banner-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease-in-out;
-  transform: scale(1.05);
-}
 
 .banner-gradient {
   position: absolute;
   inset: 0;
   background: linear-gradient(to top, #030712, transparent);
   display: none;
-}
-
-.online-players-banner {
-    position: relative;
-    height: 6rem;
-    background-color: rgba(17, 24, 39, 0.8);
-    backdrop-filter: blur(16px);
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-
-    margin-top: 2rem; 
-    width: 100vw;
-    left: 50%;
-    transform: translateX(-50%);
-    border-top: 1px solid #374151;
-    border-bottom: 1px solid #374151;
-}
-
-.online-players-banner h3 {
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: #ffffff;
-}
-
-.online-players-banner p {
-  color: #facc15;
-  font-size: 1.5rem;
-  font-weight: 800;
 }
 
 .section-header {
@@ -219,154 +170,7 @@ body {
   font-weight: 700;
   color: #f9fafb;
 }
-
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-  gap: 1rem;
-  padding: 0 1rem;
-}
-
-/* Tournament Card */
-.tournament-card {
-  position: relative;
-  border-radius: 1rem;
-  overflow: hidden;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  background-color: #1f2937;
-  border: 1px solid #4b5563;
-}
-.tournament-card-img {
-  width: 100%;
-  height: 12rem;
-  object-fit: cover;
-  transition: transform 0.3s ease-in-out;
-}
-.tournament-card:hover .tournament-card-img {
-  transform: scale(1.1);
-}
-.tournament-card-timer {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  display: flex;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: #ffffff;
-  border-radius: 9999px;
-  padding: 0.25rem 0.75rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  backdrop-filter: blur(4px);
-}
-.tournament-card-timer span { margin-left: 0.375rem; }
-.tournament-card-live {
-  position: absolute;
-  top: 0.5rem;
-  left: 0.5rem;
-  display: flex;
-  align-items: center;
-  background-color: #059669;
-  color: #ffffff;
-  border-radius: 9999px;
-  padding: 0.25rem 0.75rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-.tournament-card-body { padding: 1rem; }
-.tournament-card-body h3 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 0.5rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.tournament-card-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.875rem;
-  color: #d1d5db;
-  margin-bottom: 1rem;
-}
-.tournament-card-info .font-bold { font-weight: 700; }
-.tournament-card-info .text-yellow { color: #facc15; }
-.tournament-card-btn {
-  width: 100%;
-  background-color: #2563eb;
-  color: #ffffff;
-  padding: 0.625rem 1rem;
-  border-radius: 9999px;
-  font-weight: 700;
-  transition: transform 0.2s, background-color 0.2s;
-  border: none;
-  cursor: pointer;
-}
-.tournament-card-btn:hover { 
-  transform: scale(1.05);
-  background-color: #38bdf8;
-}
-
 /* View More Button */
-.view-more-container {
-  display: flex;
-  justify-content: center;
-  padding: 1.5rem 0 1rem 0;
-}
-.view-more-btn {
-  background-color: #2563eb;
-  color: white;
-  font-weight: 700;
-  padding: 0.6rem 2rem;
-  border-radius: 9999px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-.view-more-btn:hover {
-  background-color: #38bdf8;
-}
-
-/* Live Match Card (New Style) */
-.live-match-card-new {
-  background-color: #1f2937; /* gray-800 */
-  border-radius: 0.75rem; /* rounded-xl */
-  padding: 1rem;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 0.75rem;
-  border: 1px solid #4b5563;
-}
-.live-match-card-new .match-teams {
-  font-weight: 600;
-  color: #ffffff;
-}
-.live-match-card-new .match-game {
-  font-size: 0.875rem; /* text-sm */
-  color: #9ca3af; /* gray-400 */
-}
-.live-match-card-new .match-score {
-  font-size: 1.25rem; /* text-xl */
-  font-weight: 700;
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-}
-.live-match-card-new .score-winner {
-  color: #4ade80; /* green-400 */
-}
-.live-match-card-new .score-loser {
-  color: #f87171; /* red-400 */
-}
-.live-match-card-new .score-tie {
-  color: #d1d5db; /* gray-300 */
-}
 
 /* Modals */
 .modal-backdrop {
@@ -603,74 +407,7 @@ body {
 .chat-send-btn:hover { background-color: #1d4ed8; }
 .chat-send-btn svg { transform: rotate(-180deg); }
 
-/* Footer */
-.app-footer {
-  width: 100%;
-  background-color: #111827; /* gray-900 */
-  color: #d1d5db; /* gray-300 */
-  padding: 2rem 0;
-  margin-top: auto;
-}
-.footer-container {
-  width: 100%;
-  max-width: 80rem;
-  margin: 0 auto;
-  padding: 0 1rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 2rem;
-}
-.footer-column {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  min-width: 150px;
-}
-.footer-column h3 {
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: #ffffff;
-}
-.footer-column p, .footer-column a, .footer-column li {
-  font-size: 0.875rem;
-}
-.footer-column a {
-  color: #d1d5db;
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.footer-column a:hover {
-  color: #ffffff;
-}
-.footer-column ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-.social-links {
-  display: flex;
-  gap: 1rem;
-}
-.social-icon {
-  width: 1.5rem;
-  height: 1.5rem;
-  color: #9ca3af;
-  transition: color 0.2s;
-}
-.social-icon:hover {
-  color: #ffffff;
-}
-.language-selector {
-  background-color: #374151;
-  color: #ffffff;
-  border-radius: 0.375rem;
-  padding: 0.25rem 0.5rem;
-  border: 1px solid #4b5563;
-}
+
 
 /* Left Side Menu */
 .left-menu-nav-list {
@@ -882,81 +619,10 @@ body {
   color: #d1d5db;
 }
 
-/* Footer */
-.app-footer {
-  width: 100%;
-  background-color: #111827; /* gray-900 */
-  color: #d1d5db; /* gray-300 */
-  padding: 2rem 0;
-  margin-top: auto;
-}
-.footer-container {
-  width: 100%;
-  max-width: 80rem;
-  margin: 0 auto;
-  padding: 0 1rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 2rem;
-}
-.footer-column {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  min-width: 150px;
-}
-.footer-column h3 {
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: #ffffff;
-}
-.footer-column p, .footer-column a, .footer-column li {
-  font-size: 0.875rem;
-}
-.footer-column a {
-  color: #d1d5db;
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.footer-column a:hover {
-  color: #ffffff;
-}
-.footer-column ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-.social-links {
-  display: flex;
-  gap: 1rem;
-}
-.social-icon {
-  width: 1.5rem;
-  height: 1.5rem;
-  color: #9ca3af;
-  transition: color 0.2s;
-}
-.social-icon:hover {
-  color: #ffffff;
-}
-.language-selector {
-  background-color: #374151;
-  color: #ffffff;
-  border-radius: 0.375rem;
-  padding: 0.25rem 0.5rem;
-  border: 1px solid #4b5563;
-}
-
 /* Responsive Design */
 @media (min-width: 768px) {
   .header-center { display: flex; }
   .mobile-nav { display: none; }
-  .grid-container { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .banner-container { height: 35rem; }
   .chat-window {
       right: 2rem;
       bottom: 2rem;
@@ -964,7 +630,6 @@ body {
   }
 }
 @media (min-width: 1024px) {
-  .grid-container { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 
@@ -1038,38 +703,7 @@ body {
 .verified-no { color: #ef4444; }
 .verified-yes { color: #22c55e; }
 
-.language-selector-menu {
-  background-color: #374151;
-  color: #ffffff;
-  border-radius: 0.375rem;
-  padding: 0.25rem 0.5rem;
-  border: 1px solid #4b5563;
-  font-size: 0.875rem;
-}
-
 /* style for review pages */
-.review-page {
-  padding: 1rem 0;
-}
-
-.review-nav {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  padding: 0 1rem;
-}
-
-.review-nav-btn {
-  background-color: #1f2937; /* gray-800 */
-  color: #d1d5db; /* gray-300 */
-  border: 1px solid #4b5563; /* gray-600 */
-  padding: 0.5rem 1.5rem;
-  border-radius: 9999px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-}
 
 .review-nav-btn:hover {
   background-color: #374151; /* gray-700 */
@@ -1080,22 +714,6 @@ body {
   background-color: #2563eb; /* blue-600 */
   color: #ffffff;
   border-color: #2563eb;
-}
-
-.review-grid {
-  display: grid;
-  grid-template-columns: 1fr; /* 1 cột trên mobile */
-  gap: 1.5rem;
-  padding: 0 1rem;
-}
-
-.broker-card {
-  background-color: #111827; /* gray-900 */
-  border-radius: 1rem;
-  overflow: hidden;
-  border: 1px solid #4b5563; /* gray-600 */
-  display: flex;
-  flex-direction: column;
 }
 
 .broker-card-img {
@@ -1166,7 +784,6 @@ body {
 
 /* Thêm vào khu vực @media (min-width: 1024px) */
 @media (min-width: 1024px) {
-  .grid-container { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .review-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } /* 3 cột trên desktop */
 }
 
@@ -1318,29 +935,6 @@ body {
   padding: 1rem;
 }
 
-.tournament-detail-nav {
-  display: flex;
-  justify-content: space-around;
-  background-color: #1f2937;
-  padding: 0.5rem;
-  border-radius: 0.75rem;
-  margin-bottom: 2rem;
-}
-
-.tournament-nav-item {
-  background: none;
-  border: none;
-  color: #9ca3af;
-  font-weight: 600;
-  padding: 0.75rem 1rem;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.tournament-nav-item.active {
-  background-color: #3b82f6;
-  color: #ffffff;
-}
 
 .live-matches-section {
   display: flex;
@@ -2763,4 +2357,2155 @@ header.trading-header .trading-team-info .team-avatar {
   background-color: #4b5563; /* Cùng màu với viền */
   margin: 0 0.5rem; /* Tạo khoảng cách hai bên */
   align-self: stretch; /* Tự động co giãn theo chiều cao của thanh công cụ */
+}
+
+/* ================================== */
+/* ===     COMPLAINT PAGE STYLES    === */
+/* ================================== */
+
+/* --- Layout chính của trang --- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+
+.complaint-header h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.new-thread-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #2563eb; /* blue-600 */
+  color: #ffffff;
+  font-weight: 600;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.new-thread-btn:hover {
+  background-color: #1d4ed8; /* blue-700 */
+  transform: scale(1.05);
+}
+
+/* --- Danh sách các complaint --- */
+.complaint-card:hover {
+  border-color: #3b82f6; /* blue-500 */
+}
+
+.complaint-card-main h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #f9fafb; /* gray-50 */
+  margin: 0 0 0.5rem 0;
+}
+
+.complaint-card-main p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #9ca3af; /* gray-400 */
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.complaint-card-main p strong {
+  color: #d1d5db; /* gray-300 */
+}
+
+.status-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.status-open {
+  background-color: #a16207; /* yellow-700 */
+  color: #fef08a; /* yellow-200 */
+}
+
+.status-resolved {
+  background-color: #166534; /* green-800 */
+  color: #bbf7d0; /* green-200 */
+}
+
+.complaint-submit-btn {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: #14f1d9; 
+  color: #111827; 
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+  margin-top: 0.5rem;
+}
+
+.complaint-submit-btn:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+}
+/* ================================== */
+/* === ARENA LAYOUT ADJUSTMENTS   === */
+/* ================================== */
+
+
+
+
+
+
+/* ================================== */
+/* === GRID CONTAINER (BẢN NÂNG CẤP) === */
+/* ================================== */
+.grid-container {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+/* ================================== */
+/* === ARENA PAGE (BỐ CỤC NGANG)   === */
+/* ================================== */
+
+
+.arena-content {
+  padding: 0 1.5rem; /* Thêm padding trái phải cho nội dung */
+}
+/* ================================== */
+/* === ARENA FULL-WIDTH LAYOUT    === */
+/* ================================== */
+
+/* Khi trang Arena được kích hoạt, gỡ bỏ giới hạn chiều rộng và căn giữa */
+.main-content.full-width {
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* ================================== */
+/* === ARENA PAGE (HORIZONTAL LAYOUT) === */
+/* ================================== */
+
+.arena-content {
+  padding: 2.5rem 1.5rem; /* Tăng padding-top để nội dung không bị che */
+}
+/* ================================== */
+/* === SCROLL TO TOP BUTTON STYLES === */
+/* ================================== */
+
+.scroll-top-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 50; /* Nằm trên nội dung nhưng dưới modal */
+  
+  background-color: rgba(59, 130, 246, 0.8); /* Màu xanh blue-500 có độ trong */
+  color: #ffffff;
+  
+  width: 3.5rem; /* 56px */
+  height: 3.5rem; /* 56px */
+  border-radius: 50%;
+  border: none;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+  
+  /* Hiệu ứng xuất hiện */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  
+  /* Ẩn nút khỏi DOM khi không cần thiết */
+  pointer-events: none;
+}
+
+.scroll-top-btn.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto; /* Cho phép nhấn khi hiện ra */
+}
+
+.scroll-top-btn:hover {
+  background-color: #1d4ed8; /* blue-700 */
+  transform: scale(1.1);
+  transition: all 0.2s ease-in-out;
+}
+
+.scroll-top-btn .icon {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+/* ================================================== */
+/* === ARENA PAGE & COMPONENTS REDESIGN (FINAL)   === */
+/* ================================================== */
+
+/* --- Bố cục tổng thể trang Arena --- */
+
+/* --- Bố cục cho các thẻ Private Cup --- */
+.cup-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cup-creator-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #4a90e2;
+  object-fit: cover;
+}
+
+.cup-creator-info h4 {
+  margin: 0;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.cup-creator-info p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #9ca3af;
+}
+
+.cup-timer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #111827;
+  color: #ffffff;
+  border-radius: 9999px;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.cup-timer .icon-sm {
+  width: 1rem;
+  height: 1rem;
+}
+
+.cup-divider {
+  border: none;
+  height: 1px;
+  background-color: #3a3f78;
+}
+
+.cup-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #14f1d9; /* Màu xanh ngọc */
+  margin: 0;
+}
+
+.cup-info-bar {
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.cup-info-bar > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.cup-info-bar span {
+  font-size: 0.875rem;
+  color: #9ca3af;
+}
+
+.cup-info-bar strong {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.cup-info-bar strong.prize {
+  color: #facc15; /* Màu vàng */
+}
+.cup-info-bar strong.symbol {
+  color: #14f1d9; /* Màu xanh ngọc */
+}
+
+.cup-detail-btn {
+  width: 100%;
+  background-color: #14f1d9;
+  color: #111827;
+  border: none;
+  padding: 0.8rem;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: auto; /* Đẩy nút xuống dưới cùng */
+}
+
+.cup-detail-btn:hover {
+  opacity: 0.9;
+  box-shadow: 0 0 15px rgba(20, 241, 217, 0.4);
+}
+/* ================================== */
+/* === ARENA SIDEBAR REDESIGN (FINAL) == */
+/* ================================== */
+
+
+
+.arena-nav {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1.5rem;
+  border-bottom: 1px solid #374151; /* Đường kẻ chân ngang */
+  margin-bottom: 2.5rem;
+  padding: 0;
+}
+
+.arena-nav-btn {
+  background: none;
+  border: none;
+  color: #9ca3af;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 1rem 0.5rem;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -1px; /* Dịch nút xuống 1px để đè lên đường kẻ chân chính */
+}
+
+.arena-nav-btn:hover {
+  color: #ffffff;
+}
+
+.arena-nav-btn.active {
+  color: #3b82f6;
+  border-bottom-color: #3b82f6; /* Hiện đường gạch chân màu xanh */
+}
+
+
+/* ================================== */
+/* === ARENA PAGE (HORIZONTAL LAYOUT) === */
+/* ================================== */
+
+.arena-nav.hidden {
+  transform: translateY(-100%);
+}
+
+.arena-nav-btn:hover {
+  color: #ffffff;
+}
+
+.arena-nav-btn.active {
+  color: #3b82f6;
+  border-bottom-color: #3b82f6;
+}
+
+
+/* ================================================== */
+/* === TOURNAMENT DETAIL & ROUNDS PAGE REDESIGN   === */
+/* ================================================== */
+
+/* --- Thiết kế lại thanh Nav của trang chi tiết --- */
+.tournament-detail-nav {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #1f2937; /* gray-800 */
+  padding: 0.5rem;
+  border-radius: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.tournament-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  background-color: transparent;
+  border: none;
+  border-radius: 0.5rem;
+  color: #9ca3af; /* gray-400 */
+  padding: 0.5rem 1rem;
+  min-width: 100px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.tournament-nav-item .icon {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.tournament-nav-item span {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+
+
+.tournament-detail-content-area {
+  margin-top: 2rem;
+}
+
+
+/* ======================================================= */
+/* === ARENA NAV REDESIGN (UNDERLINE STYLE - FINAL)    === */
+/* ======================================================= */
+
+
+/* Hiệu ứng khi rê chuột vào nút không active */
+.arena-nav-btn:hover {
+  color: #ffffff; /* Chữ trắng khi rê chuột */
+}
+
+/* Khi nút được chọn (active) */
+.arena-nav-btn.active {
+  color: #3b82f6; /* Chữ màu xanh */
+  border-bottom-color: #3b82f6; /* Hiện đường gạch chân màu xanh */
+}
+/* ================================== */
+/* === ARENA PAGE REDESIGN (FINAL)  === */
+/* ================================== */
+
+/* Bố cục chính 2 cột */
+
+
+/* Khi nút được chọn (active) */
+
+
+/* ======================================================= */
+/* ===    BỐ CỤC MỚI CHO TRANG CHI TIẾT GIẢI ĐẤU      === */
+/* ======================================================= */
+
+/* Thay đổi padding và loại bỏ các style không cần thiết */
+.tournament-detail-body {
+  padding: 2rem;
+}
+
+/* Wrapper chính cho bố cục 2 cột */
+.detail-layout-container {
+  display: flex;
+  gap: 2rem; /* Khoảng cách giữa sidebar và nội dung */
+}
+
+/* Sidebar bên trái (chiếm 2/5) */
+.detail-sidebar {
+  flex: 2;
+  position: sticky;
+  top: 6rem;
+  background-color: #1f2937;
+  border-radius: 1rem;       
+  padding: 1rem;             
+  align-self: flex-start;    
+}
+
+/* Nội dung chính bên phải (chiếm 3/5) */
+.detail-main-content {
+  flex: 3; /* Phân chia không gian: 3 phần */
+  background-color: #1f2937; /* Thêm nền để nổi bật */
+  border-radius: 1rem;
+  padding: 1.5rem;
+  min-height: 50vh; /* Đảm bảo có chiều cao tối thiểu */
+}
+
+
+/* --- Thiết kế lại thanh Nav dọc --- */
+.tournament-detail-nav {
+  display: flex;
+  flex-direction: column; /* Quan trọng: Xếp các mục theo chiều dọc */
+  gap: 0.75rem; /* Khoảng cách giữa các mục */
+
+  /* Reset các style cũ của thanh nav ngang */
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+}
+
+/* Style cho từng mục trong nav */
+.tournament-nav-item {
+  /* Thay đổi bố cục từ icon trên chữ dưới thành icon trái chữ phải */
+  display: flex;
+  flex-direction: row; 
+  align-items: center; /* Căn giữa icon và chữ theo chiều dọc */
+  justify-content: flex-start; /* Căn nội dung về phía bên trái */
+  
+  gap: 1rem; /* Khoảng cách giữa icon và chữ */
+  width: 100%;
+  min-width: unset;
+  
+  padding: 1rem; /* Tăng padding để mục to và dễ nhấn hơn */
+  border-radius: 0.75rem;
+  
+  /* Style cho trạng thái không được chọn */
+  background-color: transparent; /* Nền xám đậm */
+  color: #9ca3af; /* Chữ xám */
+  font-size: 1rem; /* Cỡ chữ to hơn một chút */
+}
+
+.tournament-nav-item .icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* Hover cho mục không được chọn */
+.tournament-nav-item:hover {
+  background-color: #374151;
+  color: #ffffff;
+}
+
+/* Style cho mục đang được chọn (active) để khớp với hình ảnh */
+.tournament-nav-item.active {
+  background-color: #2563eb; /* Nền xanh blue */
+  color: #ffffff; /* Chữ trắng */
+  box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.4); /* Thêm hiệu ứng đổ bóng */
+}
+
+/* Đảm bảo nội dung không có margin-top thừa */
+.tournament-detail-content-area {
+  margin-top: 0;
+}
+
+/* src/App.css */
+
+/* ... DÁN VÀO CUỐI FILE ... */
+
+/* ======================================================= */
+/* ===    CSS CHO GIAO DIỆN TRADING MỚI (MATCH DETAIL)   === */
+/* ======================================================= */
+
+/* --- Bố cục trang chính --- */
+.new-match-detail-page {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background-color: #0d121c; /* Nền xanh đậm */
+  display: flex;
+  color: #d1d5db; /* Màu chữ xám nhạt mặc định */
+}
+
+/* --- Sidebar chọn cặp tiền --- */
+.instrument-sidebar {
+  width: 280px;
+  background-color: #111827; /* Xanh-xám đậm hơn */
+  border-right: 1px solid #374151;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-bottom: 1px solid #374151;
+}
+
+.sidebar-header h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.sidebar-back-button {
+  background: none;
+  border: none;
+  color: #9ca3af;
+  cursor: pointer;
+  padding: 0.5rem;
+  margin-left: -0.5rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sidebar-back-button .icon {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+.sidebar-back-button:hover {
+  background-color: #374151;
+  color: #ffffff;
+}
+
+.instrument-search {
+  padding: 1rem;
+  border-bottom: 1px solid #374151;
+}
+
+.instrument-search input {
+  width: 100%;
+  background-color: #1f2937;
+  border: 1px solid #4b5563;
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  color: #ffffff;
+}
+
+.sidebar-tabs {
+    display: flex;
+    padding: 0.5rem;
+    border-bottom: 1px solid #374151;
+}
+
+.sidebar-tab-btn {
+    flex: 1;
+    background: none;
+    border: none;
+    color: #9ca3af;
+    padding: 0.75rem 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 0.375rem;
+    transition: all 0.2s;
+}
+.sidebar-tab-btn:hover { background-color: #374151; }
+.sidebar-tab-btn.active { background-color: #3b82f6; color: #ffffff; }
+
+.sidebar-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+.instrument-list, .discussion-panel { flex-grow: 1; }
+
+.instrument-list-header {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1.5fr;
+  padding: 0.75rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #9ca3af;
+  border-bottom: 1px solid #374151;
+}
+
+.instrument-row {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1.5fr;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  border-bottom: 1px solid #1f2937;
+}
+.instrument-row:hover { background-color: #1f2937; }
+.instrument-row.active { background-color: #3b82f6; }
+.instrument-row.active, .instrument-row.active span { color: #ffffff !important; }
+
+.discussion-panel {
+  padding: 1rem;
+  color: #9ca3af;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* --- Khung Trading chính --- */
+.trading-panel {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Header của khung Trading --- */
+.trading-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background-color: #111827;
+  border-bottom: 1px solid #374151;
+  flex-shrink: 0;
+}
+
+.trading-team-info { display: flex; align-items: center; gap: 0.75rem; flex: 1; }
+.trading-team-info.right { justify-content: flex-end; }
+.trading-team-info .team-avatar {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #fff;
+  line-height: 1;
+  padding: 0;
+}
+.trading-team-info .team-avatar.team-1 { background-color: #3b82f6; }
+.trading-team-info .team-avatar.team-2 { background-color: #4b5563; }
+.trading-team-info div { display: flex; flex-direction: column; }
+.trading-team-info.right div { align-items: flex-end; }
+.trading-team-info .score { font-size: 0.8rem; color: #9ca3af; }
+
+.trading-center-display { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+.trading-countdown { font-size: 1.25rem; font-weight: 700; color: #ffffff; }
+.volume-bar { display: flex; align-items: center; gap: 0.5rem; width: 200px; }
+.volume-track {
+  flex-grow: 1;
+  height: 8px;
+  background: linear-gradient(to right, #3b82f6 50%, #4b5563 50%);
+  border-radius: 4px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.volume-track span { font-size: 0.6rem; font-weight: bold; color: rgba(255,255,255,0.5); z-index: 1; }
+.volume-value { font-size: 0.8rem; font-weight: 600; }
+
+/* --- Nội dung chính của Trading (chứa thanh công cụ và biểu đồ) --- */
+.trading-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Thanh công cụ biểu đồ --- */
+.top-chart-controls { padding: 0.5rem; }
+.unified-chart-controls {
+  display: flex;
+  align-items: center;
+  background-color: #1f2937;
+  border-radius: 0.5rem;
+  border: 1px solid #4b5563;
+  padding: 3px;
+  gap: 3px;
+}
+.instrument-name-display { font-size: 1rem; font-weight: 700; color: #ffffff; padding: 0 0.75rem; white-space: nowrap; }
+.control-separator { width: 1px; background-color: #4b5563; margin: 0 0.5rem; align-self: stretch; }
+.unified-chart-controls .segmented-control { display: flex; align-items: center; }
+.unified-chart-controls .segmented-control + .segmented-control { border-left: 1px solid #4b5563; margin-left: 0.375rem; padding-left: 0.375rem; }
+.control-button {
+  background: none;
+  border: none;
+  color: #9ca3af;
+  cursor: pointer;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.375rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.control-button svg { width: 1.25rem; height: 1.25rem; }
+.control-button:hover { background-color: #374151; color: #ffffff; }
+.control-button.active { background-color: #3b82f6; color: #ffffff; }
+.indicator-btn { font-weight: 600; }
+.timeframe-display { font-weight: 600; font-size: 0.875rem; }
+.timeframe-dropdown-btn { min-width: 45px; justify-content: center; }
+
+/* --- Dropdown cho Chart Type & Timeframe --- */
+.chart-type-selector-wrapper, .time-interval-dropdown-wrapper { position: relative; }
+.chart-type-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 30;
+  background-color: #1f2937;
+  border: 1px solid #4b5563;
+  border-radius: 0.375rem;
+  min-width: 200px;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.2);
+  padding: 0.5rem;
+}
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  background: none;
+  border: none;
+  color: #d1d5db;
+  padding: 0.75rem;
+  text-align: left;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+.dropdown-item svg { width: 1.25rem; height: 1.25rem; color: #9ca3af; }
+.dropdown-item:hover { background-color: #374151; color: #ffffff; }
+.dropdown-item:hover svg { color: #ffffff; }
+.chart-type-dropdown .dropdown-separator { height: 1px; background-color: #4b5563; margin: 0.5rem 0; }
+
+/* --- Container biểu đồ --- */
+.chart-container {
+  flex-grow: 1;
+  background-color: #000000;
+  border-radius: 0.5rem;
+  border: 1px solid #374151;
+  min-height: 300px;
+  display: flex;
+  margin: 0 0.5rem 0.5rem 0.5rem; /* Thêm margin để không bị sát cạnh */
+}
+.chart-container > div {
+    width: 100% !important;
+}
+/* src/App.css */
+
+/* ... DÁN VÀO CUỐI FILE ... */
+
+
+
+/* src/App.css */
+
+/* ... DÁN VÀO CUỐI KHU VỰC CSS CỦA TRANG DETAIL MỚI ... */
+
+/* --- Hiệu ứng cho Thẻ Đấu có thể click --- */
+
+/* src/App.css */
+
+/* ... DÁN VÀO CUỐI FILE ... */
+
+
+/* --- KHU VỰC NHẬP LIỆU (THAY ĐỔI CHÍNH) --- */
+.comment-input-area {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid #4b5563;
+  border-radius: 0.5rem;
+  padding: 0.25rem 0.25rem 0.25rem 0.75rem;
+  transition: box-shadow 0.2s, border-color 0.2s;
+  flex-shrink: 0; /* Ngăn không cho co lại */
+}
+
+.comment-input-area:focus-within {
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+  border-color: #3b82f6;
+}
+
+.comment-input-area textarea {
+  flex-grow: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #111827;
+  resize: none;
+  font-size: 0.875rem;
+  padding: 0.5rem 0;
+  min-height: 24px; /* Đảm bảo chiều cao tối thiểu */
+}
+
+.comment-input-area textarea::placeholder {
+  color: #6b7280;
+}
+
+.send-comment-btn {
+  background-color: #f3f4f6;
+  border: none;
+  border-radius: 0.375rem;
+  color: #4b5563;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+  flex-shrink: 0;
+}
+
+.send-comment-btn:hover {
+  background-color: #e5e7eb;
+  color: #111827;
+}
+
+.send-comment-btn .icon {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+/* src/App.css */
+
+/* ... DÁN VÀO CUỐI FILE ... */
+
+/* src/App.css */
+
+/* ... DÁN VÀO CUỐI FILE ... */
+
+/* ======================================================= */
+/* ===  LAYOUT GỘP CHO TRANG DETAIL (THEO HÌNH MỚI)    === */
+/* ======================================================= */
+
+/* --- Cột nội dung chính (một khối duy nhất) --- */
+.unified-main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Tiêu đề và trạng thái --- */
+
+/* --- Phần thân chứa nội dung (trận đấu, rounds...) --- */
+.unified-content-body {
+  flex-grow: 1; /* Lấp đầy không gian còn lại */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* src/App.css */
+
+/* ... DÁN THAY THẾ KHỐI CSS CŨ ... */
+
+/* ================================== */
+/* ===    LEADERBOARD PAGE STYLES   === */
+/* ================================== */
+
+.leaderboard-container {
+  width: 100%;
+  max-width: 950px;
+  background-color: #1e293b;
+  border-radius: 1.5rem;
+  padding: 1.5rem 2rem;
+  color: #e2e8f0;
+  display: flex;
+  flex-direction: column;
+}
+
+.leaderboard-header, .leaderboard-row {
+  display: grid;
+  grid-template-columns: 80px 3fr 1.5fr 1.5fr;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1rem;
+}
+
+.leaderboard-header {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #94a3b8;
+  text-transform: uppercase;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #334155;
+  margin-bottom: 0.5rem;
+}
+
+/* THAY ĐỔI Ở ĐÂY: Căn lề cho các tiêu đề */
+.leaderboard-header .score,
+.leaderboard-header .volume {
+    text-align: right; /* Căn phải */
+}
+.leaderboard-header .rank {
+    text-align: center; /* Căn giữa */
+}
+.leaderboard-header .trader {
+    text-align: left; /* Căn trái */
+}
+
+
+.leaderboard-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.leaderboard-row {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.leaderboard-row:hover {
+  background-color: #334155;
+}
+
+/* THAY ĐỔI Ở ĐÂY: Căn lề cho các ô dữ liệu */
+.leaderboard-row .rank {
+  font-weight: 600;
+  font-size: 1.125rem;
+  text-align: center; /* Căn giữa */
+}
+.leaderboard-row .score,
+.leaderboard-row .volume {
+  font-weight: 600;
+  font-size: 1.125rem;
+  text-align: right; /* Căn phải */
+}
+
+
+.leaderboard-row .trader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.trader-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #475569;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #ffffff;
+  border: 2px solid #64748b;
+}
+
+.trader-name {
+  font-weight: 600;
+}
+
+/* --- Styling cho Top 3 --- */
+.leaderboard-row .rank.gold, .leaderboard-row .trader-avatar.gold {
+  color: #eab308;
+  border-color: #eab308;
+}
+.leaderboard-row .rank.silver, .leaderboard-row .trader-avatar.silver {
+  color: #d1d5db;
+  border-color: #d1d5db;
+}
+.leaderboard-row .rank.bronze, .leaderboard-row .trader-avatar.bronze {
+  color: #ca8a04;
+  border-color: #ca8a04;
+}
+
+.leaderboard-row .score {
+  color: #60a5fa;
+}
+
+.leaderboard-row .volume {
+  color: #cbd5e1;
+}
+/* src/App.css */
+
+/* ... DÁN VÀO CUỐI FILE ... */
+
+/* ================================== */
+/* ===      RESULT PAGE STYLES      === */
+/* ================================== */
+
+.result-page-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.podium-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end; /* Căn các thẻ theo đáy */
+  gap: 1.5rem;
+}
+
+.winner-card {
+  background-color: #1e293b;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  border: 3px solid #475569;
+  text-align: center;
+}
+
+/* Thẻ của người hạng nhất sẽ to hơn */
+.winner-card.rank-1 {
+  transform: scale(1.1);
+  margin-bottom: 1.1rem; /* Bù lại cho việc scale */
+  z-index: 10;
+}
+
+/* Màu viền cho top 3 */
+.winner-card.gold { border-color: #eab308; }
+.winner-card.silver { border-color: #d1d5db; }
+.winner-card.bronze { border-color: #ca8a04; }
+
+
+.trophy-icon {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 0.5rem;
+}
+/* Màu cúp cho top 3 */
+.trophy-icon.gold { color: #eab308; }
+.trophy-icon.silver { color: #d1d5db; }
+.trophy-icon.bronze { color: #ca8a04; }
+
+
+.winner-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #334155;
+  border: 3px solid #64748b;
+}
+
+.winner-name {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.winner-prize {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #facc15;
+}
+
+.consolation-card {
+  width: 100%;
+  max-width: 720px;
+  background-color: #1e293b;
+  border-radius: 1rem;
+  padding: 1.5rem 2rem;
+}
+
+.consolation-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #60a5fa; /* Màu xanh dương nhạt */
+  margin: 0 0 0.5rem 0;
+}
+
+.consolation-card p {
+  color: #94a3b8;
+  margin: 0;
+}
+/* src/App.css */
+
+/* ... DÁN VÀO CUỐI FILE ... */
+
+/* ================================================== */
+/* ===    LEADERBOARD V2 PAGE STYLES (WITH TABS)    === */
+/* ================================================== */
+
+.leaderboard-v2-container {
+  width: 100%;
+  max-width: 950px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* --- Thanh chuyển tab --- */
+.leaderboard-tabs {
+  display: flex;
+  background-color: #1e293b;
+  border-radius: 0.75rem;
+  padding: 0.5rem;
+  border: 1px solid #334155;
+}
+
+.tab-btn {
+  flex: 1;
+  background: none;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.tab-btn.active {
+  background-color: #14f1d9; /* Màu xanh ngọc */
+  color: #111827; /* Chữ màu tối */
+}
+
+/* --- Bảng xếp hạng --- */
+.leaderboard-table-v2 {
+  background-color: #1e293b;
+  border-radius: 1rem;
+  padding: 1rem 1.5rem;
+}
+
+.leaderboard-v2-header, .leaderboard-v2-row {
+  display: grid;
+  grid-template-columns: 80px 3fr 1fr 1.5fr; /* Rank, Trader, Wins, Profit */
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1rem;
+}
+
+.leaderboard-v2-header {
+  color: #94a3b8;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #334155;
+}
+
+/* Căn lề cho tiêu đề */
+.leaderboard-v2-header .rank { text-align: center; }
+.leaderboard-v2-header .trader { text-align: left; }
+.leaderboard-v2-header .wins { text-align: right; }
+.leaderboard-v2-header .profit { text-align: right; }
+
+.leaderboard-v2-body {
+  padding-top: 0.5rem;
+}
+
+.leaderboard-v2-row {
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+/* Căn lề cho dữ liệu */
+.leaderboard-v2-row .rank { text-align: center; font-size: 1.125rem; font-weight: 700; }
+.leaderboard-v2-row .wins { text-align: right; font-weight: 600; color: #e2e8f0; }
+.leaderboard-v2-row .profit { text-align: right; font-weight: 700; color: #14f1d9; }
+
+/* Placeholder cho tab không có dữ liệu */
+.placeholder-content.small {
+  min-height: 200px;
+  font-size: 1rem;
+}
+/* ================================================== */
+/* ===    LEADERBOARD V2 PAGE STYLES (WITH TABS)    === */
+/* ================================================== */
+
+.leaderboard-v2-container {
+  width: 100%;
+  max-width: 950px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; 
+  margin: 1.5rem auto; 
+  padding: 0 1rem; 
+}
+
+/* --- Thanh chuyển tab --- */
+.leaderboard-tabs {
+  display: flex;
+  background-color: #1e293b;
+  border-radius: 0.75rem;
+  padding: 0.5rem;
+  border: 1px solid #334155;
+}
+
+.tab-btn {
+  flex: 1;
+  background: none;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.tab-btn.active {
+  background-color: #14f1d9; /* Teal color */
+  color: #111827; /* Dark text color */
+}
+
+/* --- Bảng xếp hạng --- */
+.leaderboard-table-v2 {
+  background-color: #1e293b;
+  border-radius: 1rem;
+  padding: 1.5rem 2rem;
+}
+
+.leaderboard-v2-header, .leaderboard-v2-row {
+  display: grid;
+  grid-template-columns: 80px 3fr 1fr 1.5fr; /* Rank, Trader, Wins, Profit/Score */
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1rem;
+}
+
+.leaderboard-v2-header {
+  color: #94a3b8;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #334155;
+  text-transform: uppercase;
+}
+
+/* Căn lề cho tiêu đề */
+.leaderboard-v2-header .rank { text-align: center; }
+.leaderboard-v2-header .trader { text-align: left; }
+.leaderboard-v2-header .wins { text-align: right; }
+.leaderboard-v2-header .profit { text-align: right; }
+
+.leaderboard-v2-body {
+  padding-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.leaderboard-v2-row {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.leaderboard-v2-row:hover {
+  background-color: #334155;
+}
+
+/* Căn lề cho dữ liệu */
+.leaderboard-v2-row .rank { text-align: center; font-size: 1.125rem; font-weight: 700; }
+.leaderboard-v2-row .wins { text-align: right; font-weight: 600; color: #e2e8f0; }
+.leaderboard-v2-row .profit { text-align: right; font-weight: 700; color: #14f1d9; }
+
+.trader-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #475569;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #ffffff;
+  border: 2px solid #64748b;
+}
+.leaderboard-v2-row .trader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.leaderboard-v2-row .rank.gold, .leaderboard-v2-row .trader-avatar.gold {
+  color: #eab308;
+  border-color: #eab308;
+}
+.leaderboard-v2-row .rank.silver, .leaderboard-v2-row .trader-avatar.silver {
+  color: #d1d5db;
+  border-color: #d1d5db;
+}
+.leaderboard-v2-row .rank.bronze, .leaderboard-v2-row .trader-avatar.bronze {
+  color: #ca8a04;
+  border-color: #ca8a04;
+}
+
+/* Placeholder cho tab không có dữ liệu */
+.placeholder-content.small {
+  min-height: 200px;
+  font-size: 1rem;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* ================================== */
+/* ===       WALLET PAGE STYLES     === */
+/* ================================== */
+
+.wallet-page {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.wallet-section {
+  background-color: #1f2937; /* gray-800 */
+  border-radius: 1rem;
+  padding: 1.5rem 2rem;
+  border: 1px solid #374151;
+}
+
+.wallet-section h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 1.5rem 0;
+  border-bottom: 1px solid #374151;
+  padding-bottom: 1rem;
+}
+
+/* --- Asset Information --- */
+.asset-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.asset-info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #111827;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.asset-info-item span:first-child {
+  color: #9ca3af; /* gray-400 */
+  font-weight: 500;
+}
+
+.asset-info-item span:last-child {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.text-balance { color: #facc15; } /* yellow-400 */
+.text-gain { color: #4ade80; } /* green-400 */
+.text-loss { color: #f87171; } /* red-400 */
+
+.withdraw-btn {
+  background-color: #facc15; /* yellow-400 */
+  color: #111827; /* gray-900 */
+  border: none;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+  grid-column: 1 / -1; /* Make button span full width */
+  margin-top: 1rem;
+}
+
+.withdraw-btn:hover {
+  background-color: #fde047; /* yellow-300 */
+  transform: scale(1.02);
+}
+
+/* --- Transaction History --- */
+.transaction-history-table {
+  width: 100%;
+  overflow-x: auto; /* For responsiveness on small screens */
+}
+
+.transaction-history-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.transaction-history-table th, .transaction-history-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #374151;
+}
+
+.transaction-history-table th {
+  color: #9ca3af;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+}
+
+.status-badge-tx {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+.status-completed { background-color: #166534; color: #bbf7d0; }
+.status-pending { background-color: #a16207; color: #fef08a; }
+.status-failed { background-color: #991b1b; color: #fecaca; }
+
+/* --- Withdraw Modal --- */
+.wallet-modal-content {
+  background-color: #2c3546;
+  border-radius: 1rem;
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.2);
+  width: 91.666667%;
+  max-width: 32rem;
+  color: #ffffff;
+}
+.wallet-modal-body {
+  padding: 1.5rem 2rem 2rem 2rem;
+}
+.wallet-modal-body p {
+  color: #d1d5db;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.wallet-address-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.wallet-address-form label {
+  font-weight: 600;
+  color: #d1d5db;
+}
+.wallet-address-form input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: #1f2937;
+  border: 1px solid #4b5563;
+  border-radius: 0.5rem;
+  color: #ffffff;
+  font-size: 1rem;
+}
+.wallet-address-form input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+/* ================================== */
+/* ===    1 VS 1 MATCH PAGE STYLES    === */
+/* ================================== */
+
+/* --- Bố cục tổng thể --- */
+.one-vs-one-page {
+  padding: 1.5rem;
+  color: #e2e8f0;
+}
+
+.ovo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.ovo-filter-container {
+  position: relative;
+}
+
+/* --- Các nút bấm --- */
+.ovo-btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s, opacity 0.2s;
+}
+.ovo-btn:hover {
+  opacity: 0.9;
+}
+.ovo-btn:active {
+  transform: scale(0.98);
+}
+
+.filter-btn {
+  background-color: #14f1d9; /* Teal */
+  color: #111827;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.new-match-btn {
+  background-color: #facc15; /* Yellow */
+  color: #111827;
+}
+
+.dropdown-arrow {
+  width: 1rem;
+  height: 1rem;
+  transition: transform 0.3s ease-in-out;
+}
+.dropdown-arrow.open {
+  transform: rotate(180deg);
+}
+
+
+/* --- Bảng Filter --- */
+.filter-panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  z-index: 10;
+  background-color: #1e293b; /* Dark blue-gray */
+  border-radius: 0.75rem;
+  padding: 1rem 1.5rem;
+  width: 350px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+  border: 1px solid #334155;
+}
+
+.filter-panel h4 {
+  margin: 0 0 1rem 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #94a3b8;
+}
+
+.filter-group {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+/* --- Custom Checkbox --- */
+.custom-checkbox {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #cbd5e1;
+  gap: 0.75rem;
+}
+.custom-checkbox input {
+  display: none; /* Ẩn checkbox gốc */
+}
+.checkbox-box {
+  width: 20px;
+  height: 20px;
+  background-color: #334155;
+  border: 2px solid #475569;
+  border-radius: 4px;
+  display: inline-block;
+  position: relative;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+.custom-checkbox input:checked + .checkbox-box {
+  background-color: #3b82f6; /* Blue */
+  border-color: #3b82f6;
+}
+.custom-checkbox input:checked + .checkbox-box::after {
+  content: '✔';
+  position: absolute;
+  color: #ffffff;
+  font-size: 14px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* --- Danh sách trận đấu --- */
+.match-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+}
+
+.no-matches-found {
+  color: #94a3b8;
+  grid-column: 1 / -1; /* Chiếm toàn bộ chiều rộng grid */
+  text-align: center;
+  padding: 2rem;
+}
+
+
+
+.match-status-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+.status-live { background-color: #166534; color: #bbf7d0; }
+.status-waiting { background-color: #a16207; color: #fef08a; }
+.status-done { background-color: #4b5563; color: #d1d5db; }
+
+.match-prize {
+  font-weight: 700;
+  color: #facc15;
+}
+
+
+.player-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+}
+.player-info.player-right {
+  justify-content: flex-end;
+}
+
+.player-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #ffffff;
+}
+.player-avatar.p1 { background-color: #3b82f6; }
+.player-avatar.p2 { background-color: #a855f7; }
+
+.player-name {
+  font-weight: 600;
+}
+
+.vs-text {
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: #64748b;
+  margin: 0 1rem;
+}
+/* ================================== */
+/* ===    1 VS 1 CHALLENGE CARD STYLES (NEW)   === */
+/* ================================== */
+
+/* --- Thẻ bài mới --- */
+.challenge-card {
+  background-color: #1e293b; /* Nền xanh-xám đậm */
+  border: 1px solid #334155;
+  border-radius: 1rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  color: #e2e8f0;
+}
+
+.challenge-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.challenge-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #3b82f6; /* Blue */
+  color: #ffffff;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.creator-name {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.challenge-divider {
+  border: none;
+  height: 1px;
+  background-color: #334155;
+  margin: 0;
+}
+
+.challenge-info {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1fr;
+  text-align: left;
+  gap: 1rem;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.info-item span {
+  font-size: 0.875rem;
+  color: #94a3b8; /* Xám nhạt */
+}
+
+.info-item strong {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.info-item .bet-amount {
+  color: #facc15; /* Vàng */
+}
+
+.join-challenge-btn {
+  background-color: #14f1d9; /* Teal */
+  color: #111827;
+  border: none;
+  padding: 0.8rem;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  width: 100%;
+  transition: opacity 0.2s;
+}
+
+.join-challenge-btn:hover {
+  opacity: 0.9;
+}
+/* THÊM VÀO CUỐI TỆP App.css */
+
+/* --- 1 vs 1 Match Styles --- */
+
+.join-challenge-btn {
+  background-color: #14f1d9; /* Màu xanh ngọc */
+  color: #111827; /* Chữ màu tối */
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.8rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.join-challenge-btn:hover {
+  opacity: 0.9;
+}
+/* THÊM VÀO CUỐI TỆP App.css */
+
+/* --- Single Match Display (Horizontal Layout) --- */
+.match-display-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  max-width: 1000px;
+  color: #e2e8f0;
+  padding: 2rem;
+}
+
+.player-display, .center-display-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+}
+
+.player-initials {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.player-name-large {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.player-team-name {
+  color: #94a3b8;
+  margin-bottom: 2rem;
+}
+
+.player-score-large {
+  font-size: 4rem;
+  font-weight: 800;
+  color: #3b82f6; /* Blue color for score */
+  line-height: 1;
+}
+
+.player-pts-label {
+  color: #94a3b8;
+}
+
+.center-display-column {
+  flex: 0.5; /* Make center column smaller */
+}
+
+.live-badge-large {
+  background-color: #16a34a;
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 700;
+  padding: 0.3rem 0.8rem;
+  border-radius: 9999px;
+  margin-bottom: 2rem;
+  animation: pulse 2s infinite;
+}
+
+.vs-text-large {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #64748b;
+  margin-bottom: 1rem;
+}
+
+.time-remaining-large {
+  font-family: 'monospace';
+  font-size: 2rem;
+  font-weight: 600;
+  color: #f1f5f9;
+}
+
+.time-label-large {
+  font-size: 0.875rem;
+  color: #94a3b8;
+}
+/* ======================================================= */
+/* ===    MATCH CLASH DISPLAY (REDESIGNED LAYOUT)      === */
+/* ======================================================= */
+
+.player-panel.right {
+  text-align: right;
+  align-items: flex-end;
+}
+.player-panel.left {
+  text-align: left;
+  align-items: flex-start;
+}
+
+.clash-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #334155;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 2.5rem;
+  border: 4px solid; /* Border color will be set inline */
+  margin-bottom: 1rem;
+}
+
+.clash-player-name {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+}
+
+.clash-team-name {
+  color: #94a3b8;
+  margin-bottom: 1.5rem;
+}
+
+.clash-score {
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+
+.clash-progress-bar-track {
+  height: 8px;
+  width: 100%;
+  background-color: #334155;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.clash-progress-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s ease-in-out;
+}
+
+.clash-center-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+}
+
+.clash-vs {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #64748b;
+  line-height: 1;
+}
+
+.clash-timer {
+  font-family: 'monospace';
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  background-color: #1e293b;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #334155;
+}
+
+.clash-live-badge {
+  position: absolute;
+  top: -3.5rem;
+  background-color: #16a34a;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  animation: pulse 2s infinite;
+}
+
+/* --- THE UNIFIED INFO PANEL (THE CARD) --- */
+/* QUAN TRỌNG: Đây là lớp CSS tạo khung cho cả 2 cột */
+.info-panel {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 1.5rem; /* Bo góc lớn hơn */
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; /* Khoảng cách giữa các section bên trong */
+  height: 100%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+/* --- Sections inside the Left Panel --- */
+.match-info-section, .recent-activity-section {
+  width: 100%;
+}
+
+.match-info-section h3, .recent-activity-section h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #cbd5e1;
+  margin: 0 0 1rem 0;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #334155;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+}
+
+.info-grid span {
+  color: #94a3b8;
+}
+
+.info-grid strong {
+  color: #e2e8f0;
+  text-align: right;
+}
+
+/* --- Recent Activity Section --- */
+.activity-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem; /* Tăng khoảng cách cho dễ nhìn */
+}
+
+.activity-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.activity-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.dot-buy { background-color: #4ade80; } /* green-400 */
+.dot-sell { background-color: #f87171; } /* red-400 */
+.dot-close { background-color: #64748b; } /* slate-500 */
+
+.activity-content {
+  width: 100%;
+}
+
+.activity-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.activity-action {
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+.activity-action.dot-buy { color: #4ade80; }
+.activity-action.dot-sell { color: #f87171; }
+.activity-action.dot-close { color: #94a3b8; }
+
+.activity-player {
+  font-size: 0.875rem;
+  color: #e2e8f0;
+}
+
+.activity-time {
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.activity-details {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  color: #94a3b8;
+}
+
+/* --- Clash Display inside its panel --- */
+.info-panel .clash-container {
+    padding: 0;
+    height: 100%;
+    align-content: center;
+}
+
+.info-panel .player-panel {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 1rem;
+}
+
+.clash-pts-label {
+    color: #94a3b8;
+    margin-top: 0.5rem;
+}
+/* THÊM VÀO CUỐI TỆP App.css */
+
+/* --- Tournament Header Banner --- */
+.tournament-header-banner {
+  height: 150px;
+  width: 100%;
+  border-radius: 0; 
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  flex-shrink: 0;
+}
+
+.header-banner-overlay {
+  position: absolute;
+  inset: 0; /* Trải đều trên toàn bộ thẻ cha */
+  background-color: rgba(24, 33, 55, 0.7); /* Lớp phủ màu tối mờ */
+  backdrop-filter: blur(2px); /* Hiệu ứng làm mờ nền */
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Cân bằng bố cục */
+  padding: 0 2rem;
+}
+
+.header-banner-overlay h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #facc15; /* Màu vàng */
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Đổ bóng cho chữ */
+}
+
+/* THÊM VÀO CUỐI TỆP App.css */
+.unified-content-body {
+  padding: 0 3rem 2.5rem 3rem;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

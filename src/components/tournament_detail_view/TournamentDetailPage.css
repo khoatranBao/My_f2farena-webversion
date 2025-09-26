@@ -1,0 +1,278 @@
+/* ================================================== */
+/* === GIAO DIỆN MỚI CHO TRANG CHI TIẾT (DETAIL)   === */
+/* ================================================== */
+
+/* --- Bố cục tổng thể --- */
+.new-detail-page-wrapper {
+    position: fixed;
+    inset: 0;
+    z-index: 150;
+    background-color: #283347;
+    display: flex;
+    color: #e2e8f0;
+  }
+  
+  /* --- Sidebar (Cột Trái) --- */
+  .new-detail-sidebar {
+    width: 280px;
+    background-color: #1e293b;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+  }
+  
+  .sidebar-logo {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 1px;
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+  .sidebar-logo::before {
+    content: 'GO';
+    color: #3b82f6;
+  }
+  
+  .new-tournament-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex-grow: 1;
+  }
+  
+  .new-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: none;
+    border: none;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #94a3b8;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  .new-nav-item .icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  
+  .new-nav-item:hover {
+    color: #ffffff;
+  }
+  
+  .new-nav-item.active {
+    background-color: #2563eb;
+    color: #ffffff;
+    box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.4);
+  }
+  
+  .sidebar-back-btn {
+    background: none;
+    border: 1px solid #475569;
+    color: #94a3b8;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 2rem;
+    transition: all 0.2s ease-in-out;
+  }
+  .sidebar-back-btn:hover {
+    background-color: #334155;
+    color: #ffffff;
+  }
+  
+  /* --- Main Content (Cột Phải) --- */
+  .unified-main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* Cho phép cuộn khi nội dung dài */
+  }
+  
+  .main-content-header h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #facc15;
+  }
+  
+  .status-badge-new {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #334155;
+    color: #cbd5e1;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+  .status-badge-new.finished span {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background-color: #64748b;
+  }
+  
+  .unified-content-body {
+    padding: 0 3rem 2.5rem 3rem;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* --- Tournament Header Banner --- */
+  .tournament-header-banner {
+    height: 150px;
+    width: 100%;
+    border-radius: 0; 
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    flex-shrink: 0;
+  }
+  
+  .header-banner-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(24, 33, 55, 0.7);
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+  }
+  
+  .header-banner-overlay h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #facc15;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  }
+  
+  /* ================================== */
+  /* === DISCUSSION CONTENT STYLES    === */
+  /* ================================== */
+  .discussion-content-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    height: 100%;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .comment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow-y: auto;
+    flex-grow: 1;
+  }
+  .comment { background-color: #1e293b; border-radius: 0.5rem; padding: 0.75rem 1rem; border-left: 3px solid #3b82f6; }
+  .comment-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem; }
+  .comment-user { font-weight: 700; color: #60a5fa; font-size: 0.9rem; }
+  .comment-time { font-size: 0.75rem; color: #6b7280; }
+  .comment-body { margin: 0; font-size: 0.875rem; color: #d1d5db; }
+  .comment-input-area { display: flex; align-items: center; background-color: #ffffff; border: 1px solid #4b5563; border-radius: 0.5rem; padding: 0.25rem 0.25rem 0.25rem 0.75rem; transition: box-shadow 0.2s, border-color 0.2s; flex-shrink: 0; }
+  .comment-input-area:focus-within { box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5); border-color: #3b82f6; }
+  .comment-input-area textarea { flex-grow: 1; background: transparent; border: none; outline: none; color: #111827; resize: none; font-size: 0.875rem; padding: 0.5rem 0; min-height: 24px; }
+  .comment-input-area textarea::placeholder { color: #6b7280; }
+  .send-comment-btn { background-color: #f3f4f6; border: none; border-radius: 0.375rem; color: #4b5563; width: 2.25rem; height: 2.25rem; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background-color 0.2s, color 0.2s; flex-shrink: 0; }
+  .send-comment-btn:hover { background-color: #e5e7eb; color: #111827; }
+  .send-comment-btn .icon { width: 1.25rem; height: 1.25rem; }
+  
+  /* ================================== */
+  /* ===    LEADERBOARD & RESULT      === */
+  /* ================================== */
+  .leaderboard-container, .result-page-container { width: 100%; max-width: 950px; margin: 0 auto; }
+  .leaderboard-container { background-color: #1e293b; border-radius: 1.5rem; padding: 1.5rem 2rem; color: #e2e8f0; display: flex; flex-direction: column; }
+  .leaderboard-header, .leaderboard-row { display: grid; grid-template-columns: 80px 3fr 1.5fr 1.5fr; align-items: center; gap: 1rem; padding: 0 1rem; }
+  .leaderboard-header { font-size: 0.875rem; font-weight: 600; color: #94a3b8; text-transform: uppercase; padding-bottom: 1rem; border-bottom: 2px solid #334155; margin-bottom: 0.5rem; }
+  .leaderboard-header .score, .leaderboard-header .volume { text-align: right; }
+  .leaderboard-header .rank { text-align: center; }
+  .leaderboard-header .trader { text-align: left; }
+  .leaderboard-body { display: flex; flex-direction: column; }
+  .leaderboard-row { padding: 1rem; border-radius: 0.5rem; transition: background-color 0.2s; }
+  .leaderboard-row:hover { background-color: #334155; }
+  .leaderboard-row .rank, .leaderboard-row .score, .leaderboard-row .volume { font-weight: 600; font-size: 1.125rem; }
+  .leaderboard-row .rank { text-align: center; }
+  .leaderboard-row .score, .leaderboard-row .volume { text-align: right; }
+  .leaderboard-row .trader { display: flex; align-items: center; gap: 1rem; }
+  .trader-avatar { width: 40px; height: 40px; border-radius: 50%; background-color: #475569; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #ffffff; border: 2px solid #64748b; }
+  .trader-name { font-weight: 600; }
+  .leaderboard-row .rank.gold, .leaderboard-row .trader-avatar.gold { color: #eab308; border-color: #eab308; }
+  .leaderboard-row .rank.silver, .leaderboard-row .trader-avatar.silver { color: #d1d5db; border-color: #d1d5db; }
+  .leaderboard-row .rank.bronze, .leaderboard-row .trader-avatar.bronze { color: #ca8a04; border-color: #ca8a04; }
+  .leaderboard-row .score { color: #60a5fa; }
+  .leaderboard-row .volume { color: #cbd5e1; }
+  .result-page-container { display: flex; flex-direction: column; align-items: center; gap: 2rem; }
+  .podium-container { display: flex; justify-content: center; align-items: flex-end; gap: 1.5rem; }
+  .winner-card { background-color: #1e293b; border-radius: 1rem; padding: 1.5rem; width: 220px; display: flex; flex-direction: column; align-items: center; gap: 1rem; border: 3px solid #475569; text-align: center; }
+  .winner-card.rank-1 { transform: scale(1.1); margin-bottom: 1.1rem; z-index: 10; }
+  .winner-card.gold { border-color: #eab308; } .winner-card.silver { border-color: #d1d5db; } .winner-card.bronze { border-color: #ca8a04; }
+  .trophy-icon { width: 60px; height: 60px; margin-bottom: 0.5rem; }
+  .trophy-icon.gold { color: #eab308; } .trophy-icon.silver { color: #d1d5db; } .trophy-icon.bronze { color: #ca8a04; }
+  .winner-avatar { width: 80px; height: 80px; border-radius: 50%; background-color: #334155; border: 3px solid #64748b; }
+  .winner-name { font-size: 1.125rem; font-weight: 600; color: #ffffff; }
+  .winner-prize { font-size: 1rem; font-weight: 700; color: #facc15; }
+  .consolation-card { width: 100%; max-width: 720px; background-color: #1e293b; border-radius: 1rem; padding: 1.5rem 2rem; }
+  .consolation-card h3 { font-size: 1.25rem; font-weight: 600; color: #60a5fa; margin: 0 0 0.5rem 0; }
+  .consolation-card p { color: #94a3b8; margin: 0; }
+  
+  /* ======================================================= */
+  /* ===    MATCHES PAGE REDESIGN (2-COLUMN LAYOUT)      === */
+  /* ======================================================= */
+  .match-page-layout { display: grid; grid-template-columns: 350px 1fr; gap: 2rem; padding: 1.5rem; align-items: stretch; width: 100%; height: 100%; }
+  .info-panel { background-color: #1e293b; border: 1px solid #334155; border-radius: 1.5rem; padding: 1.5rem; display: flex; flex-direction: column; gap: 2rem; height: 100%; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); }
+  .match-info-section h3, .recent-activity-section h3 { font-size: 1.125rem; font-weight: 600; color: #cbd5e1; margin: 0 0 1rem 0; padding-bottom: 1rem; border-bottom: 1px solid #334155; }
+  .info-grid { display: grid; grid-template-columns: auto 1fr; gap: 0.75rem; font-size: 0.875rem; }
+  .info-grid span { color: #94a3b8; }
+  .info-grid strong { color: #e2e8f0; text-align: right; }
+  .activity-feed { display: flex; flex-direction: column; gap: 1.25rem; }
+  .activity-item { display: flex; align-items: center; gap: 1rem; }
+  .activity-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .dot-buy { background-color: #4ade80; }
+  .dot-sell { background-color: #f87171; }
+  .dot-close { background-color: #64748b; }
+  .activity-content { width: 100%; }
+  .activity-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem; }
+  .activity-action { font-weight: 700; font-size: 0.875rem; }
+  .activity-action.dot-buy { color: #4ade80; }
+  .activity-action.dot-sell { color: #f87171; }
+  .activity-action.dot-close { color: #94a3b8; }
+  .activity-player { font-size: 0.875rem; color: #e2e8f0; }
+  .activity-time { font-size: 0.75rem; color: #64748b; }
+  .activity-details { display: flex; justify-content: space-between; font-size: 0.875rem; color: #94a3b8; }
+  .info-panel .clash-container { padding: 0; height: 100%; align-content: center; }
+  .info-panel .player-panel { background-color: transparent; border: none; box-shadow: none; padding: 1rem; }
+  
+  /* ======================================================= */
+  /* ===    CLICKABLE CLASH DISPLAY STYLES               === */
+  /* ======================================================= */
+  .clash-container.clickable { cursor: pointer; transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; }
+  .clash-container.clickable:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25); }
+  .clash-container { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 2rem; width: 100%; max-width: 1000px; padding: 2rem; }
+  .player-panel { background-color: #1e293b; border: 1px solid #334155; border-radius: 1.5rem; padding: 2.5rem 2rem; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.3); }
+  .player-panel.right { text-align: right; align-items: flex-end; }
+  .player-panel.left { text-align: left; align-items: flex-start; }
+  .clash-avatar { width: 100px; height: 100px; border-radius: 50%; background-color: #334155; color: #ffffff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 2.5rem; border: 4px solid; margin-bottom: 1rem; }
+  .clash-player-name { font-size: 1.75rem; font-weight: 600; color: #ffffff; margin: 0; }
+  .clash-team-name { color: #94a3b8; margin-bottom: 1.5rem; }
+  .clash-score { font-size: 4rem; font-weight: 800; line-height: 1; margin-bottom: 1.5rem; }
+  .clash-progress-bar-track { height: 8px; width: 100%; background-color: #334155; border-radius: 4px; overflow: hidden; }
+  .clash-progress-bar-fill { height: 100%; border-radius: 4px; transition: width 0.5s ease-in-out; }
+  .clash-center-info { display: flex; flex-direction: column; align-items: center; gap: 1rem; position: relative; }
+  .clash-vs { font-size: 3.5rem; font-weight: 800; color: #64748b; line-height: 1; }
+  .clash-timer { font-family: 'monospace'; font-size: 1.5rem; font-weight: 600; color: #f1f5f9; background-color: #1e293b; padding: 0.5rem 1rem; border-radius: 0.5rem; border: 1px solid #334155; }
+  .clash-live-badge { position: absolute; top: -3.5rem; background-color: #16a34a; color: #ffffff; font-size: 0.75rem; font-weight: 700; padding: 0.25rem 0.75rem; border-radius: 9999px; animation: pulse 2s infinite; }
+  .clash-pts-label { color: #94a3b8; margin-top: 0.5rem; }
