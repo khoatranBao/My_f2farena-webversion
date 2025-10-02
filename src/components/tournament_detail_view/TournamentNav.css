@@ -1,0 +1,38 @@
+/* Styles moved from TournamentDetailPage.css */
+.new-tournament-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex-grow: 1;
+}
+
+.new-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: none;
+    border: none;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #94a3b8;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.new-nav-item .icon {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.new-nav-item:hover {
+    color: #ffffff;
+}
+
+.new-nav-item.active {
+    background-color: #2563eb;
+    color: #ffffff;
+    box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.4);
+}

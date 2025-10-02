@@ -1,81 +1,33 @@
 import React, { useState } from 'react';
+
+// Import các component con
+import InfoPanel from './InfoPanels.jsx';
+import ClashDisplay from './ClashDisplay.jsx';
+import TournamentNav from './TournamentNav.jsx';
+import RoundsAccordion from '../rounds_detail_view/RoundsAccordion.jsx';
 import DiscussionContent from '../discussion_content/DiscussionContent.jsx';
-import LeaderboardPage from '../leaderboard_page/LeaderboardPage.jsx';
+import LeaderboardPage from '../TournamentLeaderboardPage/TournamentLeaderboardPage.jsx';
 import ResultPage from '../result_page/ResultPage.jsx';
 
-// CSS
+// Import CSS
 import './TournamentDetailPage.css';
 
-// Components con đã tách trước đó
-import RoundsAccordion from '../rounds_detail_view/RoundsAccordion.jsx'; 
-// (Lưu ý: điều chỉnh đường dẫn này nếu cần)
-
-// Icons
-import { NewMatchesIcon, NewRoundsIcon, NewDiscussionIcon, NewLeaderboardIcon, NewResultIcon, SendIcon } from '../../icons/Icons'; // Giả sử file Icons.jsx nằm ở thư mục gốc /icons
-
-// Dữ liệu Mock (tạm thời import trực tiếp, sau này có thể truyền qua props)
-import { mockComments, mockLeaderboardData, winners, mockActivities, liveMatchData, matchInfoData } from '../../data/mockData'; // Giả sử file mockData.js nằm ở thư mục gốc /data
-
-
-// =======================================================
-// CÁC COMPONENT CON (ĐƯỢC DI CHUYỂN TỪ App.jsx VÀO ĐÂY)
-// =======================================================
-
-
-
-const ClashDisplay = ({ match, team1Color, team2Color, onClick }) => {
-    const score1 = match.team1.score;
-    const score2 = match.team2.score;
-    const totalScore = score1 + score2;
-    const score1Percentage = totalScore > 0 ? (score1 / totalScore) * 100 : 50;
-    return (
-        <div className="clash-container clickable" onClick={onClick}>
-            <div className="player-panel left"><div className="clash-avatar" style={{ borderColor: team1Color }}>{match.team1.short}</div><h2 className="clash-player-name">{match.team1.name}</h2><p className="clash-team-name">Team Alpha</p><div className="clash-score" style={{ color: team1Color }}>{match.team1.score}</div><p className="clash-pts-label">pts</p><div className="clash-progress-bar-track"><div className="clash-progress-bar-fill" style={{ width: `${score1Percentage}%`, backgroundColor: team1Color }}></div></div></div>
-            <div className="clash-center-info"><div className="clash-timer">{match.countdown}</div><div className="clash-vs">VS</div><div className="clash-live-badge">LIVE</div></div>
-            <div className="player-panel right"><div className="clash-avatar" style={{ borderColor: team2Color }}>{match.team2.short}</div><h2 className="clash-player-name">{match.team2.name}</h2><p className="clash-team-name">Team Omega</p><div className="clash-score" style={{ color: team2Color }}>{match.team2.score}</div><p className="clash-pts-label">pts</p><div className="clash-progress-bar-track"><div className="clash-progress-bar-fill" style={{ width: `${100 - score1Percentage}%`, backgroundColor: team2Color }}></div></div></div>
-        </div>
-    );
-};
-
-const MatchInformationSection = ({ info }) => (
-    <div className="match-info-section"><h3>Match Information</h3><div className="info-grid"><span>Prize Pool</span> <strong>{info.prizePool}</strong><span>Symbol</span> <strong>{info.symbol}</strong><span>Format</span> <strong>{info.format}</strong></div></div>
-);
-
-const RecentActivitySection = ({ activities }) => {
-    const getActivityDotClass = (type) => { switch (type.toLowerCase()) { case 'buy': return 'dot-buy'; case 'sell': return 'dot-sell'; case 'close': return 'dot-close'; default: return ''; } };
-    return (
-        <div className="recent-activity-section"><h3>Recent Activity</h3><div className="activity-feed">{activities.map((activity, index) => (<div key={index} className="activity-item"><div className={`activity-dot ${getActivityDotClass(activity.type)}`}></div><div className="activity-content"><div className="activity-header"><strong className={`activity-action ${getActivityDotClass(activity.type)}`}>{activity.type}</strong><span className="activity-player">{activity.player}</span><span className="activity-time">@{activity.time} mins ago</span></div><div className="activity-details"><span>{activity.quantity} {activity.symbol}</span><span>@ {activity.price}</span></div></div></div>))}</div></div>
-    );
-};
-
-const NewTournamentNav = ({ activeItem, onClick }) => {
-    const navItems = [
-        { name: 'Matches', icon: <NewMatchesIcon /> }, { name: 'Rounds', icon: <NewRoundsIcon /> },
-        { name: 'Discussion', icon: <NewDiscussionIcon /> }, { name: 'Leaderboard', icon: <NewLeaderboardIcon /> },
-        { name: 'Result', icon: <NewResultIcon /> }
-    ];
-    return (<nav className="new-tournament-nav">{navItems.map(item => (<button key={item.name} className={`new-nav-item ${activeItem === item.name ? 'active' : ''}`} onClick={() => onClick(item.name)}>{item.icon}<span>{item.name}</span></button>))}</nav>);
-};
-
-
-// =======================================================
-// COMPONENT CHÍNH CỦA TRANG
-// =======================================================
+// Import dữ liệu giả từ mockData
+import { mockActivities, liveMatchData, matchInfoData } from '../../data/mockData';
 
 const TournamentDetailPage = ({ tournament, onClose, onMatchClick }) => {
+    // State cho menu dọc
     const [activeDetailTab, setActiveDetailTab] = useState('Matches');
-    const backgroundImage = tournament ? tournament.image : ''; // Lấy ảnh từ prop
+    // Giả lập trạng thái người dùng có tham gia trận đấu hay không
+    const [isUserParticipating, setIsUserParticipating] = useState(true);
 
     const renderContent = () => {
         switch (activeDetailTab) {
             case 'Matches':
-                return (
-                    <div className="match-page-layout">
-                        <div className="info-panel">
-                            <MatchInformationSection info={matchInfoData} />
-                            <RecentActivitySection activities={mockActivities} />
-                        </div>
-                        <div className="info-panel">
+                if (isUserParticipating) {
+                    return (
+                        <div className="match-page-layout">
+                            <InfoPanel info={matchInfoData} activities={mockActivities} />
                             <ClashDisplay
                                 match={liveMatchData}
                                 team1Color="#3b82f6"
@@ -83,8 +35,18 @@ const TournamentDetailPage = ({ tournament, onClose, onMatchClick }) => {
                                 onClick={() => onMatchClick(liveMatchData)}
                             />
                         </div>
-                    </div>
-                );
+                    );
+                } else {
+                    return (
+                        <div className="placeholder-view">
+                            <h2>You are not participating in this tournament.</h2>
+                            <p>Upcoming matches and your history will be shown here.</p>
+                            <button className="dev-toggle-button-inner" onClick={() => setIsUserParticipating(true)}>
+                                (Simulate Joining)
+                            </button>
+                        </div>
+                    );
+                }
             case 'Rounds':
                 return <RoundsAccordion />;
             case 'Discussion':
@@ -100,26 +62,30 @@ const TournamentDetailPage = ({ tournament, onClose, onMatchClick }) => {
 
     return (
         <div className="new-detail-page-wrapper">
+             {/* Nút giả lập để chuyển đổi trạng thái cho bạn test */}
+             <button className="dev-toggle-button" onClick={() => setIsUserParticipating(!isUserParticipating)}>
+                Toggle Participation View
+            </button>
+
+            {/* ✅ KHÔI PHỤC THANH MENU BÊN TRÁI */}
             <aside className="new-detail-sidebar">
                 <div className="sidebar-logo">
                     GOMARKETS
                 </div>
-                <NewTournamentNav activeItem={activeDetailTab} onClick={setActiveDetailTab} />
+                <TournamentNav activeItem={activeDetailTab} onClick={setActiveDetailTab} />
                 <button onClick={onClose} className="sidebar-back-btn">
-                    &larr; Back to Tournaments
+                    &larr; Back to Arena
                 </button>
             </aside>
+
+            {/* Nội dung chính bên phải */}
             <main className="unified-main-content">
                 <div
                     className="tournament-header-banner"
-                    style={{ backgroundImage: `url(${backgroundImage})` }}
+                    style={{ backgroundImage: `url(${tournament?.image})` }}
                 >
                     <div className="header-banner-overlay">
-                        <h1>{tournament ? tournament.name : 'Tournament Detail'}</h1>
-                        <div className="status-badge-new finished">
-                            <span></span>
-                            FINISHED
-                        </div>
+                        <h1>{tournament?.name || 'Tournament Detail'}</h1>
                     </div>
                 </div>
                 <div className="unified-content-body">

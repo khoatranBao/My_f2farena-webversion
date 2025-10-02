@@ -1,11 +1,54 @@
-import React, { useState } from 'react';
-import './ReviewPage.css'; // Import CSS
+import React, { useState, useEffect } from 'react';
+import './ReviewPage.css';
 import BrokerReview from './broker_review/BrokerReview';
 import ComplaintPage from './complaint_page/ComplaintPage';
-import { brokerReviews } from '../../data/mockData'; // Import để truyền prop
+import { fetchBrokerReviews, fetchComplaints } from '../../api/reviews.js';
 
 const ReviewPage = ({ onReviewClick }) => {
     const [activeSubTab, setActiveSubTab] = useState('broker');
+    const [reviews, setReviews] = useState([]);
+    const [complaints, setComplaints] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const loadData = async () => {
+            setIsLoading(true);
+            // ✅ DÒNG LOG DEBUG
+            console.log('>>> [ReviewPage] Active tab is:', activeSubTab);
+
+            try {
+                if (activeSubTab === 'broker') {
+                    const reviewsData = await fetchBrokerReviews();
+                    // ✅ DÒNG LOG DEBUG
+                    console.log('>>> [ReviewPage] Data received from API:', reviewsData);
+                    setReviews(reviewsData);
+                } else {
+                    const complaintsData = await fetchComplaints();
+                    const brokersData = await fetchBrokerReviews();
+                    setComplaints(complaintsData);
+                    setReviews(brokersData);
+                }
+            } catch (error) {
+                console.error(`Error loading data for tab ${activeSubTab}:`, error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        loadData();
+    }, [activeSubTab]);
+
+    const renderContent = () => {
+        if (isLoading) {
+            return <div className="placeholder-content"><h3>Loading content...</h3></div>;
+        }
+
+        if (activeSubTab === 'broker') {
+            return <BrokerReview reviews={reviews} onReviewClick={onReviewClick} />;
+        } else {
+            return <ComplaintPage complaints={complaints} brokers={reviews} />;
+        }
+    };
 
     return (
         <div className="review-page">
@@ -24,11 +67,7 @@ const ReviewPage = ({ onReviewClick }) => {
                 </button>
             </div>
             <div className="review-content">
-                {activeSubTab === 'broker' ? (
-                    <BrokerReview onReviewClick={onReviewClick} />
-                ) : (
-                    <ComplaintPage brokers={brokerReviews} />
-                )}
+                {renderContent()}
             </div>
         </div>
     );

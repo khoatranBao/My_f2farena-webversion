@@ -1,0 +1,50 @@
+.winner-card {
+    background-color: #1e293b;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    border: 3px solid #475569;
+    text-align: center;
+}
+
+.winner-card.rank-1 {
+    transform: scale(1.1);
+    margin-bottom: 1.1rem;
+    z-index: 10;
+}
+
+.winner-card.gold { border-color: #eab308; }
+.winner-card.silver { border-color: #d1d5db; }
+.winner-card.bronze { border-color: #ca8a04; }
+
+/* ✅ THÊM STYLE MỚI CHO ẢNH CÚP */
+.cup-image {
+    width: 80px;
+    height: auto;
+    margin-bottom: 0.5rem;
+    object-fit: contain;
+}
+
+.winner-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #334155;
+    border: 3px solid #64748b;
+}
+
+.winner-name {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.winner-prize {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #facc15;
+}

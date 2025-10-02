@@ -1,0 +1,83 @@
+/* ================================== */
+/* === CLASH DISPLAY (UNIFIED BLOCK) == */
+/* ================================== */
+
+.clash-container {
+    /* ✅ BIẾN KHỐI BAO NGOÀI THÀNH TẤM THẺ CHÍNH */
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.3);
+    
+    /* Giữ nguyên bố cục grid bên trong */
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 1.5rem; /* Giảm gap một chút cho gọn hơn */
+    width: 100%;
+    max-width: 950px; /* Giảm max-width một chút */
+    padding: 2.5rem;
+    margin: 0 auto; /* Tự động căn giữa */
+  }
+  
+  .player-panel {
+    /* ✅ XÓA NỀN VÀ CÁC THUỘC TÍNH CỦA THẺ CON */
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0; /* Xóa padding thừa */
+    
+    /* Giữ nguyên các thuộc tính căn chỉnh nội dung bên trong */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .player-panel.right { text-align: right; align-items: flex-end; }
+  .player-panel.left { text-align: left; align-items: flex-start; }
+  
+  /* --- CÁC STYLE KHÁC GIỮ NGUYÊN --- */
+  
+  .clash-avatar { 
+    width: 100px; height: 100px; border-radius: 50%; 
+    background-color: #334155; color: #ffffff; 
+    display: flex; align-items: center; justify-content: center; 
+    font-weight: 700; font-size: 2.5rem; 
+    border: 4px solid; margin-bottom: 1rem; 
+  }
+  
+  .clash-player-name { font-size: 1.75rem; font-weight: 600; color: #ffffff; margin: 0; }
+  .clash-team-name { color: #94a3b8; margin-bottom: 1.5rem; }
+  .clash-score { font-size: 4rem; font-weight: 800; line-height: 1; margin-bottom: 1.5rem; }
+  
+  .clash-progress-bar-track { 
+    height: 8px; width: 100%; 
+    background-color: #334155; 
+    border-radius: 4px; overflow: hidden; 
+  }
+  
+  .clash-progress-bar-fill { 
+    height: 100%; border-radius: 4px; 
+    transition: width 0.5s ease-in-out; 
+  }
+  
+  .clash-center-info { 
+    display: flex; flex-direction: column; 
+    align-items: center; gap: 1rem; position: relative; 
+  }
+  
+  .clash-vs { font-size: 3.5rem; font-weight: 800; color: #64748b; line-height: 1; }
+  
+  .clash-timer { 
+    font-family: 'monospace'; font-size: 1.5rem; font-weight: 600; 
+    color: #f1f5f9; background-color: #111827; /* Nền tối hơn */
+    padding: 0.5rem 1rem; border-radius: 0.5rem; border: 1px solid #334155; 
+  }
+  
+  .clash-live-badge { 
+    background-color: #16a34a; color: #ffffff; 
+    font-size: 0.75rem; font-weight: 700; 
+    padding: 0.25rem 0.75rem; border-radius: 9999px; 
+    animation: pulse 2s infinite; 
+  }
+  
+  .clash-pts-label { color: #94a3b8; margin-top: 0.5rem; }

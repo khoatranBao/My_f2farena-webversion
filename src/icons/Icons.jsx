@@ -34,3 +34,8 @@ export const HeikinAshiIcon = () => (<svg viewBox="0 0 24 24" width="24" height=
 export const IndicatorsIcon = () => (<svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M3 18h2v-2H3v2zm4 0h2v-5H7v5zm4 0h2v-8h-2v8zm4-11v11h2V7h-2zm4 3v8h2v-8h-2z"></path></svg>);
 export const DropdownArrowIcon = () => (<svg width="12" height="12" viewBox="0 0 24 24"><path fill="currentColor" d="M7 10l5 5 5-5z"></path></svg>);
 export const TimeframeArrowIcon = () => (<svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M7 10l5 5 5-5H7z"></path></svg>);
+export const MenuIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="icon">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+    </svg>
+  );

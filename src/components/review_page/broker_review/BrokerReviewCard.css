@@ -1,0 +1,80 @@
+/* Styles moved from BrokerReview.css */
+.broker-card {
+    background-color: #111827;
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1px solid #4b5563;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.broker-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(56, 189, 248, 0.1), 0 4px 6px -2px rgba(56, 189, 248, 0.05);
+}
+
+.broker-card-img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 8;
+    object-fit: cover;
+}
+
+.broker-card-body {
+    padding: 1.5rem;
+}
+
+.broker-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    gap: 1rem;
+}
+
+.broker-card-title h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #38bdf8;
+    margin: 0 0 0.25rem 0;
+}
+
+.broker-card-title p {
+    font-size: 0.875rem;
+    color: #9ca3af;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.broker-card-score {
+    background-color: #1f2937;
+    border: 2px solid #facc15;
+    border-radius: 0.75rem;
+    padding: 0.5rem;
+    text-align: center;
+    min-width: 80px;
+}
+
+.broker-card-score span {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #facc15;
+    line-height: 1;
+}
+
+.broker-card-score p {
+    margin: 0;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #9ca3af;
+}
+
+.broker-card-description {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #d1d5db;
+}

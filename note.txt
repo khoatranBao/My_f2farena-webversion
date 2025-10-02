@@ -1,0 +1,12 @@
+## Làm thế nào để Reset lại dữ liệu?
+Nếu bạn muốn xóa các bình luận đã thêm và quay về dữ liệu gốc, bạn có thể xóa localStorage của trang web:
+
+Mở Developer Tools (nhấn F12).
+
+Đi đến tab Application.
+
+Ở menu bên trái, chọn Local Storage -> http://localhost:xxxx.
+
+Nhấn chuột phải vào traderComments và chọn Delete, hoặc nhấn chuột phải vào http://localhost:xxxx và chọn Clear.
+
+

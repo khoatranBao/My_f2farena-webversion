@@ -1,0 +1,48 @@
+.info-panel {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    height: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.match-info-section h3,
+.recent-activity-section h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #cbd5e1;
+    margin: 0 0 1rem 0;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #334155;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+}
+
+.info-grid span { color: #94a3b8; }
+.info-grid strong { color: #e2e8f0; text-align: right; font-weight: 600; }
+
+.activity-feed { display: flex; flex-direction: column; gap: 1.25rem; }
+.activity-item { display: flex; align-items: center; gap: 1rem; }
+.activity-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.dot-buy { background-color: #4ade80; }
+.dot-sell { background-color: #f87171; }
+.dot-close { background-color: #64748b; }
+
+.activity-content { width: 100%; }
+.activity-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem; }
+.activity-action { font-weight: 700; font-size: 0.875rem; }
+.activity-action.dot-buy { color: #4ade80; }
+.activity-action.dot-sell { color: #f87171; }
+.activity-action.dot-close { color: #94a3b8; }
+.activity-player { font-size: 0.875rem; color: #e2e8f0; }
+.activity-time { font-size: 0.75rem; color: #64748b; }
+.activity-details { display: flex; justify-content: space-between; font-size: 0.875rem; color: #94a3b8; }

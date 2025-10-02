@@ -1,0 +1,27 @@
+/* ================================== */
+/* ===    COMMON UTILITY STYLES     === */
+/* ================================== */
+
+.offline-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background-color: rgba(17, 24, 39, 0.8);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.star-rating {
+    display: flex;
+    font-size: 1.25rem;
+    letter-spacing: 0.2em;
+}
+  
+.star-rating .empty-star {
+    opacity: 0.3;
+}

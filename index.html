@@ -5,9 +5,67 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>demo_tournaments</title>
+    <style>
+      /* CSS cho màn hình chờ */
+      .initial-loader {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        width: 100vw;
+        background-color: #030712; /* Màu nền tối giống ứng dụng của bạn */
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9999;
+        color: #d1d5db;
+        font-family: ui-sans-serif, system-ui, sans-serif;
+      }
+  
+      .loader-logo {
+        width: 80px;
+        height: auto;
+        margin-bottom: 1.5rem;
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+  
+      .spinner {
+        width: 48px;
+        height: 48px;
+        border: 5px solid #4b5563; /* Màu xám của vòng quay */
+        border-bottom-color: #3b82f6; /* Màu xanh của phần xoay */
+        border-radius: 50%;
+        display: inline-block;
+        box-sizing: border-box;
+        animation: spin 1s linear infinite;
+        margin-bottom: 1.5rem;
+      }
+  
+      .initial-loader p {
+        font-size: 1rem;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+      }
+  
+      /* Keyframes cho các hiệu ứng */
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      @keyframes pulse {
+        50% { opacity: .7; }
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div class="initial-loader">
+        <img src="/src/assets/logo.png" alt="Loading Logo" class="loader-logo" />
+        <div class="spinner"></div>
+        <p>Initializing Application...</p>
+      </div>
+      </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

@@ -1,0 +1,44 @@
+.one-vs-one-page {
+    padding: 2rem; /* Thêm khoảng trống xung quanh trang */
+}
+
+.ovo-header {
+    display: flex;
+    justify-content: flex-end; /* Đẩy các item về phía cuối (bên phải) */
+    align-items: center;
+    margin-bottom: 2rem; /* Khoảng cách với danh sách trận đấu */
+}
+
+/* Style chung cho các nút trên trang này */
+.ovo-btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s, opacity 0.2s;
+}
+.ovo-btn:hover {
+    opacity: 0.9;
+}
+
+/* Style riêng cho nút tạo trận mới */
+.new-match-btn {
+    background-color: #facc15; /* Màu vàng nổi bật */
+    color: #111827; /* Chữ màu tối */
+}
+
+.match-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+
+.no-matches-found {
+    color: #94a3b8;
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.1rem;
+}

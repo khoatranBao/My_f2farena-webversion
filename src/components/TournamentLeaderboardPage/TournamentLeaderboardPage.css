@@ -1,0 +1,96 @@
+/* ================================== */
+/* === LEADERBOARD V2 PAGE STYLES   === */
+/* (Styles moved from App.css)        */
+/* ================================== */
+
+.leaderboard-v2-container {
+    width: 100%;
+    max-width: 950px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 1.5rem auto;
+    padding: 0 1rem;
+}
+
+.leaderboard-tabs {
+    display: flex;
+    background-color: #1e293b;
+    border-radius: 0.75rem;
+    padding: 0.5rem;
+    border: 1px solid #334155;
+}
+
+.tab-btn {
+    flex: 1;
+    background: none;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #94a3b8;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.tab-btn.active {
+    background-color: #14f1d9; /* Teal color */
+    color: #111827; /* Dark text color */
+}
+
+.leaderboard-table-v2 {
+    background-color: #1e293b;
+    border-radius: 1rem;
+    padding: 1.5rem 2rem;
+}
+
+.leaderboard-v2-header, .leaderboard-v2-row {
+    display: grid;
+    grid-template-columns: 80px 3fr 1fr 1.5fr; /* Rank, Trader, Wins, Profit/Score */
+    align-items: center;
+    gap: 1rem;
+    padding: 0 1rem;
+}
+
+.leaderboard-v2-header {
+    color: #94a3b8;
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #334155;
+    text-transform: uppercase;
+}
+
+.leaderboard-v2-header .rank { text-align: center; }
+.leaderboard-v2-header .trader { text-align: left; }
+.leaderboard-v2-header .wins { text-align: right; }
+.leaderboard-v2-header .profit { text-align: right; }
+
+.leaderboard-v2-body {
+    padding-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.leaderboard-v2-row {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s;
+}
+.leaderboard-v2-row:hover { background-color: #334155; }
+.leaderboard-v2-row .rank { text-align: center; font-size: 1.125rem; font-weight: 700; }
+.leaderboard-v2-row .wins { text-align: right; font-weight: 600; color: #e2e8f0; }
+.leaderboard-v2-row .profit { text-align: right; font-weight: 700; color: #14f1d9; }
+.leaderboard-v2-row .trader { display: flex; align-items: center; gap: 1rem; }
+
+/* Styles for placeholder */
+.placeholder-content.small {
+    min-height: 200px;
+    font-size: 1rem;
+    color: #9ca3af;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

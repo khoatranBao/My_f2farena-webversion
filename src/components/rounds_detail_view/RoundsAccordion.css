@@ -1,68 +1,100 @@
-/* --- Thiết kế cho các thanh sổ "Rounds" --- */
 .rounds-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem; /* Tăng khoảng cách giữa các vòng */
-    width: 100%;
-    max-width: 800px; /* Giới hạn chiều rộng để dễ đọc hơn */
-    margin: 0 auto; /* Căn giữa */
-  }
-  
-  .round-item {
-    background-color: #1f2937; /* gray-800 */
-    border-radius: 0.75rem;
-    border: 1px solid #374151; /* gray-700 */
-    overflow: hidden; /* Quan trọng để bo góc hoạt động đúng */
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .round-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 1rem 1.5rem;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-  
-  .round-header:hover {
-    background-color: #374151; /* gray-700 */
-  }
-  
-  .round-header h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #60a5fa; /* A lighter, more prominent blue */
-    margin: 0;
-  }
-  
-  .round-header .arrow-icon {
-    width: 1.5rem;
-    height: 1.5rem;
-    color: #9ca3af; /* gray-400 */
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  /* Khi thanh được mở, xoay mũi tên */
-  .round-header.open .arrow-icon {
-    transform: rotate(180deg);
-  }
-  
-  /* Khu vực nội dung bên trong thanh sổ */
-  .round-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
-    padding: 0 1.5rem;
-    border-top: 1px solid #374151;
-    color: #d1d5db;
-  }
-  
-  /* Khi thanh được mở, bung nội dung ra */
-  .round-content.open {
-    max-height: 500px; /* Chiều cao tối đa đủ lớn để chứa nội dung */
-    padding: 1.5rem;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 950px; /* Tăng chiều rộng */
+  margin: 0 auto;
+}
+
+.round-item {
+  background-color: #1f2937;
+  border-radius: 0.75rem;
+  border: 1px solid #374151;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.round-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.round-header:hover { background-color: #374151; }
+.round-header h3 { font-size: 1.25rem; font-weight: 600; color: #60a5fa; margin: 0; }
+.round-header .arrow-icon { width: 1.5rem; height: 1.5rem; color: #9ca3af; transition: transform 0.3s ease-in-out; }
+.round-header.open .arrow-icon { transform: rotate(180deg); }
+
+.round-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+  padding: 0 1.5rem;
+  color: #d1d5db;
+}
+
+.round-content.open {
+  max-height: 1000px; /* Tăng chiều cao tối đa để chứa bảng */
+  padding: 0 0 1.5rem 0; /* Xóa padding ngang, thêm padding dưới */
+  border-top: 1px solid #374151;
+}
+
+/* ✅ CSS MỚI CHO BẢNG DỮ LIỆU */
+.player-table-container {
+  width: 100%;
+  max-height: 500px; /* Giới hạn chiều cao và cho phép cuộn */
+  overflow-y: auto;
+}
+.player-table-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.player-table-container th,
+.player-table-container td {
+  padding: 0.75rem 1.5rem;
+  text-align: left;
+}
+.player-table-container th {
+  background-color: #2c3546;
+  color: #9ca3af;
+  font-weight: 600;
+  font-size: 0.875rem;
+  position: sticky;
+  top: 0;
+}
+.player-table-container tbody tr {
+  border-bottom: 1px solid #374151;
+}
+.player-table-container tbody tr:last-child {
+  border-bottom: none;
+}
+.player-table-container tbody tr:hover {
+  background-color: #2c3546;
+}
+.player-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.player-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #4b5563;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+.rank-col { width: 15%; text-align: center; }
+.player-col { width: 55%; }
+.score-col { width: 30%; text-align: right; font-weight: 600; }

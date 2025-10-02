@@ -69,65 +69,6 @@ body {
   border-bottom: 1px solid #374151;
 }
 
-.header-left button {
-  background-color: transparent; 
-  border: none;               
-  padding: 0;                 
-  cursor: pointer;  
-}
-.app-header.hidden {
-  transform: translateY(-100%);
-}
-.header-left, .header-center, .header-right {
-  display: flex;
-  align-items: center;
-  height: 100%;
-}
-.header-center {
-  flex-grow: 1;
-  justify-content: center;
-  gap: 1rem;
-  display: none; 
-}
-.app-logo {
-  width: 4rem;
-  height: auto;
-  border-radius: 9999px;
-}
-.header-nav-btn {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  transition: color 0.2s, background-color 0.2s;
-  color: #d1d5db; /* gray-300 */
-  border: none;
-  background: none;
-  cursor: pointer;
-}
-.header-nav-btn:hover {
-  color: #ffffff;
-}
-.header-nav-btn.active {
-  color: #facc15; /* yellow-400 */
-  background-color: rgba(0,0,0,0.2);
-}
-.login-btn {
-  background-color: #4b5563; /* gray-600 */
-  color: #ffffff;
-  font-weight: 700;
-  padding: 0.5rem 1.25rem;
-  border-radius: 0.75rem;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  transition: transform 0.2s;
-  border: none;
-  cursor: pointer;
-}
-.login-btn:hover {
-  transform: scale(1.05);
-}
-
 /* Main Content */
 .main-content {
   flex-grow: 1; 
@@ -145,9 +86,6 @@ body {
 .icon-gray-light { color: #d1d5db; }
 .icon-blue { color: #38bdf8; }
 .icon-red { color: #ef4444; }
-
-
-
 
 .banner-gradient {
   position: absolute;
@@ -251,32 +189,6 @@ body {
 }
 .modal-join-btn:hover { transform: scale(1.05); }
 
-/* Mobile Nav */
-.mobile-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(17, 24, 39, 0.8); /* gray-900 with opacity */
-  backdrop-filter: blur(12px);
-  border-top: 1px solid #374151;
-  z-index: 40;
-  display: flex;
-  justify-content: space-around;
-}
-.mobile-nav-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0.5rem;
-  width: 100%;
-  color: #9ca3af;
-  border: none;
-  background: none;
-  cursor: pointer;
-}
-.mobile-nav-btn.active { color: #facc15; }
-.mobile-nav-btn span { font-size: 0.75rem; margin-top: 0.25rem; }
 
 /* Chat Button & Window */
 .chat-btn-draggable {
@@ -327,19 +239,6 @@ body {
   border-radius: 9999px;
   z-index: 20;
   border: 2px solid #1f2937;
-}
-.chat-window {
-  position: fixed;
-  bottom: 6rem;
-  right: 1rem;
-  z-index: 50;
-  width: 20rem;
-  height: 24rem;
-  background-color: #1f2937;
-  border-radius: 0.75rem;
-  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-  display: flex;
-  flex-direction: column;
 }
 .chat-header {
   display: flex;
@@ -405,87 +304,9 @@ body {
   justify-content: center;
 }
 .chat-send-btn:hover { background-color: #1d4ed8; }
-.chat-send-btn svg { transform: rotate(-180deg); }
 
 
 
-/* Left Side Menu */
-.left-menu-nav-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.left-menu-nav-list li {
-  padding: 1rem 0.5rem;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  font-weight: 500;
-}
-
-.left-menu-nav-list li:hover {
-  background-color: #1f2937; /* gray-800 */
-}
-.left-menu-container {
-  position: fixed;
-  inset: 0;
-  z-index: 50;
-}
-.left-menu-overlay {
-  position: absolute;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(4px);
-}
-.left-menu {
-  position: relative;
-  height: 100%;
-  width: 16rem; /* w-64 */
-  background-color: #111827; /* gray-900 */
-  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  animation: slideIn 0.3s ease-out;
-}
-.left-menu-header {
-  display: flex;
-  justify-content: space-between; 
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.left-menu-header h2 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin: 0; 
-  flex-grow: 1; 
-  text-align: center;
-}
-.left-menu ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.left-menu li {
-  padding: 0.75rem;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-.left-menu li:hover {
-  background-color: #1f2937; /* gray-800 */
-}
-.left-menu-header .back-button,
-.left-menu-header .close-button {
-  background: none;
-  border: none;
-  color: #d1d5db;
-  cursor: pointer;
-  padding: 0.25rem;
-}
 /* Placeholder for other tabs */
 .placeholder-content { 
   padding: 1rem; 
@@ -501,207 +322,6 @@ body {
   font-weight: bold;
   margin-bottom: 1rem;
 }
-
-/* --- NEW STYLES FOR AUTH MODAL AND OFFLINE OVERLAY --- */
-
-/* Offline Overlay */
-.offline-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background-color: rgba(17, 24, 39, 0.8);
-  backdrop-filter: blur(8px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #ffffff;
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-/* Auth Modal */
-.auth-modal-content {
-  background-color: #1f2937;
-  border-radius: 1rem;
-  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-  width: 91.666667%;
-  max-width: 28rem; /* smaller than tournament modal */
-  margin: auto;
-  color: #ffffff;
-  overflow: hidden;
-  position: relative; /* For the close button */
-}
-
-.auth-modal-body {
-  padding: 2rem;
-}
-
-.auth-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.auth-form h2 {
-  text-align: center;
-  font-size: 1.75rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-}
-
-.auth-input {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  background-color: #374151;
-  border: 1px solid #4b5563;
-  border-radius: 0.5rem;
-  color: #ffffff;
-  font-size: 1rem;
-}
-
-.auth-input::placeholder {
-  color: #9ca3af;
-}
-
-.auth-input:focus {
-  outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 2px #3b82f6;
-}
-
-.auth-button-primary {
-  width: 100%;
-  padding: 0.75rem;
-  border-radius: 0.5rem;
-  border: none;
-  background-color: #2563eb;
-  color: #ffffff;
-  font-weight: 700;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.auth-button-primary:hover {
-  background-color: #1d4ed8;
-}
-
-.auth-switch-section {
-  text-align: center;
-  margin-top: 1rem;
-  color: #9ca3af;
-}
-
-.auth-switch-button {
-  background: none;
-  border: none;
-  color: #3b82f6;
-  font-weight: 600;
-  cursor: pointer;
-  padding: 0.25rem;
-}
-
-.auth-switch-button:hover {
-  text-decoration: underline;
-}
-
-.auth-forgot-password {
-  text-align: right;
-  font-size: 0.875rem;
-}
-
-.auth-forgot-password a {
-  color: #9ca3af;
-  text-decoration: none;
-}
-.auth-forgot-password a:hover {
-  text-decoration: underline;
-  color: #d1d5db;
-}
-
-/* Responsive Design */
-@media (min-width: 768px) {
-  .header-center { display: flex; }
-  .mobile-nav { display: none; }
-  .chat-window {
-      right: 2rem;
-      bottom: 2rem;
-      width: 24rem;
-  }
-}
-@media (min-width: 1024px) {
-}
-
-
-/* css for user profile */
-.left-menu .back-button { /* Style cho nút close */
-  color: #d1d5db;
-}
-
-.left-menu-profile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1rem 0;
-  border-bottom: 1px solid #374151;
-}
-
-.left-menu-avatar {
-  width: 5rem;
-  height: 5rem;
-  border-radius: 9999px;
-  background-color: #3b82f6;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 0.5rem;
-}
-
-.left-menu-avatar span {
-  font-size: 2rem;
-  font-weight: bold;
-}
-
-.left-menu-user-name {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin: 0;
-}
-
-.left-menu-username {
-  font-size: 0.875rem;
-  color: #9ca3af;
-  margin: 0;
-}
-
-.left-menu-details-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding-top: 1rem;
-}
-
-.left-menu-info-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.75rem 0.5rem;
-}
-
-.info-label {
-  font-size: 0.875rem;
-  color: #d1d5db;
-}
-
-.info-value {
-  font-size: 0.875rem;
-  font-weight: 600;
-}
-
-.vip-level { color: #facc15; }
-.verified-no { color: #ef4444; }
-.verified-yes { color: #22c55e; }
 
 /* style for review pages */
 
@@ -787,7 +407,6 @@ body {
   .review-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } /* 3 cột trên desktop */
 }
 
-/* review detail */
 /* Bảng xếp hạng */
 .total-rank-container {
   background-color: #111827;
@@ -867,181 +486,6 @@ body {
   box-shadow: 0 10px 15px -3px rgba(56, 189, 248, 0.1), 0 4px 6px -2px rgba(56, 189, 248, 0.05);
 }
 
-
-/* review details */
-/* --- NEW STYLES FOR TOURNAMENT DETAIL PAGE --- */
-
-.tournament-detail-page {
-  width: 100%;
-  min-height: 100vh;
-  background-color: #111827; /* gray-900 */
-}
-
-.tournament-detail-header {
-  height: 250px;
-  background-size: cover;
-  background-position: center;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 1.5rem;
-}
-
-.header-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(3, 7, 18, 0.9), rgba(3, 7, 18, 0.2));
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.tournament-detail-header .back-button {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  background-color: rgba(0,0,0,0.3);
-  border-radius: 9999px;
-  border: none;
-  color: #ffffff;
-  padding: 0.5rem;
-}
-
-.header-content {
-  color: #ffffff;
-  text-align: center;
-}
-
-.header-content h1 {
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: #facc15; /* yellow-400 */
-  margin: 0 0 0.5rem 0;
-  margin-top: 0.5rem;
-}
-
-.status-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background-color: rgba(17, 24, 39, 0.8);
-  padding: 0.5rem 1rem;
-  border-radius: 9999px;
-  font-weight: 600;
-}
-
-.tournament-detail-body {
-  padding: 1rem;
-}
-
-
-.live-matches-section {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.section-title {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 0.5rem;
-}
-
-.title-dot {
-  width: 1rem;
-  height: 1rem;
-  border-radius: 9999px;
-  background-color: #3b82f6;
-}
-
-.section-title h3 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin: 0;
-}
-
-.live-match-detail-card {
-  background-color: #1f2937;
-  border-radius: 1rem;
-  padding: 1.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.team-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.team-avatar {
-  width: 4rem;
-  height: 4rem;
-  border-radius: 9999px;
-  background-color: #3b82f6;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.team-name {
-  font-weight: 600;
-}
-
-.team-points {
-  color: #facc15;
-  font-weight: 700;
-}
-
-.match-center-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.25rem;
-}
-
-.match-status {
-  color: #4ade80; /* green-400 */
-  font-weight: 700;
-  font-size: 0.875rem;
-}
-
-.match-vs {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: #facc15;
-}
-
-.match-countdown {
-  font-size: 1.125rem;
-  font-weight: 600;
-}
-.match-detail-page {
-  position: fixed;
-  inset: 0;
-  z-index: 200; /* Hiển thị trên cả trang tournament detail */
-  background-color: #030712;
-  display: flex;
-  flex-direction: column;
-}
-
-.match-detail-header {
-  padding: 1rem;
-  padding-top: 2rem;
-  background-color: #111827;
-  border-bottom: 1px solid #374151;
-}
-
-.match-detail-card-wrapper {
-  padding: 0 1rem;
-  margin-top: 1.5rem;
-}
 /* detail live matches */
 .live-match-detail-card {
   transition: transform 0.2s;
@@ -1572,274 +1016,6 @@ body {
   font-size: 14px;
   color: #aaa;
   margin-top: 5px;
-}
-
-/* ======================================================= */
-/* NEW STYLES FOR PROFESSIONAL TRADING VIEW (MATCH DETAIL) */
-/* ======================================================= */
-
-/* Main Page Layout */
-.new-match-detail-page {
-  position: fixed;
-  inset: 0;
-  z-index: 200;
-  background-color: #0d121c; /* Dark blue background */
-  display: flex;
-  color: #d1d5db; /* Default light gray text */
-}
-
-/* Back button specific for this page */
-.back-button-trade {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    background: rgba(41, 56, 82, 0.7);
-    border: 1px solid #374151;
-    color: #fff;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 10;
-}
-.back-button-trade:hover {
-    background: rgba(55, 65, 81, 0.9);
-}
-
-/* Left Instrument Sidebar */
-.instrument-sidebar {
-  width: 280px;
-  background-color: #111827; /* Darker gray-blue */
-  border-right: 1px solid #374151; /* gray-700 border */
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
-}
-
-.sidebar-header {
-  padding: 1rem;
-  border-bottom: 1px solid #374151;
-}
-
-.sidebar-header h3 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #ffffff;
-  margin: 0;
-}
-
-.instrument-search {
-  padding: 1rem;
-  border-bottom: 1px solid #374151;
-}
-
-.instrument-search input {
-  width: 100%;
-  background-color: #1f2937; /* gray-800 */
-  border: 1px solid #4b5563; /* gray-600 */
-  border-radius: 0.375rem;
-  padding: 0.5rem 0.75rem;
-  color: #ffffff;
-}
-
-.instrument-list {
-  flex-grow: 1;
-  overflow-y: auto;
-}
-
-.instrument-list-header {
-  display: grid;
-  grid-template-columns: 2fr 1.5fr 1.5fr;
-  padding: 0.75rem 1rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #9ca3af; /* gray-400 */
-  border-bottom: 1px solid #374151;
-}
-
-.instrument-row {
-  display: grid;
-  grid-template-columns: 2fr 1.5fr 1.5fr;
-  padding: 0.75rem 1rem;
-  font-size: 0.875rem;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.instrument-row:hover {
-  background-color: #1f2937; /* gray-800 */
-}
-
-.instrument-row.active {
-  background-color: #3b82f6; /* blue-500 */
-  color: #ffffff;
-}
-
-/* Main Trading Panel */
-.trading-panel {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  position: relative; /* For the back button */
-}
-
-/* Trading Header */
-.trading-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 1.5rem;
-  background-color: #111827;
-  border-bottom: 1px solid #374151;
-  flex-shrink: 0;
-}
-
-.trading-team-info {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  flex: 1;
-}
-.trading-team-info.right {
-  justify-content: flex-end;
-}
-.trading-team-info .team-avatar {
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 1.2rem;
-  background-color: #3b82f6;
-  color: #fff;
-}
-.trading-team-info div {
-  display: flex;
-  flex-direction: column;
-}
-.trading-team-info.right div {
-  align-items: flex-end;
-}
-.trading-team-info .score {
-  font-size: 0.8rem;
-  color: #9ca3af;
-}
-
-.trading-center-display {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.trading-countdown {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #ffffff;
-}
-
-.volume-bar {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  width: 200px;
-}
-.volume-track {
-  flex-grow: 1;
-  height: 8px;
-  background: linear-gradient(to right, #3b82f6 50%, #4b5563 50%);
-  border-radius: 4px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.volume-track span {
-    font-size: 0.6rem;
-    font-weight: bold;
-    color: rgba(255,255,255,0.5);
-    z-index: 1;
-}
-.volume-value {
-    font-size: 0.8rem;
-    font-weight: 600;
-}
-
-/* Trading Content Area */
-.trading-content {
-  padding: 1rem;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.trading-info-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.trading-info-bar h3 {
-  font-size: 1.5rem;
-  color: #ffffff;
-  margin: 0;
-}
-
-.trading-nav {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.trading-nav-btn {
-  background-color: #1f2937;
-  border: 1px solid #4b5563;
-  color: #d1d5db;
-  padding: 0.5rem 1rem;
-  border-radius: 0.375rem;
-  font-weight: 600;
-  cursor: pointer;
-}
-.trading-nav-btn.active {
-  background-color: #3b82f6;
-  border-color: #3b82f6;
-  color: #ffffff;
-}
-.trading-nav-btn.highlight {
-    background: linear-gradient(to right, #a855f7, #ec4899);
-    border: none;
-    color: #ffffff;
-}
-
-/* Chart Controls are mostly styled, just need to ensure alignment */
-.chart-controls {
-    padding: 0.5rem;
-    background-color: #111827;
-    border-radius: 0.5rem;
-    display: flex;
-    justify-content: space-between;
-}
-.chart-controls .chart-intervals {
-    flex-grow: 1;
-    justify-content: center;
-}
-
-
-/* Chart Container */
-.chart-container {
-  flex-grow: 1; /* This is important! */
-  background-color: #000000;
-  border-radius: 0.5rem;
-  border: 1px solid #374151;
-  min-height: 300px; /* Ensure it has a minimum height */
-  display: flex; /* To make the inner chart component fill the space */
-}
-.chart-container > div {
-    width: 100% !important;
 }
 
 /* ======================================================= */
@@ -3491,381 +2667,6 @@ header.trading-header .trading-team-info .team-avatar {
   color: #94a3b8;
   margin: 0;
 }
-/* src/App.css */
-
-/* ... DÁN VÀO CUỐI FILE ... */
-
-/* ================================================== */
-/* ===    LEADERBOARD V2 PAGE STYLES (WITH TABS)    === */
-/* ================================================== */
-
-.leaderboard-v2-container {
-  width: 100%;
-  max-width: 950px;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-/* --- Thanh chuyển tab --- */
-.leaderboard-tabs {
-  display: flex;
-  background-color: #1e293b;
-  border-radius: 0.75rem;
-  padding: 0.5rem;
-  border: 1px solid #334155;
-}
-
-.tab-btn {
-  flex: 1;
-  background: none;
-  border: none;
-  border-radius: 0.5rem;
-  padding: 0.75rem 1rem;
-  font-size: 1rem;
-  font-weight: 600;
-  color: #94a3b8;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-
-.tab-btn.active {
-  background-color: #14f1d9; /* Màu xanh ngọc */
-  color: #111827; /* Chữ màu tối */
-}
-
-/* --- Bảng xếp hạng --- */
-.leaderboard-table-v2 {
-  background-color: #1e293b;
-  border-radius: 1rem;
-  padding: 1rem 1.5rem;
-}
-
-.leaderboard-v2-header, .leaderboard-v2-row {
-  display: grid;
-  grid-template-columns: 80px 3fr 1fr 1.5fr; /* Rank, Trader, Wins, Profit */
-  align-items: center;
-  gap: 1rem;
-  padding: 0 1rem;
-}
-
-.leaderboard-v2-header {
-  color: #94a3b8;
-  font-size: 0.875rem;
-  font-weight: 600;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #334155;
-}
-
-/* Căn lề cho tiêu đề */
-.leaderboard-v2-header .rank { text-align: center; }
-.leaderboard-v2-header .trader { text-align: left; }
-.leaderboard-v2-header .wins { text-align: right; }
-.leaderboard-v2-header .profit { text-align: right; }
-
-.leaderboard-v2-body {
-  padding-top: 0.5rem;
-}
-
-.leaderboard-v2-row {
-  padding: 1rem;
-  border-radius: 0.5rem;
-}
-
-/* Căn lề cho dữ liệu */
-.leaderboard-v2-row .rank { text-align: center; font-size: 1.125rem; font-weight: 700; }
-.leaderboard-v2-row .wins { text-align: right; font-weight: 600; color: #e2e8f0; }
-.leaderboard-v2-row .profit { text-align: right; font-weight: 700; color: #14f1d9; }
-
-/* Placeholder cho tab không có dữ liệu */
-.placeholder-content.small {
-  min-height: 200px;
-  font-size: 1rem;
-}
-/* ================================================== */
-/* ===    LEADERBOARD V2 PAGE STYLES (WITH TABS)    === */
-/* ================================================== */
-
-.leaderboard-v2-container {
-  width: 100%;
-  max-width: 950px;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem; 
-  margin: 1.5rem auto; 
-  padding: 0 1rem; 
-}
-
-/* --- Thanh chuyển tab --- */
-.leaderboard-tabs {
-  display: flex;
-  background-color: #1e293b;
-  border-radius: 0.75rem;
-  padding: 0.5rem;
-  border: 1px solid #334155;
-}
-
-.tab-btn {
-  flex: 1;
-  background: none;
-  border: none;
-  border-radius: 0.5rem;
-  padding: 0.75rem 1rem;
-  font-size: 1rem;
-  font-weight: 600;
-  color: #94a3b8;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-
-.tab-btn.active {
-  background-color: #14f1d9; /* Teal color */
-  color: #111827; /* Dark text color */
-}
-
-/* --- Bảng xếp hạng --- */
-.leaderboard-table-v2 {
-  background-color: #1e293b;
-  border-radius: 1rem;
-  padding: 1.5rem 2rem;
-}
-
-.leaderboard-v2-header, .leaderboard-v2-row {
-  display: grid;
-  grid-template-columns: 80px 3fr 1fr 1.5fr; /* Rank, Trader, Wins, Profit/Score */
-  align-items: center;
-  gap: 1rem;
-  padding: 0 1rem;
-}
-
-.leaderboard-v2-header {
-  color: #94a3b8;
-  font-size: 0.875rem;
-  font-weight: 600;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #334155;
-  text-transform: uppercase;
-}
-
-/* Căn lề cho tiêu đề */
-.leaderboard-v2-header .rank { text-align: center; }
-.leaderboard-v2-header .trader { text-align: left; }
-.leaderboard-v2-header .wins { text-align: right; }
-.leaderboard-v2-header .profit { text-align: right; }
-
-.leaderboard-v2-body {
-  padding-top: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.leaderboard-v2-row {
-  padding: 1rem;
-  border-radius: 0.5rem;
-  transition: background-color 0.2s;
-}
-
-.leaderboard-v2-row:hover {
-  background-color: #334155;
-}
-
-/* Căn lề cho dữ liệu */
-.leaderboard-v2-row .rank { text-align: center; font-size: 1.125rem; font-weight: 700; }
-.leaderboard-v2-row .wins { text-align: right; font-weight: 600; color: #e2e8f0; }
-.leaderboard-v2-row .profit { text-align: right; font-weight: 700; color: #14f1d9; }
-
-.trader-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: #475569;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  color: #ffffff;
-  border: 2px solid #64748b;
-}
-.leaderboard-v2-row .trader {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.leaderboard-v2-row .rank.gold, .leaderboard-v2-row .trader-avatar.gold {
-  color: #eab308;
-  border-color: #eab308;
-}
-.leaderboard-v2-row .rank.silver, .leaderboard-v2-row .trader-avatar.silver {
-  color: #d1d5db;
-  border-color: #d1d5db;
-}
-.leaderboard-v2-row .rank.bronze, .leaderboard-v2-row .trader-avatar.bronze {
-  color: #ca8a04;
-  border-color: #ca8a04;
-}
-
-/* Placeholder cho tab không có dữ liệu */
-.placeholder-content.small {
-  min-height: 200px;
-  font-size: 1rem;
-  color: #9ca3af;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-/* ================================== */
-/* ===       WALLET PAGE STYLES     === */
-/* ================================== */
-
-.wallet-page {
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.wallet-section {
-  background-color: #1f2937; /* gray-800 */
-  border-radius: 1rem;
-  padding: 1.5rem 2rem;
-  border: 1px solid #374151;
-}
-
-.wallet-section h2 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #ffffff;
-  margin: 0 0 1.5rem 0;
-  border-bottom: 1px solid #374151;
-  padding-bottom: 1rem;
-}
-
-/* --- Asset Information --- */
-.asset-info-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-}
-
-.asset-info-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #111827;
-  padding: 1rem;
-  border-radius: 0.5rem;
-}
-
-.asset-info-item span:first-child {
-  color: #9ca3af; /* gray-400 */
-  font-weight: 500;
-}
-
-.asset-info-item span:last-child {
-  font-size: 1.125rem;
-  font-weight: 700;
-}
-
-.text-balance { color: #facc15; } /* yellow-400 */
-.text-gain { color: #4ade80; } /* green-400 */
-.text-loss { color: #f87171; } /* red-400 */
-
-.withdraw-btn {
-  background-color: #facc15; /* yellow-400 */
-  color: #111827; /* gray-900 */
-  border: none;
-  border-radius: 0.5rem;
-  padding: 1rem;
-  font-size: 1.125rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: transform 0.2s, background-color 0.2s;
-  grid-column: 1 / -1; /* Make button span full width */
-  margin-top: 1rem;
-}
-
-.withdraw-btn:hover {
-  background-color: #fde047; /* yellow-300 */
-  transform: scale(1.02);
-}
-
-/* --- Transaction History --- */
-.transaction-history-table {
-  width: 100%;
-  overflow-x: auto; /* For responsiveness on small screens */
-}
-
-.transaction-history-table table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.transaction-history-table th, .transaction-history-table td {
-  padding: 1rem;
-  text-align: left;
-  border-bottom: 1px solid #374151;
-}
-
-.transaction-history-table th {
-  color: #9ca3af;
-  font-size: 0.875rem;
-  text-transform: uppercase;
-}
-
-.status-badge-tx {
-  padding: 0.25rem 0.75rem;
-  border-radius: 9999px;
-  font-size: 0.75rem;
-  font-weight: 700;
-}
-.status-completed { background-color: #166534; color: #bbf7d0; }
-.status-pending { background-color: #a16207; color: #fef08a; }
-.status-failed { background-color: #991b1b; color: #fecaca; }
-
-/* --- Withdraw Modal --- */
-.wallet-modal-content {
-  background-color: #2c3546;
-  border-radius: 1rem;
-  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.2);
-  width: 91.666667%;
-  max-width: 32rem;
-  color: #ffffff;
-}
-.wallet-modal-body {
-  padding: 1.5rem 2rem 2rem 2rem;
-}
-.wallet-modal-body p {
-  color: #d1d5db;
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-.wallet-address-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-.wallet-address-form label {
-  font-weight: 600;
-  color: #d1d5db;
-}
-.wallet-address-form input {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  background-color: #1f2937;
-  border: 1px solid #4b5563;
-  border-radius: 0.5rem;
-  color: #ffffff;
-  font-size: 1rem;
-}
-.wallet-address-form input:focus {
-  outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
-}
 /* ================================== */
 /* ===    1 VS 1 MATCH PAGE STYLES    === */
 /* ================================== */
@@ -4054,198 +2855,6 @@ header.trading-header .trading-team-info .team-avatar {
   font-size: 1.25rem;
   color: #64748b;
   margin: 0 1rem;
-}
-/* ================================== */
-/* ===    1 VS 1 CHALLENGE CARD STYLES (NEW)   === */
-/* ================================== */
-
-/* --- Thẻ bài mới --- */
-.challenge-card {
-  background-color: #1e293b; /* Nền xanh-xám đậm */
-  border: 1px solid #334155;
-  border-radius: 1rem;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  color: #e2e8f0;
-}
-
-.challenge-header {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.challenge-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: #3b82f6; /* Blue */
-  color: #ffffff;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.creator-name {
-  font-size: 1.125rem;
-  font-weight: 600;
-}
-
-.challenge-divider {
-  border: none;
-  height: 1px;
-  background-color: #334155;
-  margin: 0;
-}
-
-.challenge-info {
-  display: grid;
-  grid-template-columns: 1fr 1.5fr 1fr;
-  text-align: left;
-  gap: 1rem;
-}
-
-.info-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.info-item span {
-  font-size: 0.875rem;
-  color: #94a3b8; /* Xám nhạt */
-}
-
-.info-item strong {
-  font-size: 1rem;
-  font-weight: 700;
-  color: #ffffff;
-}
-
-.info-item .bet-amount {
-  color: #facc15; /* Vàng */
-}
-
-.join-challenge-btn {
-  background-color: #14f1d9; /* Teal */
-  color: #111827;
-  border: none;
-  padding: 0.8rem;
-  font-size: 1rem;
-  font-weight: 700;
-  border-radius: 0.75rem;
-  cursor: pointer;
-  width: 100%;
-  transition: opacity 0.2s;
-}
-
-.join-challenge-btn:hover {
-  opacity: 0.9;
-}
-/* THÊM VÀO CUỐI TỆP App.css */
-
-/* --- 1 vs 1 Match Styles --- */
-
-.join-challenge-btn {
-  background-color: #14f1d9; /* Màu xanh ngọc */
-  color: #111827; /* Chữ màu tối */
-  border: none;
-  border-radius: 0.5rem;
-  padding: 0.8rem;
-  font-size: 1rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: opacity 0.2s;
-}
-
-.join-challenge-btn:hover {
-  opacity: 0.9;
-}
-/* THÊM VÀO CUỐI TỆP App.css */
-
-/* --- Single Match Display (Horizontal Layout) --- */
-.match-display-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-  max-width: 1000px;
-  color: #e2e8f0;
-  padding: 2rem;
-}
-
-.player-display, .center-display-column {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  flex: 1;
-}
-
-.player-initials {
-  font-size: 3rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-}
-
-.player-name-large {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 0.25rem;
-}
-
-.player-team-name {
-  color: #94a3b8;
-  margin-bottom: 2rem;
-}
-
-.player-score-large {
-  font-size: 4rem;
-  font-weight: 800;
-  color: #3b82f6; /* Blue color for score */
-  line-height: 1;
-}
-
-.player-pts-label {
-  color: #94a3b8;
-}
-
-.center-display-column {
-  flex: 0.5; /* Make center column smaller */
-}
-
-.live-badge-large {
-  background-color: #16a34a;
-  color: #ffffff;
-  font-size: 0.875rem;
-  font-weight: 700;
-  padding: 0.3rem 0.8rem;
-  border-radius: 9999px;
-  margin-bottom: 2rem;
-  animation: pulse 2s infinite;
-}
-
-.vs-text-large {
-  font-size: 3rem;
-  font-weight: 700;
-  color: #64748b;
-  margin-bottom: 1rem;
-}
-
-.time-remaining-large {
-  font-family: 'monospace';
-  font-size: 2rem;
-  font-weight: 600;
-  color: #f1f5f9;
-}
-
-.time-label-large {
-  font-size: 0.875rem;
-  color: #94a3b8;
 }
 /* ======================================================= */
 /* ===    MATCH CLASH DISPLAY (REDESIGNED LAYOUT)      === */
@@ -4508,4 +3117,156 @@ header.trading-header .trading-team-info .team-avatar {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+/* ============================================= */
+/* === CSS CUỐI CÙNG CHO TOÀN BỘ HEADER      === */
+/* === Dán đoạn này để thay thế toàn bộ CSS cũ === */
+/* ============================================= */
+
+/* --- Khung Header chính --- */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(17, 24, 39, 0.8);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  width: 100%;
+  padding: 0 1rem;
+  height: 4.5rem; /* Tăng nhẹ chiều cao cho thoáng hơn */
+  transition: transform 0.3s ease-in-out;
+  border-bottom: 1px solid #374151;
+}
+
+.app-header.hidden {
+  transform: translateY(-100%);
+}
+
+/* --- Các khu vực Trái, Giữa, Phải --- */
+.header-left, .header-right {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  flex-shrink: 0; /* Ngăn các khu vực này bị co lại */
+}
+
+.header-center {
+  flex-grow: 1;
+  display: flex; /* ✅ QUAN TRỌNG: Luôn hiển thị flex */
+  align-items: center;
+  height: 100%;
+  overflow-x: auto; /* Chống vỡ layout trên màn hình quá hẹp */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.header-center::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+
+/* --- Các thành phần con trong Header --- */
+.app-logo {
+  width: 4rem;
+  height: auto;
+  border-radius: 9999px;
+}
+
+.header-left button {
+  background: none; border: none; padding: 0; cursor: pointer;
+}
+
+.login-btn {
+  background-color: #4b5563;
+  color: #ffffff;
+  font-weight: 700;
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.75rem;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s;
+  white-space: nowrap;
+}
+.login-btn:hover { transform: scale(1.05); }
+
+.hamburger-btn {
+  background: none; border: none; color: #d1d5db; cursor: pointer;
+  padding: 0.5rem; margin-left: 0.5rem; display: flex; align-items: center;
+  justify-content: center; border-radius: 0.375rem; transition: background-color 0.2s;
+}
+.hamburger-btn:hover { background-color: rgba(255, 255, 255, 0.1); }
+
+
+/* --- Menu chính (Mobile First) --- */
+.header-center {
+  justify-content: space-around; /* Mobile: Dàn đều */
+}
+.header-center .menu-btn {
+  background: none; border: none; cursor: pointer; color: #9ca3af;
+  display: flex; flex-direction: column; align-items: center;
+  position: relative; height: 100%; justify-content: center;
+  padding: 0 0.25rem; gap: 0.25rem;
+  transition: color 0.3s ease;
+  flex-shrink: 0;
+}
+.header-center .menu-btn .icon {
+  width: 1.5rem; height: 1.5rem;
+}
+.header-center .menu-btn span {
+  font-size: 0.75rem; font-weight: 500;
+}
+.header-center .menu-btn.active {
+  color: #facc15;
+}
+.header-center .menu-btn.active::before {
+  content: ''; position: absolute; top: 0; left: 15%; right: 15%;
+  height: 3px; background-color: #facc15;
+  border-bottom-left-radius: 3px; border-bottom-right-radius: 3px;
+}
+
+/* --- Giao diện Desktop --- */
+@media (min-width: 768px) {
+  .header-center {
+    justify-content: center; /* Desktop: Căn giữa */
+    gap: 1.5rem;
+  }
+
+  .header-center .menu-btn {
+    flex-direction: row; gap: 0.5rem; padding: 0.5rem; height: auto;
+    transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
+    background-color: transparent;
+  }
+  
+  .header-center .menu-btn.active::before {
+    display: none; /* Ẩn gạch ngang trên desktop */
+  }
+
+  .header-center .menu-btn:hover {
+    color: #fde047;
+    transform: translateY(-2px);
+    background-color: transparent !important; 
+  }
+  
+  .header-center .menu-btn.active {
+    color: #facc15;
+    transform: translateY(-2px);
+    text-shadow: 0 0 12px rgba(250, 204, 21, 0.7);
+    background-color: transparent !important; 
+  }
+
+  .header-center .menu-btn span {
+    font-size: 1rem; font-weight: 600;
+  }
+}
+/* ============================================= */
+/* ===   QUY TẮC GHI ĐÈ CUỐI CÙNG CHO MENU   === */
+/* ============================================= */
+.header-center {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100% !important;
+  flex-grow: 1 !important;
 }
