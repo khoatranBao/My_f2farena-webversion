@@ -1,86 +1,142 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
+import OneVsOneMatchCard from './OneVsOneMatchCard'; // Import component card
+import './OneVsOneMatchPage.css'; // File CSS sẽ tạo ở bước tiếp theo
 
-// Component con và Modal
-import ChallengeCard from './ChallengeCard.jsx';
-import CreateMatchModal from "../../CreateMatchModal/CreateMatchModal.jsx";
+const OneVsOneMatchPage = ({ user }) => {
+    // State quản lý toàn bộ dữ liệu gốc từ API
+    const [allMatches, setAllMatches] = useState([]);
+    // State quản lý trạng thái loading
+    const [isLoading, setIsLoading] = useState(true);
+    // State quản lý các checkbox của bộ lọc
+    const [filters, setFilters] = useState({
+        live: true,
+        waiting: true,
+        done: false,
+    });
 
-// API functions
-import { fetchChallenges, createChallenge } from '../../../api/oneVsOne.js';
+    // Hàm gọi API để lấy dữ liệu
+    useEffect(() => {
+        const fetchMatches = async () => {
+            console.log('[LOG] OneVsOneMatchPage: Bắt đầu quá trình tải dữ liệu trận đấu.');
+            setIsLoading(true);
+            try {
+                // Endpoint lấy các trận đang active (live & waiting)
+                console.log('[LOG] OneVsOneMatchPage: Bắt đầu gọi API /api/matches/active...');
+                const activeResponse = await fetch('https://f2farena.com/api/matches/active');
+                if (!activeResponse.ok) throw new Error('Failed to fetch active matches');
+                const activeMatches = await activeResponse.json();
+                console.log('[LOG] OneVsOneMatchPage: Nhận được dữ liệu active matches:', activeMatches);
 
-// CSS cho trang
-import './OneVsOneMatchPage.css';
+                let doneMatches = [];
+                // Nếu người dùng có đăng nhập và muốn xem lịch sử
+                if (user && filters.done) {
+                    console.log(`[LOG] OneVsOneMatchPage: Bắt đầu gọi API lịch sử cho user ${user.telegram_id}...`);
+                    const historyResponse = await fetch(`https://f2farena.com/api/matches/history/${user.telegram_id}`);
+                    if (historyResponse.ok) {
+                        const historyData = await historyResponse.json();
+                        // Gán status 'done' để dễ lọc
+                        doneMatches = historyData.map(m => ({ ...m, status: 'done' }));
+                        console.log('[LOG] OneVsOneMatchPage: Nhận được dữ liệu lịch sử:', doneMatches);
+                    } else {
+                         console.warn(`[WARN] OneVsOneMatchPage: Gọi API lịch sử thất bại, status: ${historyResponse.status}`);
+                    }
+                }
+                
+                // Gộp tất cả dữ liệu lại
+                setAllMatches([...activeMatches, ...doneMatches]);
 
-const OneVsOneMatchPage = () => {
-  // --- State Management ---
-  const [challenges, setChallenges] = useState([]); 
-  const [isLoading, setIsLoading] = useState(true);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [filters, setFilters] = useState({
-    Live: true,
-    Waiting: true,
-    Done: false,
-  });
+            } catch (error) {
+                console.error('[ERROR] OneVsOneMatchPage: Lỗi khi tải dữ liệu:', error);
+                setAllMatches([]); // Reset về mảng rỗng nếu có lỗi
+            } finally {
+                setIsLoading(false);
+                console.log('[LOG] OneVsOneMatchPage: Quá trình tải dữ liệu kết thúc.');
+            }
+        };
 
-  useEffect(() => {
-      const loadChallenges = async () => {
-          setIsLoading(true);
-          try {
-              const data = await fetchChallenges();
-              setChallenges(data);
-          } catch (error) {
-              console.error("Lỗi khi tải danh sách trận 1v1:", error);
-          } finally {
-              setIsLoading(false);
-          }
-      };
-      loadChallenges();
-  }, []); 
+        fetchMatches();
+    // Chạy lại mỗi khi bộ lọc 'done' thay đổi hoặc khi có thông tin `user`
+    }, [filters.done, user]); 
 
-  const handleCreateMatch = async (matchData) => {
-      try {
-          const newMatch = await createChallenge(matchData);
-          setChallenges(prevChallenges => [newMatch, ...prevChallenges]);
-      } catch (error) {
-          console.error("Lỗi khi tạo trận đấu mới:", error);
-      }
-  };
+    // Hàm xử lý khi người dùng thay đổi checkbox
+    const handleFilterChange = (event) => {
+        const { name, checked } = event.target;
+        setFilters(prevFilters => ({
+            ...prevFilters,
+            [name]: checked,
+        }));
+        console.log(`[LOG] OneVsOneMatchPage: Bộ lọc thay đổi - ${name}: ${checked}`);
+    };
+    
+    // Lọc danh sách các trận đấu để hiển thị dựa trên state của `filters`
+    const filteredMatches = allMatches.filter(match => {
+        if (filters.live && match.status === 'live') return true;
+        if (filters.waiting && match.status === 'waiting') return true;
+        if (filters.done && match.status === 'done') return true;
+        return false;
+    });
 
-  const filteredMatches = useMemo(() => {
-    const activeFilters = Object.keys(filters).filter(key => filters[key]);
-    if (activeFilters.length === 0) return [];
-    return challenges.filter(match => activeFilters.includes(match.status));
-  }, [filters, challenges]);
+    const handleJoinChallenge = (match) => {
+        console.log('[ACTION] User wants to join match:', match);
+        alert(`Joining challenge for match ID: ${match.id}`);
+    };
 
-  return (
-    <div className="one-vs-one-page">
-      
-      <CreateMatchModal 
-        isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
-        onCreateMatch={handleCreateMatch}
-      />
+    return (
+        <div className="one-vs-one-page">
+            <div className="page-header">
+                <button className="new-match-btn">+ New Match</button>
+            </div>
 
-      {/* ✅ KHUNG HEADER ĐỂ CHỨA NÚT BẤM */}
-      <header className="ovo-header">
-        {/* Bạn có thể thêm phần Filter vào đây nếu muốn */}
-        
-        {/* ✅ NÚT TẠO TRẬN ĐẤU MỚI */}
-        <button className="new-match-btn ovo-btn" onClick={() => setIsModalOpen(true)}>
-          + New Match
-        </button>
-      </header>
+            <div className="filter-section card">
+                <h4>Filter by Status</h4>
+                <div className="checkbox-group">
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="live"
+                            checked={filters.live}
+                            onChange={handleFilterChange}
+                        />
+                        Live
+                    </label>
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="waiting"
+                            checked={filters.waiting}
+                            onChange={handleFilterChange}
+                        />
+                        Waiting
+                    </label>
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="done"
+                            checked={filters.done}
+                            onChange={handleFilterChange}
+                        />
+                        Done
+                    </label>
+                </div>
+            </div>
 
-      <main className="match-list">
-        {isLoading ? (
-            <p className="no-matches-found">Loading matches...</p>
-        ) : filteredMatches.length > 0 ? (
-          filteredMatches.map(challenge => <ChallengeCard key={challenge.id} challenge={challenge} />)
-        ) : (
-          <p className="no-matches-found">No matches found for the selected filters.</p>
-        )}
-      </main>
-    </div>
-  );
+            <div className="matches-grid">
+                {isLoading ? (
+                    <p>Loading matches...</p>
+                ) : filteredMatches.length > 0 ? (
+                    filteredMatches.map(match => (
+                        <OneVsOneMatchCard 
+                            key={match.id} 
+                            match={match}
+                            onJoinChallenge={handleJoinChallenge}
+                        />
+                    ))
+                ) : (
+                    <p>No matches found with the selected filters.</p>
+                )}
+            </div>
+        </div>
+    );
 };
 
 export default OneVsOneMatchPage;
