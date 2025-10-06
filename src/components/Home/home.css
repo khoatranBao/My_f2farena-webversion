@@ -4,7 +4,39 @@
 .banner-container {
     position: relative;
     height: 16rem; 
-    width: 100%; /* Giờ chỉ cần 100% là đủ */
+    width: 100%;
+    overflow: hidden; /* [THÊM MỚI] Ẩn các ảnh bị tràn ra ngoài */
+    background-color: #e0e0e0; /* Thêm màu nền cho đẹp khi đang tải */
+}
+.banner-slides {
+    display: flex; /* [THÊM MỚI] Dàn các ảnh theo hàng ngang */
+    height: 100%;
+    transition: transform 0.5s ease-in-out; /* [THÊM MỚI] Hiệu ứng trượt mượt mà */
+}
+.banner-slide {
+    flex-shrink: 0; /* [THÊM MỚI] Đảm bảo slide không bị co lại */
+    width: 100%;
+    height: 100%;
+}
+.banner-dots {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+}
+.banner-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+/* Kiểu cho dấu chấm đang được chọn (active) */
+.banner-dot.active {
+    background-color: #ffffff;
 }
 
 .banner-image {

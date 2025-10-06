@@ -212,7 +212,43 @@
 .star-rating .empty-star {
     opacity: 0.3;
 }
+/* --- [THÊM MỚI] CSS CHO PHẦN ĐÁNH GIÁ CHI TIẾT --- */
+.rank-divider {
+    border: none;
+    border-top: 1px solid #374151;
+    margin: 1.5rem 0;
+}
 
+.rank-criteria-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem; /* Khoảng cách giữa các dòng */
+    margin-bottom: 1.5rem; /* Khoảng cách với nút Visit Broker */
+}
+
+.rank-criteria-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.star-rating-display {
+    display: flex;
+    gap: 0.25rem;
+    color: #facc15; /* Màu sao mặc định */
+    font-size: 1.2rem;
+}
+
+.star-rating-display .star {
+    opacity: 0.3; /* Sao rỗng sẽ mờ đi */
+}
+
+.star-rating-display .star.filled {
+    opacity: 1; /* Sao đầy sẽ rõ */
+}
+/* --- Kết thúc phần thêm mới --- */
 .visit-broker-btn {
     width: 100%;
     padding: 0.75rem;

@@ -1,96 +1,157 @@
-/* ================================== */
-/* === LEADERBOARD V2 PAGE STYLES   === */
-/* (Styles moved from App.css)        */
-/* ================================== */
-
-.leaderboard-v2-container {
+/* Container chính của toàn bộ trang Leaderboard */
+.leaderboard-page-container {
     width: 100%;
-    max-width: 950px;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    margin: 1.5rem auto;
-    padding: 0 1rem;
-}
-
-.leaderboard-tabs {
-    display: flex;
-    background-color: #1e293b;
-    border-radius: 0.75rem;
-    padding: 0.5rem;
-    border: 1px solid #334155;
-}
-
-.tab-btn {
-    flex: 1;
-    background: none;
-    border: none;
-    border-radius: 0.5rem;
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
-    font-weight: 600;
-    color: #94a3b8;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-}
-
-.tab-btn.active {
-    background-color: #14f1d9; /* Teal color */
-    color: #111827; /* Dark text color */
-}
-
-.leaderboard-table-v2 {
-    background-color: #1e293b;
-    border-radius: 1rem;
-    padding: 1.5rem 2rem;
-}
-
-.leaderboard-v2-header, .leaderboard-v2-row {
-    display: grid;
-    grid-template-columns: 80px 3fr 1fr 1.5fr; /* Rank, Trader, Wins, Profit/Score */
-    align-items: center;
-    gap: 1rem;
-    padding: 0 1rem;
-}
-
-.leaderboard-v2-header {
-    color: #94a3b8;
-    font-size: 0.875rem;
-    font-weight: 600;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid #334155;
-    text-transform: uppercase;
-}
-
-.leaderboard-v2-header .rank { text-align: center; }
-.leaderboard-v2-header .trader { text-align: left; }
-.leaderboard-v2-header .wins { text-align: right; }
-.leaderboard-v2-header .profit { text-align: right; }
-
-.leaderboard-v2-body {
-    padding-top: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-}
-
-.leaderboard-v2-row {
-    padding: 1rem;
-    border-radius: 0.5rem;
-    transition: background-color 0.2s;
-}
-.leaderboard-v2-row:hover { background-color: #334155; }
-.leaderboard-v2-row .rank { text-align: center; font-size: 1.125rem; font-weight: 700; }
-.leaderboard-v2-row .wins { text-align: right; font-weight: 600; color: #e2e8f0; }
-.leaderboard-v2-row .profit { text-align: right; font-weight: 700; color: #14f1d9; }
-.leaderboard-v2-row .trader { display: flex; align-items: center; gap: 1rem; }
-
-/* Styles for placeholder */
-.placeholder-content.small {
-    min-height: 200px;
-    font-size: 1rem;
-    color: #9ca3af;
+    min-height: 80vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 2rem 1rem;
 }
+
+/* Kiểu dáng cho bảng xếp hạng */
+.leaderboard-container { 
+    width: 100%; 
+    max-width: 950px; 
+    background-color: #1e293b; 
+    border-radius: 1.5rem; 
+    padding: 2rem; 
+    color: #e2e8f0; 
+    display: flex; 
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Kiểu cho khu vực chứa các tab - đã tinh chỉnh lần cuối */
+.leaderboard-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #111827;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  margin-bottom: 2rem;
+}
+
+.tab-button {
+  flex-grow: 1;
+  padding: 0.75rem 1rem;
+  border: none;
+  background-color: transparent;
+  color: #94a3b8;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 0.75rem;
+  transition: all 0.2s ease-in-out;
+  text-align: center;
+}
+
+/* Hiệu ứng hover cho nút không được chọn */
+.tab-button:not(.active):hover {
+  background-color: #334155;
+  color: #e2e8f0;
+}
+
+/* ✅ THAY ĐỔI CUỐI CÙNG:
+   - Nền tối hơn, gần như tiệp vào màu của bảng.
+   - Chữ của tab active sẽ có màu xanh sáng để nổi bật.
+   - Loại bỏ hoàn toàn hiệu ứng đổ bóng gây chói.
+*/
+.tab-button.active {
+  background-color: #334155; /* Màu nền rất dịu */
+  color: #38bdf8; /* Chữ màu xanh sáng để tạo điểm nhấn */
+  box-shadow: none; /* Loại bỏ đổ bóng */
+}
+
+/* Kiểu cho header của bảng */
+.leaderboard-header, .leaderboard-row { 
+    display: grid; 
+    grid-template-columns: 80px 3fr 1fr 1.5fr;
+    align-items: center; 
+    gap: 1rem; 
+    padding: 0 1rem; 
+}
+
+.leaderboard-header { 
+    font-size: 0.875rem; 
+    font-weight: 600; 
+    color: #94a3b8; 
+    text-transform: uppercase; 
+    padding-bottom: 1rem; 
+    border-bottom: 2px solid #334155; 
+}
+
+.leaderboard-header .wins,
+.leaderboard-header .profit { 
+    text-align: right; 
+}
+
+.leaderboard-body { 
+    display: flex; 
+    flex-direction: column;
+    overflow-y: auto;
+    max-height: 55vh; 
+}
+
+.leaderboard-row { 
+    padding: 1rem; 
+    border-radius: 0.5rem; 
+    transition: background-color 0.2s; 
+    border-bottom: 1px solid #334155;
+}
+.leaderboard-row:last-child {
+    border-bottom: none;
+}
+.leaderboard-row:hover { 
+    background-color: #334155; 
+}
+
+.rank, .trader-name, .wins, .profit {
+    font-weight: 600;
+    font-size: 1.125rem;
+}
+
+.rank { text-align: center; }
+.wins, .profit { text-align: right; }
+
+.trader { display: flex; align-items: center; gap: 1rem; }
+
+.trader-avatar { 
+    width: 40px; 
+    height: 40px; 
+    border-radius: 50%; 
+    background-color: #475569; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-weight: 700; 
+    color: #ffffff; 
+    border: 2px solid #64748b; 
+}
+
+/* Kiểu cho Rank Vàng, Bạc, Đồng */
+.rank.gold, .trader-avatar.gold { color: #facc15; border-color: #facc15; }
+.rank.silver, .trader-avatar.silver { color: #d1d5db; border-color: #d1d5db; }
+.rank.bronze, .trader-avatar.bronze { color: #f59e0b; border-color: #f59e0b; }
+
+/* Kiểu cho Lợi nhuận và Thắng */
+.profit.positive { color: #22c55e; }
+.profit.negative { color: #ef4444; }
+.wins { color: #60a5fa; }
+
+/* Kiểu cho thông báo */
+.status-message {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #94a3b8;
+    font-size: 1.125rem;
+}
+.status-message.error {
+    color: #ef4444;
+}
+
+/* Thanh cuộn */
+.leaderboard-body::-webkit-scrollbar { width: 8px; }
+.leaderboard-body::-webkit-scrollbar-track { background: #1e293b; }
+.leaderboard-body::-webkit-scrollbar-thumb { background-color: #475569; border-radius: 4px; }
+.leaderboard-body::-webkit-scrollbar-thumb:hover { background-color: #64748b; }

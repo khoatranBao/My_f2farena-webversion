@@ -42,10 +42,19 @@ export const allTournaments = [
     { name: "Decentralized DeFi Duel", prize: "1,000,000 DAI", participants: 3300, image: decentralizedDeFiImage, startTimeUTC: getFutureUTCTime(60), endTimeUTC: getFutureUTCTime(84) },
 ];
 
-export const brokerReviews = [ { id: 1, image: goMarketsReviewImage, headerImage: goMarketsDetailHeader, logo: goMarketsImage, name: 'GO Markets', score: 4.7, country: 'AU', years: 20, description: 'GO Markets, a leading online trading broker, offers access to over 1,000 assets...', pros: ["Regulated by top-tier ASIC", "Competitive spreads on GO Plus+", "Excellent third-party tools (Trading Central, Autochartist)", "No deposit or withdrawal fees"], cons: ["Lack of investor compensation fund", "Limited product range for international clients", "Standard account spreads are high", "No proprietary mobile app"], glanceInfo: { "Regulation": "ASIC, CySEC, FSC", "Minimum Deposit": "$200", "Trading Platforms": "MT4, MT5", "Account Types": "Standard, GO Plus+"}, rankDetails: { total: 4.7, criteria: [ { name: 'License & Regulation', score: 5 }, { name: 'Fund Security', score: 2.5 }, { name: 'Localization & Support', score: 4 }, { name: 'Commissions & Fees', score: 4 }, { name: 'Platform Stability & Tools', score: 4.5 }, { name: 'Onboarding & Ease of Use', score: 4.5 }, ] }, analysis: { introduction: "This report provides an objective, expert assessment of the online trading broker GO Markets. Our evaluation is based on a proprietary scoring system that weighs nine critical criteria, reflecting what matters most to traders, from regulatory security to trading costs.", detailedIntro: "Here is a breakdown of GO Markets' performance across PK Team's key evaluation metrics:", sections: [ { title: "1. Regulation & Licensing (Weight: 25%)", content: "GO Markets operates under a multi-jurisdictional regulatory framework, which is a significant strength. The broker holds licenses from several reputable authorities:\n\n- **ASIC (Australia):** Authorized under AFSL 254963, ASIC is considered a top-tier regulator globally, ensuring high standards of compliance and transparency.\n\n- **CySEC (Cyprus):** This license allows GO Markets to serve the European Union market under the MiFID II framework.\n\n- **Other Jurisdictions:** The broker is also regulated by the FSA (Seychelles) and FSC (Mauritius), providing a regulated environment for its international clientele.\n\n**Conclusion:** The presence of multiple licenses, especially from top-tier agencies like ASIC, provides a strong layer of regulatory trust.", rating: "Excellent" }, { title: "2. Investor Protection & Fund Security (Weight: 10%)", content: "A significant drawback is the apparent lack of an investor compensation scheme or deposit insurance. While ASIC mandates segregated client funds, GO Markets does not appear to participate in any publicly disclosed compensation fund (like the ICF in Cyprus for its CySEC entity) for retail traders under its other entities. This poses a potential risk to client capital in the event of broker insolvency.", rating: "Very Poor / Non-existent" }, ], conclusion: "GO Markets presents a mixed but generally positive profile. Its primary strength is its robust regulatory framework, anchored by the top-tier ASIC license, which inspires a high degree of confidence. Trading conditions, particularly on its ECN account, are competitive, and the provision of advanced tools like Trading Central and Autochartist adds significant value.\n\nHowever, the most glaring weakness is the lack of an investor compensation fund, a critical safety net that traders expect from top brokers. This, combined with a somewhat limited product range for international clients (no physical stocks or ETFs) and a standard mobile offering, tempers our overall enthusiasm.", recommendation: "**YES, for experienced traders** who prioritize strong regulation and low-cost ECN trading conditions. If you are comfortable with the MetaTrader suite and your strategy does not rely on asset classes like ETFs or physical international stocks, GO Markets is a solid choice.\n\n**CONSIDER ALTERNATIVES,** if you are a beginner who may face higher spreads on the Standard account, or if you require the absolute highest level of capital security offered by an investor protection fund. Traders seeking a broader range of real assets or more flexible withdrawal times (including weekends) may also find better-suited brokers elsewhere." } }, { id: 2, image: eliteBattleImage, headerImage: eliteBattleImage, logo: eliteBattleImage, name: 'VertexFX Prime', score: 4.5, country: 'UK', years: 12, description: 'VertexFX Prime is known for its powerful proprietary platform and deep liquidity...', pros: ["FCA regulated (UK)", "Advanced proprietary trading platform", "Very low spreads on major pairs", "Strong research and analytics"], cons: ["High minimum deposit ($1000)", "Platform can be complex for beginners", "Limited educational resources"], glanceInfo: { "Regulation": "FCA, DFSA", "Minimum Deposit": "$1000", "Trading Platforms": "VertexFX Trader", "Account Types": "Pro, Institutional"}, rankDetails: { total: 4.5, criteria: [ { name: 'License & Regulation', score: 5 }, { name: 'Fund Security', score: 4 }, { name: 'Localization & Support', score: 4 }, { name: 'Commissions & Fees', score: 4.5 }, { name: 'Platform Stability & Tools', score: 5 }, { name: 'Onboarding & Ease of Use', score: 3.5 }, ] }, analysis: { introduction: "VertexFX Prime stands out as a top choice for professional and institutional traders...", detailedIntro: "Below is the performance analysis of VertexFX Prime:", sections: [ { title: "1. Regulation & Licensing (Weight: 25%)", content: "Regulated by the FCA in the United Kingdom, VertexFX Prime adheres to the highest standards...", rating: "Excellent" }, { title: "2. Investor Protection & Fund Security (Weight: 10%)", content: "Clients are covered by the FSCS up to £85,000, offering a strong safety net.", rating: "Good" }, ], conclusion: "VertexFX Prime is a powerhouse for serious traders...", recommendation: "**YES, for professional traders**... \n\n**AVOID,** if you are a beginner..." } }, { id: 3, image: quantumFuturesImage, headerImage: quantumFuturesImage, logo: quantumFuturesImage, name: 'Quantum Markets', score: 4.2, country: 'SG', years: 5, description: 'A fast-growing broker in the APAC region, focusing on crypto and futures trading.', pros: ["MAS regulated (Singapore)", "Wide range of cryptocurrency pairs", "User-friendly mobile app", "Low deposit and withdrawal fees"], cons: ["Spreads can widen during volatility", "Customer support can be slow", "Not available in Europe or North America"], glanceInfo: { "Regulation": "MAS", "Minimum Deposit": "$50", "Trading Platforms": "Web Trader, Mobile App", "Account Types": "Standard, Crypto Pro"}, rankDetails: { total: 4.2, criteria: [ { name: 'License & Regulation', score: 4.5 }, { name: 'Fund Security', score: 4 }, { name: 'Localization & Support', score: 3 }, { name: 'Commissions & Fees', score: 4.5 }, { name: 'Platform Stability & Tools', score: 4 }, { name: 'Onboarding & Ease of Use', score: 5 }, ] }, analysis: { introduction: "Quantum Markets has carved a niche for itself in the Asian market...", detailedIntro: "Here is the evaluation of Quantum Markets:", sections: [ { title: "1. Regulation & Licensing (Weight: 25%)", content: "Holding a license from the Monetary Authority of Singapore (MAS) is a strong point...", rating: "Good" }, { title: "2. Investor Protection & Fund Security (Weight: 10%)", content: "Client funds are segregated in top Singaporean banks, providing a good level of security.", rating: "Good" }, ], conclusion: "Quantum Markets is an excellent entry point for crypto-focused traders...", recommendation: "**YES, for mobile-first and crypto traders**... \n\n**CONSIDER ALTERNATIVES,** if you need forex or dedicated desktop platforms..." } }, ];
+export const brokerReviews = [ { id: 1, image: goMarketsReviewImage, headerImage: goMarketsDetailHeader, logo: goMarketsImage, name: 'GO Markets', score: 4.7, country: 'AU', years: 20, description: 'GO Markets, a leading online trading broker, offers access to over 1,000 assets...', pros: ["Regulated by top-tier ASIC", "Competitive spreads on GO Plus+", "Excellent third-party tools (Trading Central, Autochartist)", "No deposit or withdrawal fees"], cons: ["Lack of investor compensation fund", "Limited product range for international clients", "Standard account spreads are high", "No proprietary mobile app"], glanceInfo: { "Regulation": "ASIC, CySEC, FSC", "Minimum Deposit": "$200", "Trading Platforms": "MT4, MT5", "Account Types": "Standard, GO Plus+"}, rankDetails: { total: 4.7, criteria: [ { name: 'License & Regulation', score: 5 }, { name: 'Fund Security', score: 2.5 }, { name: 'Localization & Support', score: 4 }, { name: 'Commissions & Fees', score: 4 }, { name: 'Platform Stability & Tools', score: 4.5 }, { name: 'Onboarding & Ease of Use', score: 4.5 }, ] }, analysis: { introduction: "This report provides an objective, expert assessment of the online trading broker GO Markets. Our evaluation is based on a proprietary scoring system that weighs nine critical criteria, reflecting what matters most to traders, from regulatory security to trading costs.", detailedIntro: "Here is a breakdown of GO Markets' performance across PK Team's key evaluation metrics:", sections: [ { title: "1. Regulation & Licensing (Weight: 25%)", content: "GO Markets operates under a multi-jurisdictional regulatory framework, which is a significant strength. The broker holds licenses from several reputable authorities:\n\n- **ASIC (Australia):** Authorized under AFSL 254963, ASIC is considered a top-tier regulator globally, ensuring high standards of compliance and transparency.\n\n- **CySEC (Cyprus):** This license allows GO Markets to serve the European Union market under the MiFID II framework.\n\n- **Other Jurisdictions:** The broker is also regulated by the FSA (Seychelles) and FSC (Mauritius), providing a regulated environment for its international clientele.\n\n**Conclusion:** The presence of multiple licenses, especially from top-tier agencies like ASIC, provides a strong layer of regulatory trust.", rating: "Excellent" }, { title: "2. Investor Protection & Fund Security (Weight: 10%)", content: "A significant drawback is the apparent lack of an investor compensation scheme or deposit insurance. While ASIC mandates segregated client funds, GO Markets does not appear to participate in any publicly disclosed compensation fund (like the ICF in Cyprus for its CySEC entity) for retail traders under its other entities. This poses a potential risk to client capital in the event of broker insolvency.", rating: "Very Poor / Non-existent" }, ], conclusion: "GO Markets presents a mixed but generally positive profile. Its primary strength is its robust regulatory framework, anchored by the top-tier ASIC license, which inspires a high degree of confidence. Trading conditions, particularly on its ECN account, are competitive, and the provision of advanced tools like Trading Central and Autochartist adds significant value.\n\nHowever, the most glaring weakness is the lack of an investor compensation fund, a critical safety net that traders expect from top brokers. This, combined with a somewhat limited product range for international clients (no physical stocks or ETFs) and a standard mobile offering, tempers our overall enthusiasm.", recommendation: "**YES, for experienced traders** who prioritize strong regulation and low-cost ECN trading conditions. If you are comfortable with the MetaTrader suite and your strategy does not rely on asset classes like ETFs or physical international stocks, GO Markets is a solid choice.\n\n**CONSIDER ALTERNATIVES,** if you are a beginner who may face higher spreads on the Standard account, or if you require the absolute highest level of capital security offered by an investor protection fund. Traders seeking a broader range of real assets or more flexible withdrawal times (including weekends) may also find better-suited brokers elsewhere." } }, { id: 2, image: eliteBattleImage, headerImage: eliteBattleImage, logo: eliteBattleImage, name: 'VertexFX Prime', score: 4.5, country: 'GB', years: 12, description: 'VertexFX Prime is known for its powerful proprietary platform and deep liquidity...', pros: ["FCA regulated (UK)", "Advanced proprietary trading platform", "Very low spreads on major pairs", "Strong research and analytics"], cons: ["High minimum deposit ($1000)", "Platform can be complex for beginners", "Limited educational resources"], glanceInfo: { "Regulation": "FCA, DFSA", "Minimum Deposit": "$1000", "Trading Platforms": "VertexFX Trader", "Account Types": "Pro, Institutional"}, rankDetails: { total: 4.5, criteria: [ { name: 'License & Regulation', score: 5 }, { name: 'Fund Security', score: 4 }, { name: 'Localization & Support', score: 4 }, { name: 'Commissions & Fees', score: 4.5 }, { name: 'Platform Stability & Tools', score: 5 }, { name: 'Onboarding & Ease of Use', score: 3.5 }, ] }, analysis: { introduction: "VertexFX Prime stands out as a top choice for professional and institutional traders...", detailedIntro: "Below is the performance analysis of VertexFX Prime:", sections: [ { title: "1. Regulation & Licensing (Weight: 25%)", content: "Regulated by the FCA in the United Kingdom, VertexFX Prime adheres to the highest standards...", rating: "Excellent" }, { title: "2. Investor Protection & Fund Security (Weight: 10%)", content: "Clients are covered by the FSCS up to £85,000, offering a strong safety net.", rating: "Good" }, ], conclusion: "VertexFX Prime is a powerhouse for serious traders...", recommendation: "**YES, for professional traders**... \n\n**AVOID,** if you are a beginner..." } }, { id: 3, image: quantumFuturesImage, headerImage: quantumFuturesImage, logo: quantumFuturesImage, name: 'Quantum Markets', score: 4.2, country: 'SG', years: 5, description: 'A fast-growing broker in the APAC region, focusing on crypto and futures trading.', pros: ["MAS regulated (Singapore)", "Wide range of cryptocurrency pairs", "User-friendly mobile app", "Low deposit and withdrawal fees"], cons: ["Spreads can widen during volatility", "Customer support can be slow", "Not available in Europe or North America"], glanceInfo: { "Regulation": "MAS", "Minimum Deposit": "$50", "Trading Platforms": "Web Trader, Mobile App", "Account Types": "Standard, Crypto Pro"}, rankDetails: { total: 4.2, criteria: [ { name: 'License & Regulation', score: 4.5 }, { name: 'Fund Security', score: 4 }, { name: 'Localization & Support', score: 3 }, { name: 'Commissions & Fees', score: 4.5 }, { name: 'Platform Stability & Tools', score: 4 }, { name: 'Onboarding & Ease of Use', score: 5 }, ] }, analysis: { introduction: "Quantum Markets has carved a niche for itself in the Asian market...", detailedIntro: "Here is the evaluation of Quantum Markets:", sections: [ { title: "1. Regulation & Licensing (Weight: 25%)", content: "Holding a license from the Monetary Authority of Singapore (MAS) is a strong point...", rating: "Good" }, { title: "2. Investor Protection & Fund Security (Weight: 10%)", content: "Client funds are segregated in top Singaporean banks, providing a good level of security.", rating: "Good" }, ], conclusion: "Quantum Markets is an excellent entry point for crypto-focused traders...", recommendation: "**YES, for mobile-first and crypto traders**... \n\n**CONSIDER ALTERNATIVES,** if you need forex or dedicated desktop platforms..." } }, ];
 
-export const userProfile = { avatarInitials: 'TK', name: 'Tran Khoa', username: '@6077723854', email: 'Not set', walletAddress: 'Null', vipLevel: 'Silver', affiliateLink: 'https://example.com/ref/6077723854', isVerified: false, joinDate: '15/9/2025' };
-
+export const userProfile = {
+    avatarInitials: 'TK',
+    name: 'Tran Khoa',
+    username: '@6077723854',
+    walletAddress: 'Null',
+    vipLevel: 'diamond',
+    affiliateLink: 'https://f2farena.com/ref/6077723854',
+    trustPoints: 100,
+    isVerified: false,
+    joinDate: '15/9/2025'
+};
 export const bannerImages = [ bannerImage1, bannerImage2, bannerImage3 ];
 
 export const liveMatches = [ { team1: "Team Alpha", team2: "Team Omega", score1: 2, score2: 1, game: "Valorant" }, { team1: "Giants", team2: "Titans", score1: 0, score2: 0, game: "League of Legends" }, { team1: "Phoenix", team2: "Dragon", score1: 3, score2: 2, game: "CS:GO" }, { team1: "Wolves", team2: "Bears", score1: 1, score2: 1, game: "Dota 2" }, { team1: "Shadows", team2: "Ninjas", score1: 5, score2: 4, game: "Overwatch" }, { team1: "Vipers", team2: "Cobras", score1: 2, score2: 0, game: "Valorant" }, ];
@@ -180,3 +189,85 @@ export const mockTraderComments = {
     // Key "3" là ID của broker "Quantum Markets"
     "3": [] // ✅ Một mảng rỗng
   };
+
+
+// ✅ THÊM MỚI: Dữ liệu chi tiết cho giải đấu đang diễn ra
+export const liveTournamentDetailData = {
+    title: "GO Markets Championship - Season 2",
+    creator: "Bộ phận tester",
+    date: "10/10/2025",
+    details: {
+      "Prize Pool": "85000 USDT",
+      "Participants": "0 / 100",
+      "Symbol": "XAUUSD",
+      "Event Time": "10/10/2025, 12:00:00 AM",
+      "Broker": "GO Markets",
+    },
+    description: "Giải đấu giả lập mùa thứ hai của sàn GO Markets, bắt đầu từ ngày 29/9.",
+    prizes: [
+      { rank: "Giải nhất (Rank 1)", amount: "50000 USDT" },
+      { rank: "Giải nhì (Rank 2)", amount: "25000 USDT" },
+      { rank: "Giải ba (Rank 3)", amount: "10000 USDT" },
+      { rank: "Giải khuyến khích", amount: "1000 USDT" },
+    ],
+    rounds: [
+      {
+        name: "Round of 100",
+        rules: {
+          "Format": "points",
+          "Match Duration": "15 min",
+          "Players Advance": 50,
+          "Matches / Player": 4,
+          "Round Duration": "24 hours",
+          "Match Interval": "10 min",
+          "Scheduling Timeframes (UTC)": "00:00 - 23:59",
+        }
+      },
+      {
+        name: "Round of 50",
+        rules: {
+          "Format": "points",
+          "Match Duration": "15 min",
+          "Players Advance": 8,
+          "Matches / Player": 4,
+          "Round Duration": "24 hours",
+          "Match Interval": "10 min",
+          "Scheduling Timeframes (UTC)": "00:00 - 23:59",
+        }
+      },
+      {
+        name: "Quarter-finals",
+        rules: {
+          "Format": "knockout",
+          "Match Duration": "15 min",
+          "Players Advance": 4,
+          "Round Duration": "24 hours",
+          "Match Interval": "10 min",
+          "Scheduling Timeframes (UTC)": "00:00 - 23:59",
+        }
+      },
+      {
+        name: "Semi-finals",
+        rules: {
+          "Format": "knockout",
+          "Match Duration": "15 min",
+          "Players Advance": 2,
+          "Round Duration": "24 hours",
+          "Match Interval": "10 min",
+          "Scheduling Timeframes (UTC)": "00:00 - 23:59",
+        }
+      },
+      {
+        name: "Final",
+        rules: {
+          "Format": "knockout",
+          "Match Duration": "15 min",
+          "Players Advance": 1,
+          "Round Duration": "24 hours",
+          "Match Interval": "10 min",
+          "Scheduling Timeframes (UTC)": "00:00 - 23:59",
+        }
+      },
+    ]
+  };
+

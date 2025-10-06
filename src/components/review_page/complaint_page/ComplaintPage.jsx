@@ -2,13 +2,19 @@ import React, { useState } from 'react';
 import './ComplaintPage.css';
 import ComplaintModal from './ComplaintModal.jsx';
 
-// ✅ Dữ liệu `complaints` và `brokers` giờ được truyền vào qua props
-const ComplaintPage = ({ complaints = [], brokers = [] }) => {
+const ComplaintPage = ({ complaints = [], brokers = [], user, onCreateComplaint }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     return (
         <div className="complaint-page">
-            <ComplaintModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} brokers={brokers} />
+            {/* Truyền thêm user và hàm xử lý xuống modal */}
+            <ComplaintModal 
+                isOpen={isModalOpen} 
+                onClose={() => setIsModalOpen(false)} 
+                brokers={brokers} 
+                user={user}
+                onCreateComplaint={onCreateComplaint}
+            />
             <div className="complaint-header">
                 <h2>Community Complaints</h2>
                 <button className="new-thread-btn" onClick={() => setIsModalOpen(true)}>

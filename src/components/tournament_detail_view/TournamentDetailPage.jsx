@@ -11,15 +11,19 @@ import ResultPage from '../result_page/ResultPage.jsx';
 
 // Import CSS
 import './TournamentDetailPage.css';
-
+// ✅ BƯỚC 1: Import file CSS mới cho Leaderboard để áp dụng giao diện
+import '../../components/TournamentDetailLeaderboard.css';
 // Import dữ liệu giả từ mockData
 import { mockActivities, liveMatchData, matchInfoData } from '../../data/mockData';
 
 const TournamentDetailPage = ({ tournament, onClose, onMatchClick }) => {
-    // State cho menu dọc
+    // State cho menu dọc chính
     const [activeDetailTab, setActiveDetailTab] = useState('Matches');
-    // Giả lập trạng thái người dùng có tham gia trận đấu hay không
+    // Giả lập trạng thái người dùng
     const [isUserParticipating, setIsUserParticipating] = useState(true);
+    
+    // ✅ BƯỚC 2: Tạo state riêng để quản lý tab của bảng xếp hạng con
+    const [leaderboardActiveTab, setLeaderboardActiveTab] = useState('tournament');
 
     const renderContent = () => {
         switch (activeDetailTab) {
@@ -51,8 +55,18 @@ const TournamentDetailPage = ({ tournament, onClose, onMatchClick }) => {
                 return <RoundsAccordion />;
             case 'Discussion':
                 return <DiscussionContent />;
+            
+            // ✅ BƯỚC 3: Truyền state và hàm cập nhật state xuống cho component LeaderboardPage
             case 'Leaderboard':
-                return <LeaderboardPage />;
+                return (
+                    <div className="tournament-detail-leaderboard">
+                        <LeaderboardPage
+                            activeTab={leaderboardActiveTab}
+                            setActiveTab={setLeaderboardActiveTab}
+                        />
+                    </div>
+                );
+
             case 'Result':
                 return <ResultPage />;
             default:
@@ -62,12 +76,12 @@ const TournamentDetailPage = ({ tournament, onClose, onMatchClick }) => {
 
     return (
         <div className="new-detail-page-wrapper">
-             {/* Nút giả lập để chuyển đổi trạng thái cho bạn test */}
-             <button className="dev-toggle-button" onClick={() => setIsUserParticipating(!isUserParticipating)}>
+            {/* Nút giả lập để chuyển đổi trạng thái cho bạn test */}
+            <button className="dev-toggle-button" onClick={() => setIsUserParticipating(!isUserParticipating)}>
                 Toggle Participation View
             </button>
 
-            {/* ✅ KHÔI PHỤC THANH MENU BÊN TRÁI */}
+            {/* Thanh menu bên trái */}
             <aside className="new-detail-sidebar">
                 <div className="sidebar-logo">
                     GOMARKETS

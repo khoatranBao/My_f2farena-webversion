@@ -1,132 +1,103 @@
-/* ================================== */
-/* ===    AUTH MODAL STYLES         === */
-/* (Styles moved from App.css)        */
-/* ================================== */
+/* === CSS for Auth Modal === */
 
-/* Nền và các style chung cho modal */
-.modal-backdrop {
-    position: fixed;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.75);
-    z-index: 50;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(4px);
-}
-
-.modal-close-btn {
-    position: absolute;
-    top: 0.75rem;
-    right: 0.75rem;
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 9999px;
-    padding: 0.375rem;
-    border: none;
-    cursor: pointer;
-    color: #ffffff;
-}
-  
-.modal-close-btn:hover { 
-    background-color: rgba(0, 0, 0, 0.75); 
-}
-
-/* Các style riêng cho Auth Modal */
-.auth-modal-content {
-  background-color: #1f2937;
-  border-radius: 1rem;
-  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-  width: 91.666667%;
-  max-width: 28rem; /* smaller than tournament modal */
-  margin: auto;
-  color: #ffffff;
-  overflow: hidden;
-  position: relative; /* For the close button */
-}
-
-.auth-modal-body {
-  padding: 2rem;
-}
-
-.auth-form {
+/* Lớp phủ nền mờ phía sau */
+.auth-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(10, 25, 41, 0.7);
   display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
 }
 
-.auth-form h2 {
+/* Khung chính của modal */
+.auth-modal-content {
+  background: #1e2a3b; /* Màu nền tối giống trong ảnh */
+  padding: 2rem 2.5rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  color: #ecf0f1; /* Màu chữ trắng ngà */
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid #34495e;
   text-align: center;
-  font-size: 1.75rem;
-  font-weight: 700;
+}
+
+/* Tiêu đề "Login" */
+.auth-modal-content h2 {
+  margin-top: 0;
   margin-bottom: 0.5rem;
-}
-
-.auth-input {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  background-color: #374151;
-  border: 1px solid #4b5563;
-  border-radius: 0.5rem;
-  color: #ffffff;
-  font-size: 1rem;
-}
-
-.auth-input::placeholder {
-  color: #9ca3af;
-}
-
-.auth-input:focus {
-  outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 2px #3b82f6;
-}
-
-.auth-button-primary {
-  width: 100%;
-  padding: 0.75rem;
-  border-radius: 0.5rem;
-  border: none;
-  background-color: #2563eb;
-  color: #ffffff;
-  font-weight: 700;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.auth-button-primary:hover {
-  background-color: #1d4ed8;
-}
-
-.auth-switch-section {
-  text-align: center;
-  margin-top: 1rem;
-  color: #9ca3af;
-}
-
-.auth-switch-button {
-  background: none;
-  border: none;
-  color: #3b82f6;
+  font-size: 2rem;
   font-weight: 600;
+}
+
+/* Dòng chữ mô tả nhỏ */
+.auth-modal-content p {
+  margin-bottom: 2rem;
+  color: #95a5a6; /* Màu chữ phụ */
+}
+
+/* Nút đóng (dấu X) */
+.auth-modal-content .close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  color: #ecf0f1;
+  font-size: 1.8rem;
+  line-height: 1;
   cursor: pointer;
-  padding: 0.25rem;
+  padding: 0;
 }
 
-.auth-switch-button:hover {
-  text-decoration: underline;
+/* Ô nhập liệu */
+.auth-modal-content .form-input {
+  width: 100%;
+  padding: 14px 16px;
+  background-color: #2c3e50; /* Màu nền ô input */
+  border: 1px solid #4a627a;
+  border-radius: 8px;
+  color: #ecf0f1;
+  font-size: 1rem;
+  transition: border-color 0.2s ease-in-out;
 }
 
-.auth-forgot-password {
-  text-align: right;
-  font-size: 0.875rem;
+/* Hiệu ứng khi focus vào ô nhập liệu */
+.auth-modal-content .form-input:focus {
+  outline: none;
+  border-color: #3498db; /* Màu xanh dương chủ đạo */
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
 }
 
-.auth-forgot-password a {
-  color: #9ca3af;
-  text-decoration: none;
+/* Nút Login chính */
+.auth-modal-content .login-btn-modal {
+  width: 100%;
+  padding: 14px 16px;
+  margin-top: 1.5rem;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
 }
-.auth-forgot-password a:hover {
-  text-decoration: underline;
-  color: #d1d5db;
+
+/* Hiệu ứng khi di chuột qua nút Login */
+.auth-modal-content .login-btn-modal:hover {
+  background-color: #2980b9;
+}
+
+/* Kiểu của nút khi đang loading (bị vô hiệu hóa) */
+.auth-modal-content .login-btn-modal:disabled {
+  background-color: #5d6d7e;
+  cursor: not-allowed;
 }

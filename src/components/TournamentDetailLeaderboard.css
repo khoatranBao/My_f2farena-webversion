@@ -1,0 +1,94 @@
+/* Container của bảng xếp hạng trong trang chi tiết */
+.tournament-detail-leaderboard {
+    padding: 1rem 0;
+}
+
+/* Kiểu cho khu vực chứa các tab */
+.leaderboard-tabs {
+  display: flex;
+  gap: 1.5rem;
+  border-bottom: 1px solid #334155;
+  margin-bottom: 1rem;
+}
+
+.tab-button {
+  padding: 0.5rem 0.25rem;
+  border: none;
+  background-color: transparent;
+  color: #94a3b8;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border-bottom: 3px solid transparent;
+  position: relative;
+  top: 1px;
+}
+
+.tab-button:hover {
+  color: #e2e8f0;
+}
+
+.tab-button.active {
+  color: #38bdf8;
+  border-bottom-color: #38bdf8;
+}
+
+/* Kiểu cho header và các hàng của bảng */
+.leaderboard-header, .leaderboard-row { 
+    display: grid; 
+    grid-template-columns: 60px 3fr 1fr 1.5fr; /* Cột nhỏ hơn cho Rank */
+    align-items: center; 
+    gap: 1rem; 
+    padding: 0 0.5rem; 
+}
+
+.leaderboard-header { 
+    font-size: 0.8rem; /* Chữ nhỏ hơn */
+    color: #94a3b8; 
+    text-transform: uppercase; 
+    padding-bottom: 0.75rem; 
+    border-bottom: 1px solid #334155; 
+}
+
+.leaderboard-header .wins,
+.leaderboard-header .profit { 
+    text-align: right; 
+}
+
+.leaderboard-body { 
+    display: flex; 
+    flex-direction: column;
+    overflow-y: auto;
+    max-height: 40vh; /* Giới hạn chiều cao */
+}
+
+.leaderboard-row { 
+    padding: 0.75rem 0.5rem; 
+    border-radius: 0.5rem; 
+    transition: background-color 0.2s; 
+    border-bottom: 1px solid #334155;
+}
+.leaderboard-row:last-child {
+    border-bottom: none;
+}
+.leaderboard-row:hover { 
+    background-color: #475569; /* Hover đậm hơn */
+}
+
+.rank, .trader-name, .wins, .profit {
+    font-size: 1rem; /* Chữ nhỏ hơn */
+}
+.rank { text-align: center; font-weight: 700; }
+.wins, .profit { text-align: right; }
+.trader { display: flex; align-items: center; gap: 0.75rem; }
+.trader-avatar { width: 32px; height: 32px; font-size: 0.8rem;}
+
+/* Các phần còn lại giữ nguyên */
+.rank.gold, .trader-avatar.gold { color: #facc15; border-color: #facc15; }
+.rank.silver, .trader-avatar.silver { color: #d1d5db; border-color: #d1d5db; }
+.rank.bronze, .trader-avatar.bronze { color: #f59e0b; border-color: #f59e0b; }
+.profit.positive { color: #22c55e; }
+.profit.negative { color: #ef4444; }
+.wins { color: #60a5fa; }
+.status-message { text-align: center; padding: 2rem; color: #94a3b8; }

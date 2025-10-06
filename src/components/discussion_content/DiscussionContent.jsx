@@ -3,19 +3,15 @@ import './DiscussionContent.css';
 import { SendIcon } from '../../icons/Icons';
 import { fetchComments, postComment } from '../../api/discussion.js';
 
-// Mảng màu để tạo avatar
 const AVATAR_COLORS = ['#3b82f6', '#8b5cf6', '#10b981', '#f97316', '#ef4444', '#14b8a6', '#64748b'];
 
-// Hàm tạo avatar dựa trên tên người dùng
 const generateAvatar = (username) => {
     if (!username) return { initial: '?', color: '#4b5563' };
     const initial = username.charAt(0).toUpperCase();
-    // Tạo màu nhất quán cho mỗi username
     const charCodeSum = username.split('').reduce((sum, char) => sum + char.charCodeAt(0), 0);
     const color = AVATAR_COLORS[charCodeSum % AVATAR_COLORS.length];
     return { initial, color };
 };
-
 
 const DiscussionContent = () => {
     const [comments, setComments] = useState([]);
@@ -40,8 +36,9 @@ const DiscussionContent = () => {
     const handleSendComment = async () => {
         if (newComment.trim() === '') return;
         try {
+            // postComment sẽ trả về comment với user là 'CurrentUser'
             const postedComment = await postComment(newComment);
-            setComments(prevComments => [postedComment, ...prevComments]);
+            setComments(prevComments => [...prevComments, postedComment]);
             setNewComment('');
         } catch (error) {
             console.error("Lỗi khi gửi bình luận:", error);
@@ -57,9 +54,11 @@ const DiscussionContent = () => {
             <div className="comment-list">
                 {comments.map((comment, index) => {
                     const avatar = generateAvatar(comment.user);
+                    // ✅ THÊM CLASS ĐỘNG Ở ĐÂY
+                    const itemClassName = `comment-item ${comment.user === 'CurrentUser' ? 'is-current-user-item' : ''}`;
+
                     return (
-                        // ✅ Cấu trúc mới cho mỗi bình luận
-                        <div key={index} className="comment-item">
+                        <div key={index} className={itemClassName}>
                             <div className="comment-avatar" style={{ backgroundColor: avatar.color }}>
                                 {avatar.initial}
                             </div>

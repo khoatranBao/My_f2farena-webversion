@@ -1,71 +1,49 @@
-import { db, auth } from '../../firebaseConfig';
 import React, { useState, useEffect, useRef } from 'react';
-import './Chatbot.css'; // Import CSS riêng
+import { db } from '../../firebaseConfig';
+import './Chatbot.css';
 
-// Import các hàm của Firebase
-import { getFirestore, onSnapshot, collection, query, addDoc } from 'firebase/firestore';
-import { getAuth, signInAnonymously, onAuthStateChanged } from 'firebase/auth';
+// Import các hàm cần thiết của Firestore
+import { collection, query, onSnapshot, addDoc, orderBy, serverTimestamp } from 'firebase/firestore';
 
 // Import Icon
-import { CloseIcon } from '../../icons/Icons'; // Điều chỉnh đường dẫn nếu cần
-
+import { CloseIcon, SendIcon } from '../../icons/Icons';
 
 const Chatbot = ({ currentUser }) => {
-    // --- STATE: Toàn bộ state của chatbot được chuyển vào đây ---
-    const [userId, setUserId] = useState(null);
-    const [isAuthReady, setIsAuthReady] = useState(false);
     const [chatOpen, setChatOpen] = useState(false);
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState('');
     
-    // State cho việc kéo thả
+    // State và các hàm cho việc kéo thả
     const [isDragging, setIsDragging] = useState(false);
-    const [dragPosition, setDragPosition] = useState({ x: window.innerWidth - 75, y: window.innerHeight - 150 });
+    const [dragPosition, setDragPosition] = useState({ x: null, y: null });
     const [offset, setOffset] = useState({ x: 0, y: 0 });
     
     const chatEndRef = useRef(null);
 
-    // --- EFFECTS: Các useEffect của chatbot cũng được chuyển vào đây ---
+    // Logic isLoggedIn và userId giờ sẽ dựa hoàn toàn vào prop 'currentUser'
     const isLoggedIn = !!currentUser;
-    // Effect xác thực người dùng (giữ nguyên logic cũ)
-    useEffect(() => {
-        const handleAuth = async (user) => {
-            if (user) {
-                setUserId(user.uid);
-            } else {
-                try {
-                    const cred = await signInAnonymously(auth);
-                    setUserId(cred.user.uid);
-                } catch (error) {
-                    console.error("Anonymous sign-in failed:", error);
-                }
-            }
-            setIsAuthReady(true);
-        };
-        const unsubscribe = onAuthStateChanged(auth, handleAuth);
-        return () => unsubscribe();
-    }, []);
+    // Lấy ID, có thể từ user Telegram (id) hoặc user ẩn danh (uid)
+    const userId = currentUser ? (currentUser.id || currentUser.uid) : null; 
 
     // Effect lắng nghe tin nhắn từ Firestore
     useEffect(() => {
-        if (isAuthReady && userId) {
-            const q = query(collection(db, `artifacts/default-app-id/public/data/chat_messages`));
-            const unsubscribe = onSnapshot(q, (snapshot) => {
-                const fetchedMessages = snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })).sort((a, b) => a.timestamp - b.timestamp);
-                setMessages(fetchedMessages);
-            }, (error) => {
-                console.error("Error with Firestore listener:", error);
-            });
-            return () => unsubscribe();
-        }
-    }, [isAuthReady, userId]);
+        // Sử dụng một collection khác, ví dụ "global_chat"
+        const q = query(collection(db, "global_chat"), orderBy("timestamp", "asc"));
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+            const fetchedMessages = snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
+            setMessages(fetchedMessages);
+        }, (error) => {
+            console.error("Error with Firestore listener:", error);
+        });
+        return () => unsubscribe();
+    }, []);
 
     // Effect tự cuộn xuống tin nhắn cuối
     useEffect(() => {
         chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages]);
 
-    // Effect xử lý kéo thả
+    // Các hàm xử lý kéo thả
     const handleMouseDown = (e) => {
         const target = e.target.closest('button');
         if (!target) return;
@@ -96,14 +74,18 @@ const Chatbot = ({ currentUser }) => {
         };
     }, [isDragging, offset]);
 
-    // --- LOGIC: Hàm gửi tin nhắn ---
+    // Hàm gửi tin nhắn
     const sendMessage = async () => {
-        if (newMessage.trim() === '' || !userId) return;
+        if (newMessage.trim() === '' || !isLoggedIn) return;
+        
         try {
-            await addDoc(collection(db, `artifacts/default-app-id/public/data/chat_messages`), {
+            await addDoc(collection(db, "global_chat"), {
                 text: newMessage,
-                timestamp: Date.now(),
+                timestamp: serverTimestamp(),
                 userId: userId,
+                // Gửi thêm thông tin người dùng để hiển thị
+                userName: currentUser.first_name || 'Anonymous', 
+                userPhoto: currentUser.photo_url || null,
             });
             setNewMessage('');
         } catch (e) {
@@ -111,12 +93,11 @@ const Chatbot = ({ currentUser }) => {
         }
     };
 
-    // --- JSX: Giao diện của chatbot ---
     return (
         <>
             <button
                 className={`chat-btn-draggable ${isDragging ? 'dragging' : ''}`}
-                style={{ top: dragPosition.y, left: dragPosition.x }}
+                style={dragPosition.y !== null ? { top: dragPosition.y, left: dragPosition.x, bottom: 'auto', right: 'auto' } : {}}
                 onMouseDown={handleMouseDown}
                 onClick={() => !isDragging && setChatOpen(!chatOpen)}
             >
@@ -137,31 +118,28 @@ const Chatbot = ({ currentUser }) => {
                         {messages.map((msg) => (
                             <div key={msg.id} className={`chat-message-container ${msg.userId === userId ? 'sent' : 'received'}`}>
                                 <div className={`chat-bubble ${msg.userId === userId ? 'sent' : 'received'}`}>
-                                    <p>User: {msg.userId.substring(0, 6)}</p>
+                                    {/* Hiển thị tên người gửi nếu không phải là mình */}
+                                    {msg.userId !== userId && <p className="chat-user-name">{msg.userName || `User ${String(msg.userId).substring(0, 6)}`}</p>}
                                     {msg.text}
                                 </div>
                             </div>
                         ))}
                         <div ref={chatEndRef} />
                     </div>
-                        <div className="chat-input-area">
-                            <input 
-                                type="text" 
-                                value={newMessage} 
-                                onChange={(e) => setNewMessage(e.target.value)} 
-                                onKeyPress={(e) => e.key === 'Enter' && isLoggedIn && sendMessage()} 
-                                placeholder={isLoggedIn ? "Type a message..." : "Please login to chat"}
-                                disabled={!isLoggedIn} // Vô hiệu hóa nếu chưa đăng nhập
-                            />
-                            <button 
-                                onClick={sendMessage} 
-                                className="chat-send-btn"
-                                disabled={!isLoggedIn} // Vô hiệu hóa nếu chưa đăng nhập
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" className="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
-                            </button>
-                        </div>
+                    <div className="chat-input-area">
+                        <input 
+                            type="text" 
+                            value={newMessage} 
+                            onChange={(e) => setNewMessage(e.target.value)} 
+                            onKeyPress={(e) => e.key === 'Enter' && isLoggedIn && sendMessage()} 
+                            placeholder={isLoggedIn ? "Type a message..." : "Please login to chat"}
+                            disabled={!isLoggedIn}
+                        />
+                        <button onClick={sendMessage} className="chat-send-btn" disabled={!isLoggedIn}>
+                            <SendIcon />
+                        </button>
                     </div>
+                </div>
             )}
         </>
     );

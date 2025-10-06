@@ -4,9 +4,21 @@ import { ClockIcon } from '../../icons/Icons'; // Điều chỉnh đường dẫ
 
 const TournamentCard = ({ tournament, timer, onViewDetails }) => {
     const isLive = new Date() >= new Date(tournament.startTimeUTC) && new Date() < new Date(tournament.endTimeUTC);
+    
+    // ✅ XÁC ĐỊNH TRẠNG THÁI (STATUS)
+    const getStatus = () => {
+        const now = new Date();
+        const startTime = new Date(tournament.startTimeUTC);
+        const endTime = new Date(tournament.endTimeUTC);
+        if (now >= startTime && now < endTime) return 'live';
+        if (now < startTime) return 'upcoming';
+        return 'finished';
+    };
+    const status = getStatus();
 
     return (
-        <div className="tournament-card" onClick={() => onViewDetails(tournament)}>
+        // ✅ TRUYỀN THÊM 'status' VÀO HÀM onViewDetails
+        <div className="tournament-card" onClick={() => onViewDetails(tournament, status)}>
             <div className="card-image-container">
                 <img src={tournament.image} alt={tournament.name} className="tournament-card-img" />
             </div>

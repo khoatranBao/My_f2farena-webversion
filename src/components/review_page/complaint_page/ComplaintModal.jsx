@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import './ComplaintModal.css'; // Sử dụng CSS riêng
-import { CloseIcon } from '../../../icons/Icons';
+import './ComplaintModal.css';
+// import { CloseIcon } from '../../../icons/Icons'; // Giả sử bạn có icon này
 
-const ComplaintModal = ({ isOpen, onClose, brokers = []}) => {
+const ComplaintModal = ({ isOpen, onClose, brokers = [], user, onCreateComplaint }) => {
     const [formData, setFormData] = useState({
         title: '',
-        broker: brokers.length > 0 ? brokers[0].name : '', // Mặc định chọn broker đầu tiên
+        broker: brokers.length > 0 ? brokers[0].name : '',
         description: '',
     });
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     if (!isOpen) {
         return null;
@@ -18,12 +19,18 @@ const ComplaintModal = ({ isOpen, onClose, brokers = []}) => {
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Logic để gửi khiếu nại mới lên API sẽ được đặt ở đây
-        console.log("Submitting new complaint:", formData);
-        alert('Complaint submitted successfully! (This is a mock action)'); // Thông báo giả lập
-        onClose(); // Đóng modal sau khi gửi
+        setIsSubmitting(true);
+        try {
+            // Gọi hàm từ props để gửi dữ liệu lên component cha (ReviewPage)
+            await onCreateComplaint(formData); 
+            onClose(); // Đóng modal sau khi gửi thành công
+        } catch (error) {
+            // Lỗi đã được xử lý ở component cha, không cần làm gì thêm
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -31,7 +38,7 @@ const ComplaintModal = ({ isOpen, onClose, brokers = []}) => {
             <div className="complaint-modal-content" onClick={e => e.stopPropagation()}>
                 <div className="complaint-modal-header">
                     <h2>Create New Complaint</h2>
-                    <button onClick={onClose} className="modal-close-btn"><CloseIcon /></button>
+                    <button onClick={onClose} className="modal-close-btn">X</button>
                 </div>
                 <div className="complaint-modal-body">
                     <form onSubmit={handleSubmit} className="complaint-form">
@@ -73,13 +80,13 @@ const ComplaintModal = ({ isOpen, onClose, brokers = []}) => {
                                 value={formData.description}
                                 onChange={handleInputChange}
                                 rows="5"
-                                placeholder="Provide a detailed description of the issue, including transaction IDs, dates, and amounts..."
+                                placeholder="Provide a detailed description of the issue..."
                                 required
                             ></textarea>
                         </div>
                         
-                        <button type="submit" className="complaint-submit-btn">
-                            Submit Complaint
+                        <button type="submit" className="complaint-submit-btn" disabled={isSubmitting}>
+                            {isSubmitting ? 'Submitting...' : 'Submit Complaint'}
                         </button>
                     </form>
                 </div>

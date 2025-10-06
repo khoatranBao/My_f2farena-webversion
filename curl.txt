@@ -1,0 +1,77 @@
+1. Lấy Danh Sách Chung (Dùng cho Trang Home): 
+    curl --location --request GET 'https://f2farena.com/api/tournaments/?offset=0&limit=5'
+2. Lấy Các Giải Đấu "Official":
+    curl --location --request GET 'https://f2farena.com/api/tournaments/?type=official'
+3. Lấy Các Giải Đấu "Private":
+    curl --location --request GET 'https://f2farena.com/api/tournaments/?type=private'
+4.Lấy Các Trận Đấu Sắp Tới Của Một User Cụ Thể: 
+    curl --location --request GET 'https://f2farena.com/api/tournaments/my-upcoming-matches/1'
+5 lấy danh sách review broker trong trang review => nội dung cơ bản cuản cấc card.:
+    curl --location --request GET 'https://f2farena.com/api/brokers/list'
+
+
+===========================> trader review:
+1. để Lấy Danh Sách Bình Luận:
+    curl --location --request GET 'https://f2farena.com/api/trader_reviews/2'
+
+==============================================>> lấy detail cho ongoing
+curl --location --request GET   
+=================================>> lấy thông tin leaderboard cho trang top personal winners:
+https://f2farena.com/api/leaderboard/personal
+
+
+=====================================================
+===================================================== thông tin curl cần thiết:
+Trận Đấu Live	https://f2farena.com/api/matches/active	GET	curl -X GET "https://f2farena.com/api/matches/active"
+Banner Sự Kiện	https://f2farena.com/api/events/banner	GET	curl -X GET "https://f2farena.com/api/events/banner"
+Trận Đấu Đang Diễn Ra (Trang Home)	https://f2farena.com/api/matches/ongoing	GET	curl -X GET "https://f2farena.com/api/matches/ongoing"
+Danh Sách Tournament (Trang Home & Arena)	https://f2farena.com/api/tournaments/?offset=0&limit=5	GET	curl -X GET "https://f2farena.com/api/tournaments/?offset=0&limit=5"
+Lịch Sử Giao Dịch	https://f2farena.com/api/users/{user.telegram_id}/history-transactions	GET	curl -X GET "https://f2farena.com/api/users/123456/history-transactions"
+Danh Sách Brokers	https://f2farena.com/api/brokers/list	GET	curl -X GET "https://f2farena.com/api/brokers/list"
+Danh Sách Khiếu Nại	https://f2farena.com/api/complaints/	GET	curl -X GET "https://f2farena.com/api/complaints/"
+Leaderboard Cá Nhân	https://f2farena.com/api/leaderboard/personal	GET	curl -X GET "https://f2farena.com/api/leaderboard/personal"
+Leaderboard Tournament	https://f2farena.com/api/leaderboard/tournament	GET	curl -X GET "https://f2farena.com/api/leaderboard/tournament"
+Symbols Được Hỗ Trợ	https://f2farena.com/api/matches/supported-symbols	GET	curl -X GET "https://f2farena.com/api/matches/supported-symbols"
+Match History (User)	https://f2farena.com/api/matches/history/{user.telegram_id}	GET	curl -X GET "https://f2farena.com/api/matches/history/123456"
+Tất Cả Trận Đấu Active	https://f2farena.com/api/matches/active	GET	curl -X GET "https://f2farena.com/api/matches/active"
+Danh Sách Accounts theo Broker (Join Match)	https://f2farena.com/api/accounts/user/{user.telegram_id}/broker/{brokerId}	GET	curl -X GET "https://f2farena.com/api/accounts/user/123456/broker/1"
+Tournament Chính Thức (Arena)	https://f2farena.com/api/tournaments/?type=official	GET	curl -X GET "https://f2farena.com/api/tournaments/?type=official"
+Private Tournaments	https://f2farena.com/api/tournaments/?type=private	GET	curl -X GET "https://f2farena.com/api/tournaments/?type=private"
+Lịch Sử Chatbot	https://f2farena.com/api/chatbot/history/{user.telegram_id}	GET	curl -X GET "https://f2farena.com/api/chatbot/history/123456"
+Thông tin User	https://f2farena.com/api/users/{telegramId}	GET	curl -X GET "https://f2farena.com/api/users/123456"
+Trận Tournament Sắp Tới (User)	https://f2farena.com/api/tournaments/my-upcoming-matches/{user.telegram_id}	GET	curl -X GET "https://f2farena.com/api/tournaments/my-upcoming-matches/123456"
+Thông tin chi tiết Match	https://f2farena.com/api/matches/{matchId}
+MatchDetail	Lấy chi tiết trận đấu	https://f2farena.com/api/matches/{id}	GET	curl -X GET "https://f2farena.com/api/matches/123"
+NewsDetail	Lấy chi tiết bài review/tin tức	https://f2farena.com/api/news/{id} hoặc https://f2farena.com/api/brokers/{id}	GET	curl -X GET "https://f2farena.com/api/news/456"
+TournamentDetail	Lấy chi tiết giải đấu (trạng thái chờ)	https://f2farena.com/api/tournaments/{id}	GET	curl -X GET "https://f2farena.com/api/tournaments/789"
+OngoingTournament	Lấy dữ liệu trận đấu/brackets cho giải đang diễn ra	https://f2farena.com/api/tournaments/ongoing/{id}	GET	curl -X GET "https://f2farena.com/api/tournaments/ongoing/789/matches"
+Lấy thông tin User	https://f2farena.com/api/users/{telegramId}	GET	curl -X GET "https://f2farena.com/api/users/123456"
+Cập nhật Địa chỉ Ví	https://f2farena.com/api/users/{user.telegram_id}	PUT	curl -X PUT "https://f2farena.com/api/users/123456" -H "Content-Type: application/json" -d '{"wallet_address": "new_usdt_trc20_address"}'
+Lấy Lịch sử Giao dịch	https://f2farena.com/api/users/{user.telegram_id}/history-transactions	GET	curl -X GET "https://f2farena.com/api/users/123456/history-transactions"
+Thông báo Nạp tiền (Suy luận từ notifyAdminOfDeposit)	https://f2farena.com/api/wallet/deposit/notify	POST	curl -X POST "https://f2farena.com/api/wallet/deposit/notify" -H "Content-Type: application/json" -d '{"user_id": 123456, "amount": 100, "memo_content": "memo123"}'
+Yêu cầu Rút tiền (Suy luận từ requestWithdrawal)	https://f2farena.com/api/wallet/withdraw	POST	curl -X POST "https://f2farena.com/api/wallet/withdraw" -H "Content-Type: application/json" -d '{"user_id": 123456, "amount": 500, "wallet_address": "usdt_trc20_address"}'
+Tạo Match Mới	https://f2farena.com/api/matches/	POST	curl -X POST "https://f2farena.com/api/matches/" -H "Content-Type: application/json" -d '{"bet": 100.0, "symbol": "EURUSD", "player1_id": 123456, "duration_minutes": 15, "broker_id": 1, "name_account": "7654321"}'
+Lấy Trận Đấu Active	https://f2farena.com/api/matches/active	GET	curl -X GET "https://f2farena.com/api/matches/active"
+Lấy Match History (User)	https://f2farena.com/api/matches/history/{user.telegram_id}	GET	curl -X GET "https://f2farena.com/api/matches/history/123456"
+Xem chi tiết Match	https://f2farena.com/api/matches/{id}	GET	curl -X GET "https://f2farena.com/api/matches/123"
+Tham gia Match (Player 2)	https://f2farena.com/api/matches/{selectedMatch.id}	PATCH	curl -X PATCH "https://f2farena.com/api/matches/2" -H "Content-Type: application/json" -d '{"player2_id": 789012, "name_account": "account_p2"}'
+Creator Chấp nhận Match	https://f2farena.com/api/matches/{match.id}/creator-confirm	POST	curl -X POST "https://f2farena.com/api/matches/1/creator-confirm"
+Creator Hủy/Từ chối Match	https://f2farena.com/api/matches/{match.id}/cancel	POST	curl -X POST "https://f2farena.com/api/matches/1/cancel" -H "Content-Type: application/json" -d '{"reason": "Creator rejected challenge"}'
+Lấy Danh sách Tournament	https://f2farena.com/api/tournaments/?offset=0&limit=5	GET	curl -X GET "https://f2farena.com/api/tournaments/?offset=0&limit=5"
+Lấy Tournament Chính thức	https://f2farena.com/api/tournaments/?type=official	GET	curl -X GET "https://f2farena.com/api/tournaments/?type=official"
+Lấy Private Tournaments	https://f2farena.com/api/tournaments/?type=private	GET	curl -X GET "https://f2farena.com/api/tournaments/?type=private"
+Tạo Private Tournament (Suy luận từ CreatePrivateTournamentForm)	https://f2farena.com/api/tournaments/private	POST	curl -X POST "https://f2farena.com/api/tournaments/private" -H "Content-Type: application/json" -d '{"creator_id": 123456, "title": "My Private Cup", "stake": 10, "broker_id": 1}'
+Lấy Match Tournament sắp tới	https://f2farena.com/api/tournaments/my-upcoming-matches/{user.telegram_id}	GET	curl -X GET "https://f2farena.com/api/tournaments/my-upcoming-matches/123456"
+Xác nhận Tham gia Match	https://f2farena.com/api/tournaments/matches/{match.id}/confirm-entry	POST	curl -X POST "https://f2farena.com/api/tournaments/matches/101/confirm-entry" -H "Content-Type: application/json" -d '{"user_id": 123456}'
+Hủy Tham gia Match	https://f2farena.com/api/tournaments/matches/{match.id}/decline-entry	POST	curl -X POST "https://f2farena.com/api/tournaments/matches/101/decline-entry" -H "Content-Type: application/json" -d '{"user_id": 123456}'
+Lấy Danh sách Brokers	https://f2farena.com/api/brokers/list	GET	curl -X GET "https://f2farena.com/api/brokers/list"
+Lấy Banner Sự kiện	https://f2farena.com/api/events/banner	GET	curl -X GET "https://f2farena.com/api/events/banner"
+Lấy Danh sách Khiếu nại	https://f2farena.com/api/complaints/	GET	curl -X GET "https://f2farena.com/api/complaints/"
+Tạo Khiếu nại Mới	https://f2farena.com/api/complaints/	POST	curl -X POST "https://f2farena.com/api/complaints/" -H "Content-Type: application/json" -d '{"broker_name": "Exness", "title": "Issue", "comment": "Details", "user_id": 123456}'
+Đánh dấu đã giải quyết	https://f2farena.com/api/complaints/{complaintId}/resolve	PATCH	curl -X PATCH "https://f2farena.com/api/complaints/10/resolve"
+Lấy Accounts theo Broker	https://f2farena.com/api/accounts/user/{user.telegram_id}/broker/{brokerId}	GET	curl -X GET "https://f2farena.com/api/accounts/user/123456/broker/1"
+Lấy Supported Symbols	https://f2farena.com/api/matches/supported-symbols	GET	curl -X GET "https://f2farena.com/api/matches/supported-symbols"
+Gửi câu hỏi Chatbot	https://f2farena.com/api/chatbot/ask	POST	curl -X POST "https://f2farena.com/api/chatbot/ask" -H "Content-Type: application/json" -d '{"question": "How to trade?", "user_id": 123456}'
+Lấy lịch sử Chatbot	https://f2farena.com/api/chatbot/history/{user.telegram_id}	GET	curl -X GET "https://f2farena.com/api/chatbot/history/123456"
+Leaderboard Tournament	https://f2farena.com/api/leaderboard/tournament	GET	curl -X GET "https://f2farena.com/api/leaderboard/tournament"
+Leaderboard Cá nhân	https://f2farena.com/api/leaderboard/personal	GET	curl -X GET "https://f2farena.com/api/leaderboard/personal"

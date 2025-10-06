@@ -18,7 +18,7 @@ const WithdrawModal = ({ isOpen, onClose }) => {
         <div className="modal-backdrop" onClick={onClose}>
             <div className="wallet-modal-content" onClick={e => e.stopPropagation()}>
                 <div className="modal-header">
-                    <h2>Bổ sung địa chỉ ví</h2>
+                    <h2>Add wallet address</h2>
                     <button onClick={onClose} className="modal-close-btn"><CloseIcon /></button>
                 </div>
                 <div className="wallet-modal-body">

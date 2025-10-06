@@ -10,3 +10,36 @@ Mở Developer Tools (nhấn F12).
 Nhấn chuột phải vào traderComments và chọn Delete, hoặc nhấn chuột phải vào http://localhost:xxxx và chọn Clear.
 
 
+2. kết nối telegram (lấy local host):
+npx localtunnel --port 5173
+=> gửi vào chatbot father: 
+/setdomain
+
+
+//======================//
+1. tạo session 
+
+
+//===============
+endpoint : kiểm tra ngươikf dung nếu có cho =1 => test.
+
+2. tạo seesion story => lưu thông tin user.
+
+3. thêm link cho banner ==> 
+
+===================================================
+tạo bảng hiển thị sao trong pk têam review:
+1. tạo file RankDetails.jsx
+2. tạo RankDetails.css
+3. thay đổi file reviewdetailpage.jsx
+
+
+======================================> tạo trang mơis cho detail => đang đấu
+1. thêm mockdata vào cuối file mockdata.
+2.  Tạo Trang Chi Tiết Mới cho Giải Đấu "Live":
+3. tạo hai file LiveTournamentDetailPage.css và LiveTournamentDetailPage.jsx 
+4. cập nhật lại tournamentcard.jsx
+
+
+========================================> nối API endpoint cho trang detail for live
+1. cập nhật app.jsx:
