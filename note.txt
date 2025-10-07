@@ -1,3 +1,6 @@
+không dùng canvas và nhớ gửi tôi file chỉnh sửa đầy đủ code, tôi không muốn sửa bằng tay vì nó dễ sai
+
+
 ## Làm thế nào để Reset lại dữ liệu?
 Nếu bạn muốn xóa các bình luận đã thêm và quay về dữ liệu gốc, bạn có thể xóa localStorage của trang web:
 

@@ -4,11 +4,12 @@ import './ArenaPage.css';
 // Import các component con cần thiết
 import CreateCupModal from '../create_cup_modal/CreateCupModal';
 import PrivateCupCard from './private_cup_page/PrivateCupCard.jsx';
-import OneVsOneMatchPage from './one_vs_one_page/OneVsOneMatchPage.jsx'; // Sửa đổi để tích hợp trực tiếp
+import OneVsOneMatchPage from './one_vs_one_page/OneVsOneMatchPage.jsx';
 import TournamentCard from '../tournament_card/TournamentCard.jsx';
 
 // --- COMPONENT CHO TAB TOURNAMENT (Official) ---
-const TournamentList = ({ tournaments, isLoading, onViewDetails, countdownTimers, formatTime }) => {
+// ✅ NHẬN `currentTime` VÀ `onViewDetails`
+const TournamentList = ({ tournaments, isLoading, onViewDetails, currentTime }) => {
     const [activeTournamentTab, setActiveTournamentTab] = useState('all');
 
     const getFilteredTournaments = () => {
@@ -17,7 +18,7 @@ const TournamentList = ({ tournaments, isLoading, onViewDetails, countdownTimers
             case 'live':
                 return tournaments.filter(t => t.status === 'ongoing');
             case 'demo':
-                return []; // Logic cho demo sẽ được thêm sau
+                return [];
             case 'all':
             default:
                 return tournaments;
@@ -42,8 +43,8 @@ const TournamentList = ({ tournaments, isLoading, onViewDetails, countdownTimers
                         <TournamentCard
                             key={t.id}
                             tournament={t}
-                            timer={formatTime(countdownTimers[t.name] || 0)}
-                            onViewDetails={onViewDetails}
+                            onViewDetails={onViewDetails} // ✅ TRUYỀN XUỐNG CARD
+                            currentTime={currentTime}
                         />
                     )}
                 </div>
@@ -55,9 +56,8 @@ const TournamentList = ({ tournaments, isLoading, onViewDetails, countdownTimers
 };
 
 // --- COMPONENT CHÍNH CỦA TRANG ARENA ---
-// ✨ THÊM `user` VÀO PROPS
-const ArenaPage = ({ onViewDetails, countdownTimers, formatTime, user }) => {
-    // --- State Management ---
+// ✅ NHẬN CÁC PROPS CẦN THIẾT TỪ APP.JSX
+const ArenaPage = ({ onViewDetails, currentTime, user }) => {
     const [activeArenaTab, setActiveArenaTab] = useState('tournament');
     const [isCreateCupModalOpen, setIsCreateCupModalOpen] = useState(false);
     
@@ -65,14 +65,12 @@ const ArenaPage = ({ onViewDetails, countdownTimers, formatTime, user }) => {
     const [privateCups, setPrivateCups] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     
-    // --- Data Fetching ---
     useEffect(() => {
         const loadDataForTab = async () => {
             setIsLoading(true);
 
-            // ✨ LOGIC MỚI CHO 1v1 SẼ ĐƯỢC XỬ LÝ TRONG COMPONENT `OneVsOneMatchPage`
             if (activeArenaTab === '1v1_match') {
-                setIsLoading(false); // Component con sẽ tự quản lý loading của nó
+                setIsLoading(false);
                 return;
             }
 
@@ -86,14 +84,12 @@ const ArenaPage = ({ onViewDetails, countdownTimers, formatTime, user }) => {
                 return;
             }
 
-            console.log(`[LOG] ArenaPage: Bắt đầu gọi API cho tab '${activeArenaTab}' tại endpoint: ${endpoint}`);
             try {
                 const response = await fetch(endpoint);
                 if (!response.ok) {
                     throw new Error(`API for tab ${activeArenaTab} failed with status ${response.status}`);
                 }
                 const apiData = await response.json();
-                console.log(`[LOG] ArenaPage: Đã nhận được dữ liệu gốc từ API cho tab '${activeArenaTab}':`, apiData);
 
                 if (activeArenaTab === 'tournament') {
                     const formattedData = apiData.map(item => ({
@@ -107,13 +103,10 @@ const ArenaPage = ({ onViewDetails, countdownTimers, formatTime, user }) => {
                         status: item.status,
                     }));
                     setTournaments(formattedData);
-                    console.log(`[LOG] ArenaPage: Đã định dạng lại dữ liệu cho tab 'tournament'.`);
                 } else {
                     setPrivateCups(apiData);
-                    console.log(`[LOG] ArenaPage: Đã gán dữ liệu gốc cho tab 'private_cup'.`);
                 }
 
-                console.log(`✅ [SUCCESS] ArenaPage: Tải dữ liệu cho tab '${activeArenaTab}' thành công.`);
             } catch (error) {
                 console.error(`❌ [ERROR] ArenaPage: Lỗi khi tải dữ liệu:`, error);
             } finally {
@@ -130,16 +123,14 @@ const ArenaPage = ({ onViewDetails, countdownTimers, formatTime, user }) => {
         setIsCreateCupModalOpen(false);
     };
 
-    // --- Rendering Logic ---
     const renderArenaContent = () => {
         switch (activeArenaTab) {
             case 'tournament':
                 return <TournamentList 
                             tournaments={tournaments}
                             isLoading={isLoading}
-                            onViewDetails={onViewDetails} 
-                            countdownTimers={countdownTimers} 
-                            formatTime={formatTime} 
+                            onViewDetails={onViewDetails} // ✅ TRUYỀN `onViewDetails` XUỐNG
+                            currentTime={currentTime}
                         />;
             case 'private_cup':
                 return ( 
@@ -157,6 +148,7 @@ const ArenaPage = ({ onViewDetails, countdownTimers, formatTime, user }) => {
                                         key={cup.id} 
                                         cup={cup} 
                                         onViewDetails={onViewDetails}
+                                        currentTime={currentTime}
                                     />
                                 )}
                             </div>
@@ -165,7 +157,6 @@ const ArenaPage = ({ onViewDetails, countdownTimers, formatTime, user }) => {
                 );
             
             case '1v1_match':
-                // ✨ GỌI COMPONENT MỚI VÀ TRUYỀN `user` XUỐNG
                 return <OneVsOneMatchPage user={user} />; 
             
             default:

@@ -1,83 +1,115 @@
-/* Bố cục tổng thể của trang detail */
-.new-detail-page-wrapper {
-  position: fixed; inset: 0; z-index: 150;
-  background-color: #283347;
+.static-detail-page-wrapper {
+  min-height: 100vh;
+  background-color: #17212F;
   color: #e2e8f0;
-  display: flex; /* Quan trọng: để chia 2 cột sidebar và main */
+  padding-bottom: 4rem; /* Thêm khoảng trống ở dưới */
 }
 
-/* --- Cột Sidebar (Trái) --- */
-.new-detail-sidebar {
-  width: 280px;
-  background-color: #1e293b;
+.static-detail-header {
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
-  border-right: 1px solid #334155;
-}
-.sidebar-logo {
-  font-size: 1.75rem; font-weight: 800; color: #ffffff;
-  letter-spacing: 1px; margin-bottom: 3rem; text-align: center;
-}
-.sidebar-logo::before { content: 'GO'; color: #3b82f6; }
-.sidebar-back-btn {
-  background: none; border: 1px solid #475569; color: #94a3b8;
-  padding: 0.75rem; border-radius: 0.5rem; font-weight: 600;
-  cursor: pointer; margin-top: auto; /* Đẩy nút xuống cuối */
-  transition: all 0.2s ease-in-out;
-}
-.sidebar-back-btn:hover { background-color: #334155; color: #ffffff; }
-
-/* --- Cột nội dung chính (Phải) --- */
-.unified-main-content {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
 }
 
-.tournament-header-banner {
-  height: 150px; width: 100%;
-  background-size: cover; background-position: center;
-  position: relative; flex-shrink: 0;
-}
-.header-banner-overlay {
-  position: absolute; inset: 0;
-  background-color: rgba(24, 33, 55, 0.7);
-  backdrop-filter: blur(2px);
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 2rem;
-}
-.header-banner-overlay h1 {
-  font-size: 1.75rem; font-weight: 700;
-  color: #facc15; text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+.static-header-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(to top, rgba(23, 33, 47, 1) 0%, rgba(23, 33, 47, 0.2) 100%);
 }
 
-.unified-content-body {
-  padding: 2.5rem; flex-grow: 1;
-  display: flex; align-items: center; justify-content: center;
+.static-header-content {
+  position: relative;
+  z-index: 1;
 }
 
-/* Bố cục 2 cột cho tab "Matches" */
-.match-page-layout {
+.static-header-content h1 {
+  font-size: 2.5rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.static-header-content p {
+  font-size: 1rem;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.static-detail-body {
+  max-width: 900px;
+    margin: 0 auto; 
+    padding: 2rem 1rem 0 1rem; 
+    position: relative;
+    z-index: 2;
+}
+
+.static-info-card {
+  background-color: #1e293b;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  border: 1px solid #334155;
   display: grid;
-  grid-template-columns: 380px 1fr;
-  gap: 2rem;
-  width: 100%;
-  height: 100%;
-  max-width: 1600px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
 }
 
-/* CSS cho nội dung thay thế và nút test */
-.placeholder-view { text-align: center; color: #94a3b8; }
-.dev-toggle-button {
-  position: fixed; top: 1rem; right: 1rem; z-index: 999;
-  background-color: #facc15; color: #111827;
-  border: none; border-radius: 0.5rem; padding: 0.5rem 1rem;
-  font-weight: 600; cursor: pointer;
+.static-info-item span {
+  display: block;
+  font-size: 0.8rem;
+  color: #94a3b8;
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
 }
-.dev-toggle-button-inner {
-  background-color: #3b82f6; color: white; padding: 0.5rem 1rem;
-  border: none; border-radius: 0.5rem; cursor: pointer; margin-top: 1rem;
+.static-info-item strong { font-size: 1.1rem; font-weight: 600; }
+.static-info-item .prize { color: #f59e0b; }
+.static-info-item .symbol { color: #38bdf8; }
+
+.detail-section {
+  background-color: #1e293b;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  border: 1px solid #334155;
+  margin-bottom: 1.5rem;
 }
+
+.detail-section h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.5rem;
+  margin: 0 0 1rem 0;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #334155;
+}
+
+.prize-structure-list, .rules-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.prize-item, .round-item { background-color: #283648; border-radius: 0.5rem; padding: 1rem; }
+.prize-item { display: flex; justify-content: space-between; align-items: center; }
+.prize-item span { font-weight: 500; color: #bdc3c7; }
+.prize-item strong { font-size: 1.1rem; color: #f59e0b; }
+.round-item h4 { margin: 0 0 1rem 0; font-size: 1.1rem; color: #94a3b8; }
+.round-details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+.round-details-grid .static-info-item { margin-bottom: 0.5rem; }
+
+.static-back-btn {
+  display: block;
+  width: fit-content;
+  margin: 2rem auto 0 auto;
+  padding: 0.75rem 2rem;
+  background-color: #334155;
+  color: #e2e8f0;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.static-back-btn:hover { background-color: #4b5563; }
