@@ -120,3 +120,92 @@
     gap: 1rem; 
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
+
+  .home-container {
+    padding: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #334155;
+    padding-bottom: 0.75rem;
+}
+
+.section-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #e2e8f0;
+}
+
+.section-header .icon {
+    width: 24px;
+    height: 24px;
+}
+.icon-red { color: #ef4444; }
+.icon-blue { color: #3b82f6; }
+
+/* ✅ THAY ĐỔI TẠI ĐÂY: Áp dụng CSS Grid */
+.grid-container {
+    display: grid;
+    /* Tạo các cột có chiều rộng tối thiểu 300px và tự động lấp đầy không gian */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem; /* Khoảng cách giữa các card */
+}
+
+.live-match-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.online-players-banner {
+    background: linear-gradient(to right, #1e3a8a, #3b82f6);
+    color: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.online-players-banner h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    opacity: 0.8;
+}
+
+.online-players-banner p {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.view-more-container {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.view-more-btn {
+    background-color: #334155;
+    color: #e2e8f0;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.view-more-btn:hover {
+    background-color: #4b5563;
+}
+
+.placeholder-content {
+    padding: 2rem;
+    text-align: center;
+    color: #94a3b8;
+}

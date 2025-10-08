@@ -77,3 +77,20 @@
     padding: 0.25rem 0.5rem;
     border: 1px solid #4b5563;
   }
+  /* Thêm vào Footer.css để style cho các nút mới */
+.footer-column ul button {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #a7a9be; /* Hoặc màu link cũ của bạn */
+  text-align: left;
+  font-size: inherit; /* Kế thừa font size từ li */
+  font-family: inherit; /* Kế thừa font family */
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.footer-column ul button:hover {
+  color: #ffffff; /* Màu khi hover */
+  text-decoration: underline; /* Thêm gạch chân khi hover */
+}

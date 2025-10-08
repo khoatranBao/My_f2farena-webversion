@@ -181,3 +181,130 @@
     50% { transform: scale(1.1); opacity: 0.7; }
     100% { transform: scale(0.9); opacity: 1; }
 }
+
+/* === CSS CHO JOIN MATCH MODAL (Thêm vào) === */
+
+/* Lớp phủ nền mờ toàn màn hình */
+.modal-overlay {
+    position: fixed; /* Giữ cố định trên màn hình */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7); /* Màu đen mờ */
+    display: flex;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center;     /* Căn giữa theo chiều dọc */
+    z-index: 1000; /* Luôn nằm trên cùng */
+    padding: 1rem;
+}
+
+/* Nội dung của form (cái khung trắng) */
+.modal-content {
+    background: #2c2c3e; /* Màu nền tối giống theme */
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 450px; /* Giới hạn chiều rộng tối đa */
+    border: 1px solid #444;
+    animation: fadeIn 0.3s ease-out; /* Hiệu ứng xuất hiện */
+}
+
+/* Hiệu ứng mờ dần khi hiện form */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Phần header của modal (chứa tiêu đề và nút đóng) */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #444;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: #fff;
+}
+
+.modal-subtitle {
+    text-align: center;
+    color: #aaa;
+    margin-bottom: 1.5rem;
+}
+
+/* Nút X để đóng form */
+.close-button {
+    background: transparent;
+    border: none;
+    font-size: 2rem;
+    line-height: 1;
+    color: #aaa;
+    cursor: pointer;
+    padding: 0;
+}
+.close-button:hover {
+    color: #fff;
+}
+
+/* === CSS CHO CÁC THÀNH PHẦN FORM === */
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #ccc;
+    font-weight: 500;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #555;
+    background-color: #1e1e2d;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1rem;
+    box-sizing: border-box; /* Quan trọng để padding không làm vỡ layout */
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #4a90e2; /* Màu viền khi được chọn */
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.3);
+}
+
+/* Nút "Confirm and Join" */
+.confirm-join-btn {
+    width: 100%;
+    padding: 0.85rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #4a90e2; /* Màu xanh dương chủ đạo */
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 0.5rem;
+}
+
+.confirm-join-btn:hover {
+    background-color: #357abd; /* Màu đậm hơn khi hover */
+}
