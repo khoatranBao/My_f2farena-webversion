@@ -75,3 +75,6 @@ Gửi câu hỏi Chatbot	https://f2farena.com/api/chatbot/ask	POST	curl -X POST 
 Lấy lịch sử Chatbot	https://f2farena.com/api/chatbot/history/{user.telegram_id}	GET	curl -X GET "https://f2farena.com/api/chatbot/history/123456"
 Leaderboard Tournament	https://f2farena.com/api/leaderboard/tournament	GET	curl -X GET "https://f2farena.com/api/leaderboard/tournament"
 Leaderboard Cá nhân	https://f2farena.com/api/leaderboard/personal	GET	curl -X GET "https://f2farena.com/api/leaderboard/personal"
+
+
+

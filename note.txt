@@ -1,4 +1,6 @@
-không dùng canvas và nhớ gửi tôi file chỉnh sửa đầy đủ code, tôi không muốn sửa bằng tay vì nó dễ sai
+**********Đường dẫn tới git app: https://github.com/f2farena/app
+=======================================================================
+
 
 
 ## Làm thế nào để Reset lại dữ liệu?
@@ -46,3 +48,11 @@ tạo bảng hiển thị sao trong pk têam review:
 
 ========================================> nối API endpoint cho trang detail for live
 1. cập nhật app.jsx:
+
+============================================
+===========================================
+1. kéo code trên git main: 
+    git pull origin main
+2. phục hồi code theo commit file trên github:
+    git restore --source=32cb585 src/components/Home/home.css
+    hoặc git checkout 32cb585 -- src/components/Home/home.css

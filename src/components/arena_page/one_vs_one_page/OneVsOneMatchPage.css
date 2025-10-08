@@ -182,129 +182,144 @@
     100% { transform: scale(0.9); opacity: 1; }
 }
 
-/* === CSS CHO JOIN MATCH MODAL (Thêm vào) === */
-
-/* Lớp phủ nền mờ toàn màn hình */
+/* === CSS CHUNG CHO CÁC MODAL === */
 .modal-overlay {
-    position: fixed; /* Giữ cố định trên màn hình */
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7); /* Màu đen mờ */
+    background-color: rgba(0, 0, 0, 0.7);
     display: flex;
-    justify-content: center; /* Căn giữa theo chiều ngang */
-    align-items: center;     /* Căn giữa theo chiều dọc */
-    z-index: 1000; /* Luôn nằm trên cùng */
+    justify-content: center;
+    align-items: center;    
+    z-index: 1000;
     padding: 1rem;
 }
-
-/* Nội dung của form (cái khung trắng) */
 .modal-content {
-    background: #2c2c3e; /* Màu nền tối giống theme */
-    padding: 1.5rem 2rem;
+    background: #2c2c3e;
     border-radius: 12px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     width: 100%;
-    max-width: 450px; /* Giới hạn chiều rộng tối đa */
+    max-width: 450px;
     border: 1px solid #444;
-    animation: fadeIn 0.3s ease-out; /* Hiệu ứng xuất hiện */
+    animation: fadeIn 0.3s ease-out;
+    overflow: hidden; /* Ngăn nội dung tràn ra ngoài */
 }
-
-/* Hiệu ứng mờ dần khi hiện form */
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
 }
-
-/* Phần header của modal (chứa tiêu đề và nút đóng) */
 .modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 1.5rem 2rem;
     border-bottom: 1px solid #444;
-    padding-bottom: 1rem;
-    margin-bottom: 1rem;
+    flex-shrink: 0;
 }
-
-.modal-header h3 {
-    margin: 0;
-    font-size: 1.25rem;
-    color: #fff;
-}
-
-.modal-subtitle {
-    text-align: center;
-    color: #aaa;
-    margin-bottom: 1.5rem;
-}
-
-/* Nút X để đóng form */
+.modal-header h3 { margin: 0; font-size: 1.25rem; color: #fff; }
 .close-button {
-    background: transparent;
-    border: none;
-    font-size: 2rem;
-    line-height: 1;
-    color: #aaa;
-    cursor: pointer;
-    padding: 0;
+    background: transparent; border: none; font-size: 2rem;
+    line-height: 1; color: #aaa; cursor: pointer; padding: 0;
 }
-.close-button:hover {
-    color: #fff;
-}
+.close-button:hover { color: #fff; }
 
-/* === CSS CHO CÁC THÀNH PHẦN FORM === */
-.form-group {
-    margin-bottom: 1.25rem;
-}
-
+/* === CSS CHO CÁC THÀNH PHẦN FORM CHUNG === */
+.form-group { margin-bottom: 1.25rem; }
+.form-group:last-child { margin-bottom: 0; }
 .form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #ccc;
-    font-weight: 500;
+    display: block; margin-bottom: 0.5rem; color: #ccc; font-weight: 500;
 }
-
 .form-group input[type="text"],
-.form-group input[type="password"] {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #555;
-    background-color: #1e1e2d;
-    border-radius: 8px;
-    color: #fff;
-    font-size: 1rem;
-    box-sizing: border-box; /* Quan trọng để padding không làm vỡ layout */
+.form-group input[type="password"],
+.form-group input[type="number"],
+.form-group select {
+    width: 100%; padding: 0.75rem; border: 1px solid #555;
+    background-color: #1e1e2d; border-radius: 8px; color: #fff;
+    font-size: 1rem; box-sizing: border-box; 
     transition: border-color 0.2s, box-shadow 0.2s;
 }
-
-.form-group input:focus {
-    outline: none;
-    border-color: #4a90e2; /* Màu viền khi được chọn */
+.form-group input:focus, .form-group select:focus {
+    outline: none; border-color: #4a90e2;
     box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.3);
 }
 
-/* Nút "Confirm and Join" */
-.confirm-join-btn {
-    width: 100%;
-    padding: 0.85rem;
-    border: none;
-    border-radius: 8px;
-    background-color: #4a90e2; /* Màu xanh dương chủ đạo */
-    color: white;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    margin-top: 0.5rem;
+
+/* === SỬA LẠI CSS CHO CREATE MATCH MODAL === */
+
+/* Ghi đè style cho modal-content để nó có thể co giãn */
+.modal-content.create-match-modal {
+    display: flex;
+    flex-direction: column;
+    max-height: 90vh; /* Giới hạn chiều cao tối đa */
+    padding: 0; /* Xóa padding cũ */
 }
 
-.confirm-join-btn:hover {
-    background-color: #357abd; /* Màu đậm hơn khi hover */
+/* Form sẽ chiếm toàn bộ không gian còn lại và co giãn */
+.create-match-form {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Bắt buộc để flex-grow hoạt động */
+    flex-grow: 1;
 }
+
+/* Đây là khu vực nội dung sẽ được cuộn */
+.form-body {
+    overflow-y: auto; /* Bật thanh cuộn khi cần */
+    padding: 1.5rem 2rem;
+}
+
+/* === ✅ SỬA LỖI: THÊM ĐOẠN NÀY ĐỂ ẨN THANH CUỘN === */
+/* Ẩn thanh cuộn cho các trình duyệt Webkit (Chrome, Safari) */
+.form-body::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* làm cho thanh cuộn trong suốt */
+}
+/* Ẩn thanh cuộn cho Firefox */
+.form-body {
+    scrollbar-width: none;
+}
+
+
+/* Đây là khu vực chân của form, chứa nút bấm, sẽ được cố định */
+.form-footer {
+    padding: 1.5rem 2rem;
+    border-top: 1px solid #444;
+    background-color: #2c2c3e;
+    flex-shrink: 0; /* Ngăn không cho co lại */
+}
+
+.radio-group-container {
+    display: flex;
+    gap: 1rem;
+}
+.radio-option {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border: 2px solid #555;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex: 1;
+}
+.radio-option input[type="radio"] {
+    display: none;
+}
+.radio-option.selected {
+    border-color: #facc15;
+    background-color: #423b28;
+}
+.confirm-setup-btn {
+    width: 100%; padding: 0.85rem; border: none; border-radius: 8px;
+    background-color: #facc15;
+    color: #111827;
+    font-size: 1rem; font-weight: bold; cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 0; /* Reset margin */
+}
+.confirm-setup-btn:hover {
+    background-color: #eab308;
+}
+
