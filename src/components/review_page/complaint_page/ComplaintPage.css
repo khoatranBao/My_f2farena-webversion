@@ -6,7 +6,7 @@
 .new-thread-btn { display: inline-flex; align-items: center; gap: 0.5rem; background-color: #2563eb; color: #ffffff; font-weight: 600; padding: 0.6rem 1.2rem; border: none; border-radius: 0.5rem; cursor: pointer; transition: background-color 0.2s, transform 0.2s; }
 .new-thread-btn:hover { background-color: #1d4ed8; transform: scale(1.05); }
 .complaint-list { display: flex; flex-direction: column; gap: 1rem; }
-.complaint-card { background-color: #1f2937; border-radius: 0.75rem; padding: 1rem 1.5rem; border: 1px solid #374151; display: flex; justify-content: space-between; align-items: center; transition: border-color 0.2s; }
+.complaint-card { background-color: #1f2937; border-radius: 0.75rem; padding: 1rem 1.5rem; border: 1px solid #374151; display: flex; justify-content: space-between; align-items: center; transition: border-color 0.2s, background-color 0.2s; }
 .complaint-card:hover { border-color: #3b82f6; }
 .complaint-card-main h3 { font-size: 1.125rem; font-weight: 600; color: #f9fafb; margin: 0 0 0.5rem 0; }
 .complaint-card-main p { margin: 0; font-size: 0.875rem; color: #9ca3af; display: flex; align-items: center; gap: 0.75rem; }
@@ -14,14 +14,36 @@
 .status-badge { padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
 .status-open { background-color: #a16207; color: #fef08a; }
 .status-resolved { background-color: #166534; color: #bbf7d0; }
-.complaint-modal-header { padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #4b5563; }
-.complaint-modal-header h2 { font-size: 1.5rem; font-weight: 700; margin: 0; }
-.complaint-modal-body { padding: 1.5rem; }
-.complaint-form { display: flex; flex-direction: column; gap: 1.25rem; }
-.complaint-form .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
-.complaint-form label { font-weight: 600; color: #d1d5db; }
-.complaint-form input, .complaint-form select, .complaint-form textarea { width: 100%; padding: 0.75rem 1rem; background-color: #1f2937; border: 1px solid #4b5563; border-radius: 0.5rem; color: #ffffff; font-size: 1rem; transition: border-color 0.2s, box-shadow 0.2s; }
-.complaint-form input::placeholder, .complaint-form textarea::placeholder { color: #6b7280; }
-.complaint-form input:focus, .complaint-form select:focus, .complaint-form textarea:focus { outline: none; border-color: #3b82f6; box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5); }
-.complaint-form textarea { resize: vertical; min-height: 100px; }
-.complaint-submit-btn { width: 100%; padding: 0.8rem; border-radius: 0.5rem; border: none; background-color: #14f1d9; color: #111827; font-weight: 700; font-size: 1rem; cursor: pointer; transition: opacity 0.2s, transform 0.2s; margin-top: 0.5rem; }
+
+/* ✅ CSS MỚI: DÁN VÀO CUỐI FILE */
+
+/* --- Style để làm nổi bật complaint của user --- */
+.complaint-card.is-owner {
+    background-color: #2c3a4f; /* Màu nền sáng hơn một chút */
+    border-color: #3b82f6; /* Viền màu xanh để nhấn mạnh */
+}
+
+/* --- Style cho nút Resolve --- */
+.resolve-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: transparent;
+    color: #ef4444; /* Màu đỏ */
+    font-weight: 600;
+    padding: 0.4rem 0.8rem;
+    border: 1px solid #ef4444;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.resolve-btn:hover {
+    background-color: #ef4444;
+    color: #ffffff;
+}
+
+.resolve-btn .icon-sm {
+    width: 1rem;
+    height: 1rem;
+}

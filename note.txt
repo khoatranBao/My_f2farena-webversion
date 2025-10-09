@@ -56,3 +56,12 @@ tạo bảng hiển thị sao trong pk têam review:
 2. phục hồi code theo commit file trên github:
     git restore --source=32cb585 src/components/Home/home.css
     hoặc git checkout 32cb585 -- src/components/Home/home.css
+
+
+=========================================================================
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+curl -X PATCH 'https://f2farena.com/api/complaints/123/resolve'
+
+đây là lệnh xóa đi complaint của user hienj tại, user của tôi là 1. 
+
+1. cách thơikf gian cho private cup: tối thiểu 2 h.

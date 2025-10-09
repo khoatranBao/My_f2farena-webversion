@@ -2761,4 +2761,32 @@ header.trading-header .trading-team-info .team-avatar {
   background-color: #1d4ed8; /* Xanh đậm hơn khi hover */
   transform: scale(1.02);
 }
+/* ================================================ */
+/* === CSS CHO BẢNG LỊCH SỬ GIAO DỊCH (CUỘN ẨN) === */
+/* ================================================ */
+
+.table-scroll-wrapper {
+  max-height: 400px; /* Bạn có thể thay đổi chiều cao tối đa này */
+  overflow-y: auto;  /* Bật tính năng cuộn khi nội dung vượt quá chiều cao */
+}
+
+/* Ẩn thanh cuộn cho các trình duyệt Webkit (Chrome, Safari, Opera) */
+.table-scroll-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+/* Ẩn thanh cuộn cho các trình duyệt khác (IE, Edge, Firefox) */
+.table-scroll-wrapper {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* ✅ THÊM MỚI: Giữ cố định tiêu đề bảng khi cuộn */
+.transaction-history-table thead th {
+  position: sticky;
+  top: 0;
+  /* Đặt màu nền để che đi nội dung cuộn bên dưới */
+  background-color: #1e293b; 
+  z-index: 10; /* Đảm bảo tiêu đề luôn nằm trên cùng */
+}
 

@@ -134,7 +134,6 @@
 //         return () => clearInterval(timerInterval);
 //     }, [tournaments]);
     
-//     // ✅ SỬA LỖI: Cập nhật hàm formatTime để luôn hiển thị Giờ:Phút:Giây
 //     const formatTime = (seconds) => {
 //         if (isNaN(seconds) || seconds < 0) return '00:00:00';
         
@@ -148,10 +147,8 @@
 //         const sStr = s.toString().padStart(2, '0');
 
 //         if (d > 0) {
-//             // Nếu còn hơn 1 ngày, hiển thị dạng "2d 14:30:55"
 //             return `${d}d ${hStr}:${mStr}:${sStr}`;
 //         }
-//         // Nếu ít hơn 1 ngày, hiển thị dạng "14:30:55"
 //         return `${hStr}:${mStr}:${sStr}`;
 //     };
     
@@ -189,6 +186,10 @@
 //         const handleScroll = () => {
 //             const currentScrollY = window.scrollY;
 //             setShowScrollTopButton(currentScrollY > 300);
+//             // Logic ẩn/hiện header
+//             // Nếu cuộn lên, `currentScrollY < lastScrollY.current` sẽ là true -> hiện header
+//             // Nếu cuộn xuống, nó sẽ là false -> ẩn header
+//             // Luôn hiện header nếu đang ở trên cùng của trang
 //             setShowHeader(currentScrollY > 10 ? currentScrollY < lastScrollY.current : true);
 //             lastScrollY.current = currentScrollY;
 //         };
@@ -272,6 +273,7 @@
 //     return (
 //         <div className="app-container">
 //             <div className="main-wrapper">
+//                 {/* Thêm class `hidden` khi showHeader là false */}
 //                 <header className={`app-header ${!showHeader ? 'hidden' : ''}`}>
 //                     <div className="header-left"><button><img src={logoImage} alt="App Logo" className="app-logo" /></button></div>
 //                     <div className="header-center">{menuItems.map((item) => (<button key={item.name} onClick={() => setActiveTab(item.name)} className={`menu-btn ${activeTab === item.name ? 'active' : ''}`}>{item.icon}<span>{item.name}</span></button>))}</div>
@@ -480,11 +482,13 @@ const App = () => {
         const handleScroll = () => {
             const currentScrollY = window.scrollY;
             setShowScrollTopButton(currentScrollY > 300);
-            // Logic ẩn/hiện header
-            // Nếu cuộn lên, `currentScrollY < lastScrollY.current` sẽ là true -> hiện header
-            // Nếu cuộn xuống, nó sẽ là false -> ẩn header
-            // Luôn hiện header nếu đang ở trên cùng của trang
-            setShowHeader(currentScrollY > 10 ? currentScrollY < lastScrollY.current : true);
+            if (currentScrollY < 50) {
+                setShowHeader(true);
+            } else if (currentScrollY < lastScrollY.current) {
+                setShowHeader(true);
+            } else {
+                setShowHeader(false);
+            }
             lastScrollY.current = currentScrollY;
         };
         window.addEventListener('scroll', handleScroll, { passive: true });
@@ -552,8 +556,9 @@ const App = () => {
                 return <ReviewPage onReviewClick={setSelectedReview} user={currentUser}/>;
             case 'Leaderboard':
                 return <TournamentLeaderboardPage activeTab={leaderboardActiveTab} setActiveTab={setLeaderboardActiveTab} />;
+            // ✅ SỬA ĐỔI: Truyền `user` xuống cho WalletPage
             case 'Wallet':
-                return <WalletPage />;
+                return <WalletPage user={currentUser} />;
             default:
                 return <div>Content for {activeTab}</div>;
         }
@@ -567,7 +572,6 @@ const App = () => {
     return (
         <div className="app-container">
             <div className="main-wrapper">
-                {/* Thêm class `hidden` khi showHeader là false */}
                 <header className={`app-header ${!showHeader ? 'hidden' : ''}`}>
                     <div className="header-left"><button><img src={logoImage} alt="App Logo" className="app-logo" /></button></div>
                     <div className="header-center">{menuItems.map((item) => (<button key={item.name} onClick={() => setActiveTab(item.name)} className={`menu-btn ${activeTab === item.name ? 'active' : ''}`}>{item.icon}<span>{item.name}</span></button>))}</div>
