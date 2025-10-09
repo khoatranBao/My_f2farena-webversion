@@ -65,3 +65,9 @@ curl -X PATCH 'https://f2farena.com/api/complaints/123/resolve'
 đây là lệnh xóa đi complaint của user hienj tại, user của tôi là 1. 
 
 1. cách thơikf gian cho private cup: tối thiểu 2 h.
+
+====================================
+sửa đổi mới: 
+src/components/CreatePrivateTournamentForm.jsx
+src/components/DepositForm.jsx
+app.jsx

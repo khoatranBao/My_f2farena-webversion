@@ -31,7 +31,13 @@ curl -X POST 'https://f2farena.com/api/trader_reviews/' \
 =============================================================>>> get cho trader review:
 GET https://f2farena.com/api/trader_reviews/2
 
+===============================================================>>> thao tác hiện tại: gửi post lên chat bot
+curl -X POST "https://f2farena.com/api/chatbot/ask" 
+-H "Content-Type: application/json" 
+-d '{"question": "How to trade?", "user_id": 123456}'
 
+==============================================================>>>get cho chat bot:
+https://f2farena.com/api/chatbot/history/{user.telegram_id}
 
 
 
