@@ -291,3 +291,94 @@
   margin-bottom: 0.5rem;
   color: #38bdf8;
 }
+
+/* ================================== */
+/* === CSS FOR CONFIRMATION MODAL === */
+/* ================================== */
+
+.confirmation-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 150; /* Phải cao hơn z-index của trang chi tiết */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.2s ease-out;
+}
+
+.confirmation-modal-content {
+    background-color: #1f2937; /* gray-800 */
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.3);
+    width: 90%;
+    max-width: 500px;
+    padding: 1.5rem 2rem;
+    border: 1px solid #4b5563;
+    color: #e5e7eb;
+    text-align: center;
+}
+
+.confirmation-modal-content h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 0.75rem 0;
+    color: #ffffff;
+}
+
+.confirmation-modal-content p {
+    font-size: 1rem;
+    color: #9ca3af;
+    margin: 0 0 1.5rem 0;
+}
+
+.comment-preview {
+    background-color: #111827;
+    border: 1px solid #4b5563;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    text-align: left;
+    max-height: 150px;
+    overflow-y: auto;
+    white-space: pre-wrap; /* Giữ lại các xuống dòng */
+    font-style: italic;
+    color: #d1d5db;
+}
+
+.confirmation-modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.modal-btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.modal-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.cancel-btn {
+    background-color: #4b5563; /* gray-600 */
+    color: #ffffff;
+}
+.cancel-btn:hover:not(:disabled) {
+    background-color: #6b7280;
+}
+
+.confirm-btn {
+    background-color: #2563eb; /* blue-600 */
+    color: #ffffff;
+}
+.confirm-btn:hover:not(:disabled) {
+    background-color: #1d4ed8;
+}

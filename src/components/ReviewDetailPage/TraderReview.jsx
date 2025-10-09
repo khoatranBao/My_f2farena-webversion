@@ -9,10 +9,33 @@ const formatDate = (isoString) => {
     return `${time} ${day}`;
 };
 
-const TraderReview = ({ brokerId }) => {
+const ConfirmationModal = ({ comment, onCancel, onConfirm, isSubmitting }) => (
+    <div className="confirmation-modal-backdrop">
+        <div className="confirmation-modal-content">
+            <h3>Confirm Submission</h3>
+            <p>Are you sure you want to post the following comment?</p>
+            <div className="comment-preview">
+                {comment}
+            </div>
+            <div className="confirmation-modal-buttons">
+                <button onClick={onCancel} className="modal-btn cancel-btn" disabled={isSubmitting}>
+                    Cancel
+                </button>
+                <button onClick={onConfirm} className="modal-btn confirm-btn" disabled={isSubmitting}>
+                    {isSubmitting ? 'Posting...' : 'Confirm'}
+                </button>
+            </div>
+        </div>
+    </div>
+);
+
+
+const TraderReview = ({ brokerId, user }) => {
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState('');
     const [isLoading, setIsLoading] = useState(true);
+    const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     useEffect(() => {
         const loadComments = async () => {
@@ -21,35 +44,23 @@ const TraderReview = ({ brokerId }) => {
                 return;
             }
             setIsLoading(true);
-            console.log(`📝 [INFO] TraderReview: Bắt đầu lấy bình luận cho broker ID: ${brokerId}...`);
-            
             try {
                 const response = await fetch(`https://f2farena.com/api/trader_reviews/${brokerId}`);
-
                 if (!response.ok) {
                     if (response.status === 404) {
-                        console.log(`[INFO] TraderReview: Broker ID ${brokerId} chưa có bình luận nào.`);
                         setComments([]);
                     } else {
-                        console.warn(`⚠️ [WARN] TraderReview: API bình luận trả về lỗi! Status: ${response.status}`);
                         throw new Error('API request for comments failed');
                     }
                 } else {
                     const data = await response.json();
-                    console.log("[INFO] TraderReview: Dữ liệu bình luận gốc từ API:", data);
-
-                    // [THAY ĐỔI] Sửa lại đúng tên key là 'list_comments'
                     const commentList = data.list_comments; 
-
                     if (Array.isArray(commentList)) {
                         setComments(commentList);
-                        console.log(`✅ [SUCCESS] TraderReview: Đã tải thành công ${commentList.length} bình luận.`);
                     } else {
-                        console.warn("⚠️ [WARN] TraderReview: Key 'list_comments' không phải là một mảng.");
                         setComments([]);
                     }
                 }
-
             } catch (error) {
                 console.error("❌ [ERROR] TraderReview: Lỗi khi tải bình luận:", error);
                 setComments([]);
@@ -61,21 +72,87 @@ const TraderReview = ({ brokerId }) => {
         loadComments();
     }, [brokerId]);
 
-    const handlePostComment = async () => {
-        // Code gửi comment giữ nguyên
+    const handlePostComment = () => {
+        if (!newComment.trim()) {
+            alert("Comment cannot be empty.");
+            return;
+        }
+        if (!user || !user.uid) { // Kiểm tra user.uid (telegram_id)
+            alert("You must be logged in to post a comment.");
+            return;
+        }
+        setIsConfirmModalOpen(true);
     };
+
+    const handleConfirmPost = async () => {
+        setIsSubmitting(true);
+
+        const payload = {
+            broker_id: brokerId,
+            user_id: user.uid, // ✅ SỬA LỖI: Gửi user.uid (telegram_id) thay vì user.id
+            comment: newComment.trim(),
+            vote: 5
+        };
+
+        console.log("📝 [INFO] TraderReview: Preparing to post new comment. Payload:", payload);
+
+        try {
+            const response = await fetch('https://f2farena.com/api/trader_reviews/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            });
+
+            const responseData = await response.json();
+
+            if (!response.ok) {
+                console.warn(`⚠️ [WARN] TraderReview: API post comment returned an error! Status: ${response.status}`, responseData);
+                let errorMessage = 'Failed to post comment.';
+                if (responseData.detail) {
+                    // Xử lý trường hợp lỗi là một mảng các đối tượng
+                    if (Array.isArray(responseData.detail) && responseData.detail[0] && responseData.detail[0].msg) {
+                        errorMessage = responseData.detail[0].msg;
+                    } else if (typeof responseData.detail === 'string') {
+                        errorMessage = responseData.detail;
+                    }
+                }
+                throw new Error(errorMessage);
+            }
+
+            console.log("✅ [SUCCESS] TraderReview: Comment posted successfully! Response:", responseData);
+
+            setComments(prevComments => [responseData, ...prevComments]);
+            setNewComment(''); 
+            setIsConfirmModalOpen(false);
+
+        } catch (error) {
+            console.error("❌ [ERROR] TraderReview: A critical error occurred while posting the comment:", error);
+            alert(`Error: ${error.message}`);
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
 
     if (isLoading) return <p>Loading comments...</p>;
 
     return (
         <div className="trader-reviews-container">
+            {isConfirmModalOpen && (
+                <ConfirmationModal 
+                    comment={newComment}
+                    onCancel={() => setIsConfirmModalOpen(false)}
+                    onConfirm={handleConfirmPost}
+                    isSubmitting={isSubmitting}
+                />
+            )}
+
             <h3 className="comments-title">Comments ({comments ? comments.length : 0})</h3>
             <div className="comment-list">
                 {Array.isArray(comments) && comments.length > 0 ? (
                     comments.map(comment => (
                         <div key={comment.id} className="comment-card">
                             <div className="comment-card-header">
-                                {/* Dữ liệu mới dùng 'username' */}
                                 <span className="comment-user">{comment.username || 'Anonymous'}</span>
                                 <span className="comment-date">{formatDate(comment.created_at)}</span>
                             </div>
@@ -103,3 +180,4 @@ const TraderReview = ({ brokerId }) => {
 };
 
 export default TraderReview;
+

@@ -19,6 +19,47 @@ curl --location --request GET
 =================================>> lấy thông tin leaderboard cho trang top personal winners:
 https://f2farena.com/api/leaderboard/personal
 
+===========================================================>>> post cho trader review.
+curl -X POST 'https://f2farena.com/api/trader_reviews/' \
+-H 'Content-Type: application/json' \
+-d '{
+    "broker_id": 2, 
+    "user_id": 1,
+    "comment": "Thử gửi review lần thứ N sau khi thêm trường vote.",
+    "vote": 5 
+}'
+=============================================================>>> get cho trader review:
+GET https://f2farena.com/api/trader_reviews/2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 =====================================================
 ===================================================== thông tin curl cần thiết:

@@ -83,7 +83,7 @@ const ExpertReviewContent = ({ review }) => (
 
 
 // --- Component chính ---
-const ReviewDetailPage = ({ review, onClose }) => {
+const ReviewDetailPage = ({ review, user, onClose }) => {
     const [activeTab, setActiveTab] = useState('expert');
     const [detailedReview, setDetailedReview] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -194,7 +194,7 @@ const ReviewDetailPage = ({ review, onClose }) => {
                     {activeTab === 'expert' ? (
                         <ExpertReviewContent review={detailedReview} />
                     ) : (
-                        <TraderReview brokerId={detailedReview.id} />
+                        <TraderReview brokerId={detailedReview.id} user={user} />
                     )}
                 </div>
             </div>
