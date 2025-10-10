@@ -1,0 +1,49 @@
+/* === COMPLAINT PAGE STYLES === */
+.complaint-page { padding: 1.5rem; animation: fadeIn 0.5s ease-in-out; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.complaint-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid #374151; }
+.complaint-header h2 { font-size: 1.75rem; font-weight: 700; color: #ffffff; margin: 0; }
+.new-thread-btn { display: inline-flex; align-items: center; gap: 0.5rem; background-color: #2563eb; color: #ffffff; font-weight: 600; padding: 0.6rem 1.2rem; border: none; border-radius: 0.5rem; cursor: pointer; transition: background-color 0.2s, transform 0.2s; }
+.new-thread-btn:hover { background-color: #1d4ed8; transform: scale(1.05); }
+.complaint-list { display: flex; flex-direction: column; gap: 1rem; }
+.complaint-card { background-color: #1f2937; border-radius: 0.75rem; padding: 1rem 1.5rem; border: 1px solid #374151; display: flex; justify-content: space-between; align-items: center; transition: border-color 0.2s, background-color 0.2s; }
+.complaint-card:hover { border-color: #3b82f6; }
+.complaint-card-main h3 { font-size: 1.125rem; font-weight: 600; color: #f9fafb; margin: 0 0 0.5rem 0; }
+.complaint-card-main p { margin: 0; font-size: 0.875rem; color: #9ca3af; display: flex; align-items: center; gap: 0.75rem; }
+.complaint-card-main p strong { color: #d1d5db; }
+.status-badge { padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
+.status-open { background-color: #a16207; color: #fef08a; }
+.status-resolved { background-color: #166534; color: #bbf7d0; }
+
+/* ✅ CSS MỚI: DÁN VÀO CUỐI FILE */
+
+/* --- Style để làm nổi bật complaint của user --- */
+.complaint-card.is-owner {
+    background-color: #2c3a4f; /* Màu nền sáng hơn một chút */
+    border-color: #3b82f6; /* Viền màu xanh để nhấn mạnh */
+}
+
+/* --- Style cho nút Resolve --- */
+.resolve-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: transparent;
+    color: #ef4444; /* Màu đỏ */
+    font-weight: 600;
+    padding: 0.4rem 0.8rem;
+    border: 1px solid #ef4444;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.resolve-btn:hover {
+    background-color: #ef4444;
+    color: #ffffff;
+}
+
+.resolve-btn .icon-sm {
+    width: 1rem;
+    height: 1rem;
+}

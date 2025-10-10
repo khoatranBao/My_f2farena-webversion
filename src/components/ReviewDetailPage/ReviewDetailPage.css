@@ -1,0 +1,384 @@
+.review-detail-content-wrapper {
+    max-width: 72rem; /* 1152px */
+    margin: 0 auto;
+    padding: 1rem 2rem 2rem 2rem;
+}
+
+.review-detail-tabs {
+    display: flex;
+    gap: 0.5rem;
+    border-bottom: 1px solid #374151;
+    margin-bottom: 1.5rem;
+}
+
+.tab-button {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 1rem 0.5rem;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -1px;
+}
+.tab-button:hover {
+    color: #ffffff;
+}
+.tab-button.active {
+    color: #3b82f6;
+    border-bottom-color: #3b82f6;
+}
+/* ================================== */
+/* === REVIEW DETAIL PAGE STYLES    === */
+/* (Styles moved from App.css)        */
+/* ================================== */
+
+.review-detail-page {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background-color: #030712;
+    overflow-y: auto;
+    color: #d1d5db;
+}
+
+.review-detail-header-bar {
+    background-color: #111827;
+    padding: 0.75rem 2rem;
+    border-bottom: 1px solid #374151;
+    position: sticky;
+    top: 0;
+    z-index: 110;
+}
+
+.back-button-detail {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.broker-detail-layout {
+    display: grid;
+    grid-template-columns: 1fr; /* Default to 1 column */
+    gap: 2rem;
+    max-width: 72rem; /* 1152px */
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+@media (min-width: 1024px) {
+    .broker-detail-layout {
+        grid-template-columns: 2fr 1fr; /* 2 columns on desktop */
+    }
+}
+
+.broker-detail-main h1 {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 0.25rem;
+}
+
+.broker-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #374151;
+}
+
+.broker-logo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    background-color: #ffffff;
+    border-radius: 0.75rem;
+    padding: 0.5rem;
+}
+
+.pros-cons-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.pros-cons-container h4 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+.pros-list ul, .cons-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.pros-list li {
+    padding-left: 24px;
+    position: relative;
+}
+.pros-list li::before {
+    content: '✓';
+    color: #22c55e;
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+.cons-list li {
+    padding-left: 24px;
+    position: relative;
+}
+.cons-list li::before {
+    content: '✗';
+    color: #ef4444;
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+.detailed-analysis h4 {
+    font-size: 1.5rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #374151;
+    color: #ffffff;
+}
+.detailed-analysis h5 {
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+.detailed-analysis p {
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+.detailed-analysis strong {
+    color: #f9fafb;
+}
+
+/* Sidebar */
+.broker-detail-sidebar {
+    position: sticky;
+    top: 80px; /* Header height + padding */
+    align-self: flex-start;
+}
+.rating-summary-box, .at-a-glance-box {
+    background-color: #111827;
+    border: 1px solid #374151;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+.rating-summary-box h4, .at-a-glance-box h4 {
+    font-size: 1.2rem;
+    margin: 0 0 1rem 0;
+    color: #ffffff;
+}
+.overall-score {
+    font-size: 3rem;
+    font-weight: 800;
+    text-align: center;
+    color: #facc15;
+}
+.overall-score span {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #9ca3af;
+}
+
+.star-rating {
+    display: flex;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.2em;
+}
+.star-rating .empty-star {
+    opacity: 0.3;
+}
+/* --- [THÊM MỚI] CSS CHO PHẦN ĐÁNH GIÁ CHI TIẾT --- */
+.rank-divider {
+    border: none;
+    border-top: 1px solid #374151;
+    margin: 1.5rem 0;
+}
+
+.rank-criteria-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem; /* Khoảng cách giữa các dòng */
+    margin-bottom: 1.5rem; /* Khoảng cách với nút Visit Broker */
+}
+
+.rank-criteria-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.star-rating-display {
+    display: flex;
+    gap: 0.25rem;
+    color: #facc15; /* Màu sao mặc định */
+    font-size: 1.2rem;
+}
+
+.star-rating-display .star {
+    opacity: 0.3; /* Sao rỗng sẽ mờ đi */
+}
+
+.star-rating-display .star.filled {
+    opacity: 1; /* Sao đầy sẽ rõ */
+}
+/* --- Kết thúc phần thêm mới --- */
+.visit-broker-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #22c55e;
+    color: #ffffff;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.visit-broker-btn:hover {
+    background-color: #16a34a;
+}
+.at-a-glance-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.at-a-glance-box li {
+    display: flex;
+    justify-content: space-between;
+}
+.at-a-glance-box strong {
+    color: #9ca3af;
+}
+
+.pk-team-rating {
+  font-style: italic;
+  color: #9ca3af;
+}
+
+.analysis-section h5 {
+  font-size: 1.2rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #38bdf8;
+}
+
+/* ================================== */
+/* === CSS FOR CONFIRMATION MODAL === */
+/* ================================== */
+
+.confirmation-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 150; /* Phải cao hơn z-index của trang chi tiết */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.2s ease-out;
+}
+
+.confirmation-modal-content {
+    background-color: #1f2937; /* gray-800 */
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.3);
+    width: 90%;
+    max-width: 500px;
+    padding: 1.5rem 2rem;
+    border: 1px solid #4b5563;
+    color: #e5e7eb;
+    text-align: center;
+}
+
+.confirmation-modal-content h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 0.75rem 0;
+    color: #ffffff;
+}
+
+.confirmation-modal-content p {
+    font-size: 1rem;
+    color: #9ca3af;
+    margin: 0 0 1.5rem 0;
+}
+
+.comment-preview {
+    background-color: #111827;
+    border: 1px solid #4b5563;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    text-align: left;
+    max-height: 150px;
+    overflow-y: auto;
+    white-space: pre-wrap; /* Giữ lại các xuống dòng */
+    font-style: italic;
+    color: #d1d5db;
+}
+
+.confirmation-modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.modal-btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.modal-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.cancel-btn {
+    background-color: #4b5563; /* gray-600 */
+    color: #ffffff;
+}
+.cancel-btn:hover:not(:disabled) {
+    background-color: #6b7280;
+}
+
+.confirm-btn {
+    background-color: #2563eb; /* blue-600 */
+    color: #ffffff;
+}
+.confirm-btn:hover:not(:disabled) {
+    background-color: #1d4ed8;
+}

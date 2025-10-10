@@ -1,0 +1,127 @@
+.cup-detail-wrapper {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background-color: rgba(3, 7, 18, 0.9);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+.cup-detail-content {
+    background-color: #1a1e3b;
+    border: 1px solid #3a3f78;
+    border-radius: 1rem;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 900px;
+    color: #e2e8f0;
+    position: relative;
+}
+
+.cup-detail-close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+}
+
+.cup-detail-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #14f1d9;
+    margin: 0 0 0.5rem 0;
+}
+
+.cup-detail-creator {
+    font-size: 1rem;
+    color: #9ca3af;
+    margin-bottom: 2rem;
+}
+
+.cup-detail-main-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+    background-color: #111827;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    margin-bottom: 2rem;
+}
+
+.cup-detail-main-info > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.cup-detail-main-info span {
+    font-size: 0.875rem;
+    color: #9ca3af;
+}
+
+.cup-detail-main-info strong {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.cup-detail-section {
+    margin-bottom: 2rem;
+}
+
+.cup-detail-section h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 1rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #3a3f78;
+}
+
+.cup-detail-section p {
+    color: #cbd5e1;
+    line-height: 1.6;
+}
+
+.rounds-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.round-info-card {
+    background-color: #111827;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+}
+
+.round-info-card h4 {
+    font-size: 1.125rem;
+    margin: 0 0 1rem 0;
+    color: #60a5fa;
+}
+
+.round-details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem 2rem;
+}
+
+.round-details-grid span {
+    font-size: 0.875rem;
+    color: #9ca3af;
+}
+.round-details-grid strong {
+    font-weight: 600;
+    color: #ffffff;
+}
+.round-details-grid .full-width-item {
+    grid-column: 1 / -1;
+}

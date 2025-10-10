@@ -1,0 +1,137 @@
+.left-menu-container {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: flex;
+    justify-content: flex-end;
+}
+.left-menu-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+}
+.left-menu {
+    position: relative;
+    height: 100%;
+    width: 20rem; /* Tăng chiều rộng một chút */
+    background-color: #111827;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    display: flex;
+    flex-direction: column;
+    animation: slideInFromRight 0.3s ease-out;
+}
+@keyframes slideInFromRight {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}
+
+/* --- Bố cục Body và Footer --- */
+.left-menu-body {
+    flex-grow: 1;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.left-menu-footer {
+    padding: 1rem;
+    border-top: 1px solid #374151;
+}
+
+/* --- Header --- */
+.left-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.left-menu-header h2 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #f9fafb;
+    margin: 0;
+    text-align: center;
+    flex-grow: 1;
+}
+.left-menu-header .back-button,
+.left-menu-header .close-button-alt {
+    background: none;
+    border: none;
+    color: #d1d5db;
+    cursor: pointer;
+    padding: 0.25rem;
+}
+
+/* --- Profile Section --- */
+.left-menu-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: #ffffff;
+}
+.left-menu-avatar, .left-menu-avatar-img {
+    width: 6rem;
+    height: 6rem;
+    border-radius: 9999px;
+    margin-bottom: 0.5rem;
+}
+.left-menu-avatar {
+    background-color: #3b82f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid #60a5fa;
+}
+.left-menu-avatar span { font-size: 2.5rem; font-weight: bold; }
+.left-menu-avatar-img { border: 3px solid #60a5fa; }
+.left-menu-user-name { font-size: 1.25rem; font-weight: 600; margin: 0; }
+.left-menu-username { font-size: 0.875rem; color: #9ca3af; margin: 0; }
+
+/* --- Details List --- */
+.left-menu-details-list {
+    display: flex;
+    flex-direction: column;
+    color: #d1d5db;
+}
+.left-menu-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0.5rem;
+    border-bottom: 1px solid #1f2937; /* Đường kẻ ngăn cách mờ */
+}
+.info-label { font-size: 0.875rem; }
+.info-value { font-size: 0.875rem; font-weight: 600; }
+.vip-level.diamond { color: #5eead4; text-transform: uppercase; font-weight: 700; }
+.verified-no { color: #f87171; }
+.verified-yes { color: #4ade80; }
+
+/* --- Nút Copy Link --- */
+.copy-link-btn {
+    background-color: #3b82f6;
+    color: #ffffff;
+    border: none;
+    border-radius: 9999px;
+    padding: 0.25rem 1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* --- Nút Logout --- */
+.logout-btn {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: #4b5563;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.logout-btn:hover {
+    background-color: #ef4444;
+}

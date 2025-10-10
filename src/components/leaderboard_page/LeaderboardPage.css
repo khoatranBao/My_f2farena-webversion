@@ -1,0 +1,148 @@
+/* Container chính của bảng xếp hạng */
+.leaderboard-container { 
+  width: 100%; 
+  max-width: 950px; 
+  margin: 2rem auto; /* Thêm khoảng cách trên dưới */
+  background-color: #1e293b; 
+  border-radius: 1.5rem; 
+  padding: 1.5rem 2rem; 
+  color: #e2e8f0; 
+  display: flex; 
+  flex-direction: column;
+  /* Bỏ chiều cao cố định để container tự co giãn */
+  /* height: 75vh; */
+}
+
+/* Kiểu cho các tab - PHỤC HỒI GIAO DIỆN CŨ */
+.leaderboard-tabs {
+display: flex;
+gap: 1.5rem; /* Tăng khoảng cách giữa các tab */
+border-bottom: 1px solid #334155; /* Đường kẻ chân mỏng */
+margin-bottom: 1rem;
+}
+
+.tab-button {
+padding: 0.5rem 0.25rem; /* Căn chỉnh padding */
+border: none;
+background-color: transparent;
+color: #94a3b8;
+font-size: 1rem;
+font-weight: 600;
+cursor: pointer;
+transition: all 0.2s ease-in-out;
+border-bottom: 3px solid transparent; /* Chuẩn bị cho hiệu ứng active */
+position: relative;
+top: 1px; /* Đẩy tab lên để khớp với đường kẻ chân */
+}
+
+.tab-button:hover {
+color: #e2e8f0;
+}
+
+.tab-button.active {
+color: #0ea5e9;
+border-bottom-color: #0ea5e9; /* Đường gạch chân khi active */
+}
+
+
+/* Kiểu cho header của bảng */
+.leaderboard-header, .leaderboard-row { 
+  display: grid; 
+  grid-template-columns: 80px 3fr 1fr 1.5fr; /* Cột: Rank, Trader, Wins, Profit */
+  align-items: center; 
+  gap: 1rem; 
+  padding: 0 1rem; 
+}
+
+.leaderboard-header { 
+  font-size: 0.875rem; 
+  font-weight: 600; 
+  color: #94a3b8; 
+  text-transform: uppercase; 
+  padding-bottom: 1rem; 
+  border-bottom: 2px solid #334155; 
+}
+
+.leaderboard-header .wins,
+.leaderboard-header .profit { 
+  text-align: right; 
+}
+
+.leaderboard-body { 
+  display: flex; 
+  flex-direction: column;
+  overflow-y: auto;
+  max-height: 50vh; /* Giới hạn chiều cao và cho phép cuộn */
+}
+
+.leaderboard-row { 
+  padding: 1rem; 
+  border-radius: 0.5rem; 
+  transition: background-color 0.2s; 
+  border-bottom: 1px solid #334155;
+}
+.leaderboard-row:last-child {
+  border-bottom: none;
+}
+.leaderboard-row:hover { 
+  background-color: #334155; 
+}
+
+.rank, .trader-name, .wins, .profit {
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+.rank {
+  text-align: center;
+}
+
+.wins, .profit {
+  text-align: right;
+}
+
+.trader { 
+  display: flex; 
+  align-items: center; 
+  gap: 1rem; 
+}
+
+.trader-avatar { 
+  width: 40px; 
+  height: 40px; 
+  border-radius: 50%; 
+  background-color: #475569; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  font-weight: 700; 
+  color: #ffffff; 
+  border: 2px solid #64748b; 
+}
+
+/* Kiểu cho Rank Vàng, Bạc, Đồng */
+.rank.gold, .trader-avatar.gold { color: #facc15; border-color: #facc15; }
+.rank.silver, .trader-avatar.silver { color: #d1d5db; border-color: #d1d5db; }
+.rank.bronze, .trader-avatar.bronze { color: #f59e0b; border-color: #f59e0b; }
+
+/* Kiểu cho Lợi nhuận */
+.profit.positive { color: #22c55e; } /* Màu xanh lá */
+.profit.negative { color: #ef4444; } /* Màu đỏ */
+.wins { color: #60a5fa; }
+
+/* Kiểu cho thông báo */
+.status-message {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #94a3b8;
+  font-size: 1.125rem;
+}
+.status-message.error {
+  color: #ef4444;
+}
+
+/* Thanh cuộn */
+.leaderboard-body::-webkit-scrollbar { width: 8px; }
+.leaderboard-body::-webkit-scrollbar-track { background: #1e293b; }
+.leaderboard-body::-webkit-scrollbar-thumb { background-color: #475569; border-radius: 4px; }
+.leaderboard-body::-webkit-scrollbar-thumb:hover { background-color: #64748b; }

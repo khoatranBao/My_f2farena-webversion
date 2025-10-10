@@ -1,0 +1,73 @@
+**********Đường dẫn tới git app: https://github.com/f2farena/app
+=======================================================================
+
+
+
+## Làm thế nào để Reset lại dữ liệu?
+Nếu bạn muốn xóa các bình luận đã thêm và quay về dữ liệu gốc, bạn có thể xóa localStorage của trang web:
+
+Mở Developer Tools (nhấn F12).
+
+Đi đến tab Application.
+
+Ở menu bên trái, chọn Local Storage -> http://localhost:xxxx.
+
+Nhấn chuột phải vào traderComments và chọn Delete, hoặc nhấn chuột phải vào http://localhost:xxxx và chọn Clear.
+
+
+2. kết nối telegram (lấy local host):
+npx localtunnel --port 5173
+=> gửi vào chatbot father: 
+/setdomain
+
+
+//======================//
+1. tạo session 
+
+
+//===============
+endpoint : kiểm tra ngươikf dung nếu có cho =1 => test.
+
+2. tạo seesion story => lưu thông tin user.
+
+3. thêm link cho banner ==> 
+
+===================================================
+tạo bảng hiển thị sao trong pk têam review:
+1. tạo file RankDetails.jsx
+2. tạo RankDetails.css
+3. thay đổi file reviewdetailpage.jsx
+
+
+======================================> tạo trang mơis cho detail => đang đấu
+1. thêm mockdata vào cuối file mockdata.
+2.  Tạo Trang Chi Tiết Mới cho Giải Đấu "Live":
+3. tạo hai file LiveTournamentDetailPage.css và LiveTournamentDetailPage.jsx 
+4. cập nhật lại tournamentcard.jsx
+
+
+========================================> nối API endpoint cho trang detail for live
+1. cập nhật app.jsx:
+
+============================================
+===========================================
+1. kéo code trên git main: 
+    git pull origin main
+2. phục hồi code theo commit file trên github:
+    git restore --source=32cb585 src/components/Home/home.css
+    hoặc git checkout 32cb585 -- src/components/Home/home.css
+
+
+=========================================================================
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+curl -X PATCH 'https://f2farena.com/api/complaints/123/resolve'
+
+đây là lệnh xóa đi complaint của user hienj tại, user của tôi là 1. 
+
+1. cách thơikf gian cho private cup: tối thiểu 2 h.
+
+====================================
+sửa đổi mới: 
+src/components/CreatePrivateTournamentForm.jsx
+src/components/DepositForm.jsx
+app.jsx

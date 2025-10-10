@@ -1,0 +1,120 @@
+/* Styles moved from ComplaintPage.css */
+/* Lưu ý: .modal-backdrop và .modal-close-btn có thể đã tồn tại ở App.css, 
+   việc đặt ở đây giúp component độc lập hơn. */
+   .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(4px);
+  }
+  
+  .modal-close-btn {
+    background-color: transparent;
+    border-radius: 9999px;
+    padding: 0.375rem;
+    border: none;
+    cursor: pointer;
+    color: #d1d5db;
+  }
+  .modal-close-btn:hover { background-color: rgba(255, 255, 255, 0.1); }
+  
+  
+  .complaint-modal-content {
+    background-color: #2c3546;
+    border-radius: 1rem;
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.2), 0 8px 10px -6px rgb(0 0 0 / 0.2);
+    width: 91.666667%;
+    max-width: 36rem;
+    color: #ffffff;
+    overflow: hidden;
+  }
+  
+  .complaint-modal-header {
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #4b5563;
+  }
+  
+  .complaint-modal-header h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+  }
+  
+  .complaint-modal-body {
+    padding: 1.5rem;
+  }
+  
+  .complaint-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  
+  .complaint-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .complaint-form label {
+    font-weight: 600;
+    color: #d1d5db;
+  }
+  
+  .complaint-form input,
+  .complaint-form select,
+  .complaint-form textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: #1f2937;
+    border: 1px solid #4b5563;
+    border-radius: 0.5rem;
+    color: #ffffff;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  
+  .complaint-form input::placeholder,
+  .complaint-form textarea::placeholder {
+    color: #6b7280;
+  }
+  
+  .complaint-form input:focus,
+  .complaint-form select:focus,
+  .complaint-form textarea:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+  }
+  
+  .complaint-form textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  .complaint-submit-btn {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: #14f1d9;
+    color: #111827;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.2s;
+    margin-top: 0.5rem;
+  }
+  
+  .complaint-submit-btn:hover {
+    opacity: 0.9;
+    transform: scale(1.02);
+  }
+  

@@ -1,0 +1,211 @@
+/* src/components/Home/home.css */
+
+/* Banner Styles */
+.banner-container {
+    position: relative;
+    height: 16rem; 
+    width: 100%;
+    overflow: hidden; /* [THÊM MỚI] Ẩn các ảnh bị tràn ra ngoài */
+    background-color: #e0e0e0; /* Thêm màu nền cho đẹp khi đang tải */
+}
+.banner-slides {
+    display: flex; /* [THÊM MỚI] Dàn các ảnh theo hàng ngang */
+    height: 100%;
+    transition: transform 0.5s ease-in-out; /* [THÊM MỚI] Hiệu ứng trượt mượt mà */
+}
+.banner-slide {
+    flex-shrink: 0; /* [THÊM MỚI] Đảm bảo slide không bị co lại */
+    width: 100%;
+    height: 100%;
+}
+.banner-dots {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+}
+.banner-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+/* Kiểu cho dấu chấm đang được chọn (active) */
+.banner-dot.active {
+    background-color: #ffffff;
+}
+
+.banner-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Home Page Layout */
+.home-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    padding-bottom: 4rem; 
+    overflow-x: hidden;
+}
+
+.online-players-banner {
+    position: relative;
+    height: 6rem;
+    background-color: rgba(17, 24, 39, 0.8);
+    backdrop-filter: blur(16px);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 2rem;
+    width: 100vw;
+    left: 50%;
+    transform: translateX(-50%);
+    border-top: 1px solid #374151;
+    border-bottom: 1px solid #374151;
+}
+
+.online-players-banner h3 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.online-players-banner p {
+    color: #facc15;
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+/* View More Button */
+.view-more-container {
+    display: flex;
+    justify-content: center;
+    padding: 1.5rem 0 1rem 0;
+}
+
+.view-more-btn {
+    background-color: #2563eb;
+    color: white;
+    font-weight: 700;
+    padding: 0.6rem 2rem;
+    border-radius: 9999px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.view-more-btn:hover {
+    background-color: #38bdf8;
+}
+
+/* Responsive Adjustments */
+@media (min-width: 768px) {
+    .banner-container {
+        height: 35rem;
+    }
+}
+/* ================================== */
+/* ===   Bố cục cho Live Matches   === */
+/* ================================== */
+
+.live-match-grid {
+    display: grid;
+    gap: 1rem; 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  .home-container {
+    padding: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #334155;
+    padding-bottom: 0.75rem;
+}
+
+.section-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #e2e8f0;
+}
+
+.section-header .icon {
+    width: 24px;
+    height: 24px;
+}
+.icon-red { color: #ef4444; }
+.icon-blue { color: #3b82f6; }
+
+/* ✅ THAY ĐỔI TẠI ĐÂY: Áp dụng CSS Grid */
+.grid-container {
+    display: grid;
+    /* Tạo các cột có chiều rộng tối thiểu 300px và tự động lấp đầy không gian */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem; /* Khoảng cách giữa các card */
+}
+
+.live-match-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.online-players-banner {
+    background: linear-gradient(to right, #1e3a8a, #3b82f6);
+    color: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.online-players-banner h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    opacity: 0.8;
+}
+
+.online-players-banner p {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.view-more-container {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.view-more-btn {
+    background-color: #334155;
+    color: #e2e8f0;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.view-more-btn:hover {
+    background-color: #4b5563;
+}
+
+.placeholder-content {
+    padding: 2rem;
+    text-align: center;
+    color: #94a3b8;
+}

@@ -1,3 +1,0 @@
-// src/components/Tournaments/TournamentDetailModal.jsx
-// ... Code của component modal giống như cũ, chỉ cần sửa import Icon ...
-import { CloseIcon } from '../../icons/Icons';

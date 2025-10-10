@@ -1,0 +1,325 @@
+/* Giao diện chung cho trang 1 vs 1 */
+.one-vs-one-page {
+    width: 100%;
+}
+
+.page-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1.5rem;
+}
+
+.new-match-btn {
+    background: linear-gradient(to right, #00c6ff, #0072ff);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+.new-match-btn:hover {
+    opacity: 0.9;
+}
+
+/* Khu vực bộ lọc */
+.filter-section.card {
+    background-color: #1e293b;
+    padding: 1rem 1.5rem;
+    border-radius: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+.filter-section h4 {
+    margin: 0 0 1rem 0;
+    font-weight: 600;
+}
+.checkbox-group {
+    display: flex;
+    gap: 2rem;
+}
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    color: #e2e8f0; /* Thêm màu chữ cho dễ đọc */
+}
+/* Tùy chỉnh checkbox cho đẹp hơn */
+.checkbox-group input[type="checkbox"] {
+    appearance: none;
+    background-color: #334155;
+    margin: 0;
+    font: inherit;
+    color: currentColor;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid #4b5563;
+    border-radius: 0.25em;
+    transform: translateY(-0.075em);
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+}
+.checkbox-group input[type="checkbox"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em #0ea5e9; /* Màu dấu tick */
+    transform-origin: bottom left;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+.checkbox-group input[type="checkbox"]:checked::before {
+    transform: scale(1);
+}
+
+
+/* Lưới hiển thị các card */
+.matches-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem; /* Tăng khoảng cách cho thoáng hơn */
+}
+
+/* --- CSS cho từng Card --- */
+.one-vs-one-card {
+    background-color: #2c3e50;
+    border-radius: 1rem;
+    padding: 1rem;
+    border: 1px solid #34495e;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Thêm hiệu ứng hover */
+}
+.one-vs-one-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.card-player-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+.player-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #3498db;
+    object-fit: cover; /* Đảm bảo ảnh không bị méo */
+}
+.player-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.card-match-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: left; /* Căn lề trái cho dễ đọc */
+    gap: 1rem;
+    border-top: 1px solid #34495e; /* Thêm đường kẻ phân cách */
+    padding-top: 1rem;
+}
+.detail-item span {
+    font-size: 0.8rem;
+    color: #95a5a6;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+.detail-item p {
+    margin: 0;
+    font-weight: 700;
+    font-size: 1rem;
+}
+.symbol-text { color: #f1c40f; }
+.bet-text { color: #2ecc71; }
+
+.join-challenge-btn, .view-match-btn {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    margin-top: auto; /* Đẩy nút xuống dưới cùng */
+}
+
+.join-challenge-btn {
+    background: linear-gradient(to right, #11e0c2, #00b8d4);
+    color: #111;
+}
+.join-challenge-btn:hover { opacity: 0.9; }
+
+.view-match-btn.live { 
+    background-color: #ef4444; 
+    color: white; 
+    display: flex; /* Căn giữa nội dung nút */
+    align-items: center;
+    justify-content: center;
+}
+.view-match-btn.done { background-color: #4b5563; color: #d1d5db; }
+
+.live-indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: white;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.9); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.7; }
+    100% { transform: scale(0.9); opacity: 1; }
+}
+
+/* === CSS CHUNG CHO CÁC MODAL === */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    z-index: 1000;
+    padding: 1rem;
+}
+.modal-content {
+    background: #2c2c3e;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 450px;
+    border: 1px solid #444;
+    animation: fadeIn 0.3s ease-out;
+    overflow: hidden; /* Ngăn nội dung tràn ra ngoài */
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid #444;
+    flex-shrink: 0;
+}
+.modal-header h3 { margin: 0; font-size: 1.25rem; color: #fff; }
+.close-button {
+    background: transparent; border: none; font-size: 2rem;
+    line-height: 1; color: #aaa; cursor: pointer; padding: 0;
+}
+.close-button:hover { color: #fff; }
+
+/* === CSS CHO CÁC THÀNH PHẦN FORM CHUNG === */
+.form-group { margin-bottom: 1.25rem; }
+.form-group:last-child { margin-bottom: 0; }
+.form-group label {
+    display: block; margin-bottom: 0.5rem; color: #ccc; font-weight: 500;
+}
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group input[type="number"],
+.form-group select {
+    width: 100%; padding: 0.75rem; border: 1px solid #555;
+    background-color: #1e1e2d; border-radius: 8px; color: #fff;
+    font-size: 1rem; box-sizing: border-box; 
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.form-group input:focus, .form-group select:focus {
+    outline: none; border-color: #4a90e2;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.3);
+}
+
+
+/* === SỬA LẠI CSS CHO CREATE MATCH MODAL === */
+
+/* Ghi đè style cho modal-content để nó có thể co giãn */
+.modal-content.create-match-modal {
+    display: flex;
+    flex-direction: column;
+    max-height: 90vh; /* Giới hạn chiều cao tối đa */
+    padding: 0; /* Xóa padding cũ */
+}
+
+/* Form sẽ chiếm toàn bộ không gian còn lại và co giãn */
+.create-match-form {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Bắt buộc để flex-grow hoạt động */
+    flex-grow: 1;
+}
+
+/* Đây là khu vực nội dung sẽ được cuộn */
+.form-body {
+    overflow-y: auto; /* Bật thanh cuộn khi cần */
+    padding: 1.5rem 2rem;
+}
+
+/* === ✅ SỬA LỖI: THÊM ĐOẠN NÀY ĐỂ ẨN THANH CUỘN === */
+/* Ẩn thanh cuộn cho các trình duyệt Webkit (Chrome, Safari) */
+.form-body::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* làm cho thanh cuộn trong suốt */
+}
+/* Ẩn thanh cuộn cho Firefox */
+.form-body {
+    scrollbar-width: none;
+}
+
+
+/* Đây là khu vực chân của form, chứa nút bấm, sẽ được cố định */
+.form-footer {
+    padding: 1.5rem 2rem;
+    border-top: 1px solid #444;
+    background-color: #2c2c3e;
+    flex-shrink: 0; /* Ngăn không cho co lại */
+}
+
+.radio-group-container {
+    display: flex;
+    gap: 1rem;
+}
+.radio-option {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border: 2px solid #555;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex: 1;
+}
+.radio-option input[type="radio"] {
+    display: none;
+}
+.radio-option.selected {
+    border-color: #facc15;
+    background-color: #423b28;
+}
+.confirm-setup-btn {
+    width: 100%; padding: 0.85rem; border: none; border-radius: 8px;
+    background-color: #facc15;
+    color: #111827;
+    font-size: 1rem; font-weight: bold; cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 0; /* Reset margin */
+}
+.confirm-setup-btn:hover {
+    background-color: #eab308;
+}
+

@@ -1,0 +1,103 @@
+/* === CSS for Auth Modal === */
+
+/* Lớp phủ nền mờ phía sau */
+.auth-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(10, 25, 41, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
+
+/* Khung chính của modal */
+.auth-modal-content {
+  background: #1e2a3b; /* Màu nền tối giống trong ảnh */
+  padding: 2rem 2.5rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  color: #ecf0f1; /* Màu chữ trắng ngà */
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid #34495e;
+  text-align: center;
+}
+
+/* Tiêu đề "Login" */
+.auth-modal-content h2 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+/* Dòng chữ mô tả nhỏ */
+.auth-modal-content p {
+  margin-bottom: 2rem;
+  color: #95a5a6; /* Màu chữ phụ */
+}
+
+/* Nút đóng (dấu X) */
+.auth-modal-content .close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  color: #ecf0f1;
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* Ô nhập liệu */
+.auth-modal-content .form-input {
+  width: 100%;
+  padding: 14px 16px;
+  background-color: #2c3e50; /* Màu nền ô input */
+  border: 1px solid #4a627a;
+  border-radius: 8px;
+  color: #ecf0f1;
+  font-size: 1rem;
+  transition: border-color 0.2s ease-in-out;
+}
+
+/* Hiệu ứng khi focus vào ô nhập liệu */
+.auth-modal-content .form-input:focus {
+  outline: none;
+  border-color: #3498db; /* Màu xanh dương chủ đạo */
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+/* Nút Login chính */
+.auth-modal-content .login-btn-modal {
+  width: 100%;
+  padding: 14px 16px;
+  margin-top: 1.5rem;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* Hiệu ứng khi di chuột qua nút Login */
+.auth-modal-content .login-btn-modal:hover {
+  background-color: #2980b9;
+}
+
+/* Kiểu của nút khi đang loading (bị vô hiệu hóa) */
+.auth-modal-content .login-btn-modal:disabled {
+  background-color: #5d6d7e;
+  cursor: not-allowed;
+}
